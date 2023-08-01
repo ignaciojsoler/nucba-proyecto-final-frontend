@@ -45,7 +45,7 @@ const Input = (props: InputProps) => {
         disabled={disabled}
         onChange={handleInputChange}
         onBlur={handleInputEndEditing}
-        className={`py-5 px-5 bg-slate-800 text-slate-200 rounded-3xl w-full font-medium placeholder:font-semibold placeholder:text-slate-600 ${
+        className={`py-5 px-5 bg-slate-800 text-slate-200 rounded-xl w-full font-medium placeholder:font-semibold placeholder:text-slate-600 focus:ring focus:ring-slate-600 focus:outline-none ${
           className || ""
         }`}
         type={secureTextEntry ? "password" : "text"}

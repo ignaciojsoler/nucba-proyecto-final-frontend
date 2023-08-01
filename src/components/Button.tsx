@@ -3,7 +3,7 @@ import { ReactElement } from "react";
 interface ButtonProps {
   title: string;
   disabled?: boolean;
-  onPress: () => void;
+  onClick: () => void;
   color?: "primary" | "secondary" | "light" | "dark" | "transparent";
   size?: "small" | "medium" | "large";
   icon?: ReactElement<unknown, never>;
@@ -11,12 +11,12 @@ interface ButtonProps {
 }
 
 export const Button = (props: ButtonProps) => {
-  const { title = "", disabled = false, onPress, color, size, icon, className } = props;
+  const { title = "", disabled = false, onClick, color, size, icon, className } = props;
   return (
     <button
       {...props}
       disabled={disabled}
-      onClick={onPress}
+      onClick={onClick}
       className={`
     ${size === "small" ? "py-2 px-5 text-sm font-semibold" : size === "large" ? "py-6 px-20 text-xl font-semibold" : "py-4 px-12 text-lg font-semibold"}
     ${
@@ -28,10 +28,10 @@ export const Button = (props: ButtonProps) => {
         ? "bg-slate-200 text-slate-800 hover:bg-slate-300"
         : color === "transparent" 
         ? "bg-transparent text-emerald-500 font-bold hover:text-emerald-300"
-        : "bg-emerald-600 hover:bg-emerald-500"
+        : "bg-emerald-600 text-slate-200 hover:bg-emerald-500"
     }
     ${className || ""}
-    transition-color duration-200 rounded-3xl min-w-120 active:opacity-80
+    transition-color duration-200 rounded-xl min-w-120 active:opacity-80
     `}
     >
       {icon} {title}
