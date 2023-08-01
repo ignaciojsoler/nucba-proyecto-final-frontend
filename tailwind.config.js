@@ -24,11 +24,12 @@ export default {
           "100%": {
             opacity: 1
           }
-        }
+        },
       },
       animation: {
         pong: "pong 1s infinite ease",
-        fadeIn: "fadeIn .3s ease"
+        fadeIn: "fadeIn 1s ease",
+        sladeInFromBottom: "sladeInFromBottom .7s ease"
       },
       backgroundImage: {
         'hero-texture': "url('./src/assets/img/bg-texture.jpg')",
