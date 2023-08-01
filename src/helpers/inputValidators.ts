@@ -31,6 +31,11 @@ export const notEmpty = (value: string): [boolean, string] => {
   export const checkPassword = (value: string, password: string): [boolean, string] => {
     return [value === password, "Las contraseñas no coinciden."];
   };
+
+  export const isValidPhone = (value: string): [boolean, string]  => {
+    const phoneRegex = /^(0[1-9]|11|[2-9]\d{1})([2-9]\d{6,7})$/;
+    return [phoneRegex.test(value), "El formato del número de teléfono no es válido. (código de área) número."];
+  };
   
   export const validateInput = (
     text: string,
@@ -53,7 +58,7 @@ export const notEmpty = (value: string): [boolean, string] => {
             newErrors.push(errorText);
           }
         } else if (validation.startsWith("checkPassword:")) {
-          const password = String(validation.split(":")[1]);
+          const password = validation.split(":")[1];
           const [isValid, errorText] = checkPassword(text, password);
           if (!isValid) {
             newErrors.push(errorText);
@@ -63,28 +68,26 @@ export const notEmpty = (value: string): [boolean, string] => {
           if (!isValid) {
             newErrors.push(errorText);
           }
-        } else {
-          switch (validation) {
-            case "isEmail": {
-              const [isValid, errorText] = isEmail(text);
-              if (!isValid) {
-                newErrors.push(errorText);
-              }
-              break;
-            }
-            case "validPassword": {
-              const [isValid, errorText] = validPassword(text);
-              if (!isValid) {
-                newErrors.push(errorText);
-              }
-              break;
-            }
-            default:
-              break;
+        } else if (validation === "isEmail") {
+          const [isValid, errorText] = isEmail(text);
+          if (!isValid) {
+            newErrors.push(errorText);
+          }
+        } else if (validation === "isValidPhone") {
+          const [isValid, errorText] = isValidPhone(text);
+          if (!isValid) {
+            newErrors.push(errorText);
+          }
+        } else if (validation === "validPassword") {
+          const [isValid, errorText] = validPassword(text);
+          if (!isValid) {
+            newErrors.push(errorText);
           }
         }
       });
     }
+    
+    
   
     const isValid = newErrors.length === 0;
     return [newErrors, isValid ? "" : newErrors[0]];

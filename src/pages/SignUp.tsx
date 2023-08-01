@@ -13,20 +13,24 @@ import { getFromStorage } from "../helpers/handleStorage";
 export const SignUp = () => {
   const [username, setUsername] = useState<string>("");
   const [userEmail, setUserEmail] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
+  const [occupation, setOccupation] = useState<string>("");
+  const [city, setCity] = useState<string>("");
   const [userPassword, setUserPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [selectedPlan, setSelectedPlan] = useState<string | null>(null)
+  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
 
   const getSelectedPlanFromStorage = () => {
-    const storagePlan: { value: string } = getFromStorage('selectedPlan');
+    const storagePlan: { value: string } = getFromStorage("selectedPlan");
     if (!storagePlan) return null;
     setSelectedPlan(storagePlan.value);
-}
+  };
 
   const handleSignUp = async () => {
     const [usernameErrors] = validateInput(userEmail, ["notEmpty", "isEmail"]);
     const [emailErrors] = validateInput(userEmail, ["notEmpty", "isEmail"]);
+    const [phoneErrores] = validateInput(userEmail, ["NotEmpty", "isValidPhone"]);
     const [passwordErrors] = validateInput(userPassword, [
       "notEmpty",
       "validPassword",
@@ -35,7 +39,8 @@ export const SignUp = () => {
     if (
       usernameErrors.length > 0 ||
       emailErrors.length > 0 ||
-      passwordErrors.length > 0
+      passwordErrors.length > 0 ||
+      phoneErrores.length > 0
     ) {
       alert(
         "¡Ups! Alguno de los campos ingresados es incorrecto. Por favor, revisa los campos y vuelve a intentarlo."
@@ -64,7 +69,7 @@ export const SignUp = () => {
   useEffect(() => {
     getSelectedPlanFromStorage();
   }, []);
-  
+
   return (
     <div className="m-auto max-w-xl h-screen flex flex-col justify-center items-center">
       {isLoading && <Loader />}
@@ -72,32 +77,71 @@ export const SignUp = () => {
         <h4 className="text-slate-200 text-center text-2xl font-bold">
           Crea una cuenta nueva de {selectedPlan}
         </h4>
-        <Input
-          placeholder="Nombre completo"
-          onChangeText={setUsername}
-          value={username}
-          validations={["notEmpty", "minLength:8", "maxLength:50"]}
-        />
-        <Input
-          placeholder="Correo electrónico"
-          onChangeText={setUserEmail}
-          value={userEmail}
-          validations={["notEmpty", "isEmail"]}
-        />
-        <Input
-          placeholder="Contraseña"
-          onChangeText={setUserPassword}
-          value={userPassword}
-          validations={["notEmpty", "validPassword"]}
-          secureTextEntry={true}
-        />
-        <Input
-          placeholder="Confirmar contraseña"
-          onChangeText={setConfirmPassword}
-          value={confirmPassword}
-          validations={["notEmpty", `checkPassword:${userPassword}`]}
-          secureTextEntry={true}
-        />
+        {selectedPlan === "cliente" ? (
+          <>
+            <Input
+              placeholder="Nombre completo"
+              onChangeText={setUsername}
+              value={username}
+              validations={["notEmpty", "minLength:8", "maxLength:50"]}
+            />
+            <Input
+              placeholder="Correo electrónico"
+              onChangeText={setUserEmail}
+              value={userEmail}
+              validations={["notEmpty", "isEmail"]}
+            />
+            <Input
+              placeholder="Contraseña"
+              onChangeText={setUserPassword}
+              value={userPassword}
+              validations={["notEmpty", "validPassword"]}
+              secureTextEntry={true}
+            />
+            <Input
+              placeholder="Confirmar contraseña"
+              onChangeText={setConfirmPassword}
+              value={confirmPassword}
+              validations={["notEmpty", `checkPassword:${userPassword}`]}
+              secureTextEntry={true}
+            />
+          </>
+        ) : (
+          <>
+            <Input
+              placeholder="Nombre completo"
+              onChangeText={setUsername}
+              value={username}
+              validations={["notEmpty", "minLength:8", "maxLength:50"]}
+            />
+            <Input
+              placeholder="Correo electrónico"
+              onChangeText={setUserEmail}
+              value={userEmail}
+              validations={["notEmpty", "isEmail"]}
+            />
+            <Input
+            placeholder="Teléfono"
+            onChangeText={setPhone}
+            value={phone}
+            validations={["notEmpty", "isValidPhone"]}
+            />
+            <Input
+              placeholder="Contraseña"
+              onChangeText={setUserPassword}
+              value={userPassword}
+              validations={["notEmpty", "validPassword"]}
+              secureTextEntry={true}
+            />
+            <Input
+              placeholder="Confirmar contraseña"
+              onChangeText={setConfirmPassword}
+              value={confirmPassword}
+              validations={["notEmpty", `checkPassword:${userPassword}`]}
+              secureTextEntry={true}
+            />
+          </>
+        )}
         <Button
           title="Registrarme"
           onClick={() => handleSignUp()}
