@@ -7,7 +7,7 @@ import { signUp } from "../services/services";
 import { Button } from "../components/Button";
 import { Loader } from "../components/Loader";
 import { Link } from "react-router-dom";
-import { getFromStorage, removeFromStorage } from "../helpers/handleStorage";
+import { getFromStorage } from "../helpers/handleStorage";
 // import { signUp } from "../../services/services";
 
 export const SignUp = () => {
@@ -64,15 +64,10 @@ export const SignUp = () => {
   useEffect(() => {
     getSelectedPlanFromStorage();
   }, []);
-
-  useEffect(() => {
-    selectedPlan && removeFromStorage('selectedPlan');
-  }, [selectedPlan]);
   
-
   return (
     <div className="m-auto max-w-xl h-screen flex flex-col justify-center items-center">
-      {isLoading || !selectedPlan && <Loader />}
+      {isLoading && <Loader />}
       <div className="p-8 space-y-4 rounded-xl min-w-full">
         <h4 className="text-slate-200 text-center text-2xl font-bold">
           Crea una cuenta nueva de {selectedPlan}
