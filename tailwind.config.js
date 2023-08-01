@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       minWidth: {
-        120: "120px",
+        40: '10rem'
       },
       keyframes: {
         pong: {
@@ -28,6 +28,9 @@ export default {
         pong: "pong 1s infinite ease",
         fadeIn: "fadeIn .3s ease"
       },
+      backgroundImage: {
+        'hero-texture': "url('./src/assets/img/bg-texture.jpg')",
+      }
     },
   },
   plugins: [],

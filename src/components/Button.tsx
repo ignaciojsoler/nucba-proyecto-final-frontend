@@ -1,13 +1,15 @@
 import { ReactElement } from "react";
 
 interface ButtonProps {
-  title: string;
+  title?: string;
   disabled?: boolean;
   onClick: () => void;
   color?: "primary" | "secondary" | "light" | "dark" | "transparent";
   size?: "small" | "medium" | "large";
   icon?: ReactElement<unknown, never>;
   className?: string;
+  children?: ReactElement,
+  widthFull?: boolean
 }
 
 export const Button = (props: ButtonProps) => {
@@ -19,6 +21,8 @@ export const Button = (props: ButtonProps) => {
     size,
     icon,
     className,
+    children,
+    widthFull
   } = props;
   return (
     <button
@@ -28,10 +32,10 @@ export const Button = (props: ButtonProps) => {
       className={`
     ${
       size === "small"
-        ? "py-2 px-5 text-sm font-semibold"
+        ? "text-sm font-semibold"
         : size === "large"
-        ? "py-6 px-20 text-xl font-semibold"
-        : "py-4 px-12 text-lg font-semibold"
+        ? " text-xl font-semibold"
+        : "min-w-40 h-14 font-semibold"
     }
     ${
       color === "secondary"
@@ -41,14 +45,15 @@ export const Button = (props: ButtonProps) => {
         : color === "light"
         ? "bg-slate-200 text-slate-800 hover:bg-slate-300"
         : color === "transparent"
-        ? "bg-transparent text-emerald-500 font-bold hover:text-emerald-300"
+        ? "bg-transparent text-slate-200 font-bold hover:text-slate-300"
         : "bg-emerald-600 text-slate-200 hover:bg-emerald-500"
     }
     ${className || ""}
-    transition-color duration-200 rounded-xl min-w-120 active:opacity-80
+    ${widthFull ? "w-full" : ""}
+    transition-color duration-200 rounded-lg active:opacity-80
     `}
     >
-      {icon} {title}
+      {icon} {title} {children}
     </button>
   );
 };
