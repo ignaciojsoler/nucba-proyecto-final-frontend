@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "Cliente",
+    "description": "Como cliente registrado en nuestra aplicación, tendrás acceso a una amplia gama de servicios y beneficios para facilitar la gestión de tu hogar.",
+    "items": [
+      "Navega a través de una variada lista de trabajadores altamente capacitados.",
+      "Encuentra al profesional perfecto para tus necesidades y programa una cita.",
+      "Guarda tus profesionales de confianza en tu lista de favoritos."
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Trabajador",
+    "description": "Como profesional registrado en nuestra aplicación, tendrás la oportunidad de expandir tu cartera de clientes y destacar en tu campo de especialización.",
+    "items": [
+      "Crea un perfil profesional completo que destaque tus habilidades y experiencia.",
+      "Gestiona tu disponibilidad y ajusta tu horario según tus necesidades.",
+      "Obtén una mayor exposición entre una amplia base de clientes potenciales."
+    ]
+  }
+]

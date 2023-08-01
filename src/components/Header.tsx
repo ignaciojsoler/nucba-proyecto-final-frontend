@@ -37,7 +37,7 @@ export const Navbar = () => {
                 Iniciar sesión
               </p>
             </Link>
-            <Link to="/signup" onClick={() => setDisplayAside(false)}>
+            <Link to="/plans" onClick={() => setDisplayAside(false)}>
               <p className="text-slate-200 text-2xl font-bold py-6">
                 Registrarse
               </p>
@@ -54,7 +54,7 @@ export const Navbar = () => {
           >
             <p className="text-slate-200 font-semibold">Iniciar sesión</p>
           </Link>
-          <Link to="/signup">
+          <Link to="/plans">
             <Button title="Registrarse" onClick={() => {}} size="small" />
           </Link>
         </div>

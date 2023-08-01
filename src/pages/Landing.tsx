@@ -1,6 +1,8 @@
 import { Button } from "../components/Button";
+import { useNavigate } from "react-router-dom";
 
 export const Landing = () => {
+  const navigate = useNavigate();
   return (
     <div className="px-6 flex flex-col justify-center align-top pt-24 text-slate-200 md:px-8 lg:max-w-7xl m-auto lg:grid lg:grid-cols-2">
       <div className="fixed top-0 left-0 bg-hero-texture bg-cover mix-blend-multiply h-screen w-screen animate-fadeIn" />
@@ -36,7 +38,7 @@ export const Landing = () => {
               </ul>
             </div>
           </div>
-          <Button onClick={() => {}} title="Comenzar ahora" widthFull />
+          <Button onClick={() => {navigate('/plans')}} title="Comenzar ahora" widthFull />
         </div>
       </div>
     </div>

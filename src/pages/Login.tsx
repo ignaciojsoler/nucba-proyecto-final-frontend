@@ -79,7 +79,7 @@ export const Login = () => {
           />
           <p className="text-slate-200 text-center text-sm py-2">
             ¿Aún no creaste tu cuenta?
-            <span className="text-emerald-600 font-bold ml-2"><Link to='/signup'>Registrate</Link></span>
+            <span className="text-emerald-600 font-bold ml-2"><Link to='/plans'>Registrate</Link></span>
           </p>
         </div>
       </div>
