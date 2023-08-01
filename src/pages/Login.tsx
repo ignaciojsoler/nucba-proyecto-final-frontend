@@ -2,8 +2,10 @@ import { useState } from "react";
 import Input from "../components/Input";
 import { Button } from "../components/Button";
 import { Loader } from "../components/Loader";
-import logoIcon from "../../public/icons/logo.svg";
+import logoIcon from "../assets/icons/logo.svg";
 import { validateInput } from "../helpers/inputValidators";
+import { loginWithEmailAndPassword } from "../services/services";
+import { AxiosResponse } from "axios";
 
 export const Login = () => {
   const [userEmail, setUserEmail] = useState<string>("");
@@ -26,27 +28,22 @@ export const Login = () => {
 
     setIsLoading(true);
 
-    // const loginResponse: AxiosResponse = await loginWithEmailAndPassword(
-    //   userEmail,
-    //   userPassword
-    // );
+    const loginResponse: AxiosResponse = await loginWithEmailAndPassword(
+      userEmail,
+      userPassword
+    );
 
-    setTimeout(() => {
-      
+    if (!loginResponse) {
+      setIsLoading(false);
+      return alert("Algo ha salido mal, intentalo de nuevo más tarde");
+    }
+
+    if (loginResponse.status !== 200) {
+      setIsLoading(false);
+      return alert(loginResponse.data.msg);
+    }
+
     setIsLoading(false);
-    }, 5000)
-
-    // if (!loginResponse)
-    //   return alert("Algo ha salido mal, intentalo de nuevo más tarde");
-
-    // if (loginResponse.status !== 200) return alert(loginResponse.data.msg);
-
-    // const userData = JSON.stringify(loginResponse.data.user);
-
-    // await SecureStore.setItemAsync('userData', userData);
-    // await SecureStore.setItemAsync('userToken', loginResponse.data.token);
-
-    // navigation.navigate('Home');
   };
 
   return (
