@@ -56,21 +56,7 @@ export const SignUp = () => {
   return (
     <div className="m-auto max-w-xl h-screen flex flex-col justify-center items-center">
       {isLoading && <Loader />}
-      {/* Add any necessary modification for the loading overlay */}
-      {isLoading && (
-        <div
-          className="absolute w-screen h-screen z-50 flex justify-center items-center transition duration-200"
-          style={{ backgroundColor: "rgba(15, 23, 42, 0.5)" }}
-        >
-          <div>Loading...</div>
-        </div>
-      )}
-      <div>
-        <span className="text-xl font-montserratSemiBold text-slate-900">
-          Registro
-        </span>
-      </div>
-      <div className="space-y-4 w-full">
+      <div className="p-8 space-y-4 rounded-xl min-w-full">
         <h4 className="text-slate-200 text-center text-2xl font-bold">
           Crea una cuenta nueva
         </h4>

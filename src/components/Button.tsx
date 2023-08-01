@@ -32,9 +32,9 @@ export const Button = (props: ButtonProps) => {
       className={`
     ${
       size === "small"
-        ? "text-sm font-semibold"
+        ? "text-sm h-12 min-w-30 font-semibold"
         : size === "large"
-        ? " text-xl font-semibold"
+        ? "min-w-50 h-20 text-xl font-semibold"
         : "min-w-40 h-14 font-semibold"
     }
     ${

@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="min-h-screen min-w-screen bg-gradient-to-b from-slate-900 to-slate-950">
       <Routes>
-        <Route path="" element={<Landing/>}/>
+        <Route path="/home" element={<Landing/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<SignUp/>}/>
       </Routes>

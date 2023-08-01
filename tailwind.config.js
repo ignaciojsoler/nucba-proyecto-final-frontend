@@ -4,7 +4,9 @@ export default {
   theme: {
     extend: {
       minWidth: {
-        40: '10rem'
+        30: '7.5rem',
+        40: '10rem',
+        50: '12.5rem'
       },
       keyframes: {
         pong: {
