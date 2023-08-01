@@ -43,7 +43,7 @@ const Input = (props: InputProps) => {
         placeholder={placeholder}
         disabled={disabled}
         onChange={handleInputChange}
-        className={`py-5 px-5 bg-slate-800 text-slate-200 rounded-xl w-full min-w-full font-medium placeholder:font-semibold placeholder:text-slate-600 focus:ring focus:ring-slate-600 focus:outline-none ${
+        className={`p-4 bg-slate-800 text-slate-200 rounded-lg w-full min-w-full font-medium placeholder:font-semibold placeholder:text-slate-600 focus:ring focus:ring-slate-600 focus:outline-none ${
           className || ""
         }`}
         type={secureTextEntry ? "password" : "text"}

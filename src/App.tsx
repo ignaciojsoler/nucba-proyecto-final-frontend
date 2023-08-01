@@ -2,12 +2,14 @@ import { Route, Routes } from "react-router-dom";
 import { Login } from "./pages/Login";
 import { SignUp } from "./pages/SignUp";
 import { Landing } from "./pages/Landing";
+import { Navbar } from "./components/Header";
 
 function App() {
   return (
     <div className="min-h-screen min-w-screen bg-gradient-to-b from-slate-900 to-slate-950">
+      <Navbar/>
       <Routes>
-        <Route path="/home" element={<Landing/>}/>
+        <Route path="/" element={<Landing/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<SignUp/>}/>
       </Routes>
