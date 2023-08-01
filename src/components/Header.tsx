@@ -9,7 +9,7 @@ export const Navbar = () => {
     <nav className="absolute w-full">
       <div className="px-6 py-6 flex justify-between m-auto md:justify-end lg:max-w-7xl">
         <div className="md:hidden">
-          <div className="fixed z-20 left-0 bg-gradient-to-b from-slate-900 to-transparent w-full top-0 px-6 pt-6 pb-20">
+          <div className="fixed z-20 left-0 bg-gradient-to-b from-slate-900 to-transparent w-full top-0 px-6 pt-6 pb-11">
             <Hamburger
               color="white"
               onToggle={() => setDisplayAside(!displayAside)}
@@ -25,14 +25,10 @@ export const Navbar = () => {
             <Link to="/login"><p className="text-slate-200 text-2xl font-bold py-6">Registrarse</p></Link>
           </div>
         </div>
-        <div className="hidden md:block space-x-3">
-          <Button
-            title="Iniciar sesión"
-            
-            color="transparent"
-            onClick={() => {}}
-          />
-          <Button title="Registrarse" onClick={() => {}} />
+        <div className="hidden md:space-x-10 md:items-center md:flex ">
+        <Link to="/"><p className="text-slate-200 font-semibold">Inicio</p></Link>
+        <Link to="/login"><p className="text-slate-200 font-semibold" >Iniciar sesión</p></Link>
+          <Button title="Registrarse" onClick={() => {}} size="small"/>
         </div>
       </div>
     </nav>

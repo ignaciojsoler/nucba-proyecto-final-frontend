@@ -5,9 +5,9 @@ export const Landing = () => {
   return (
     <>
     <Navbar/>
-    <div className="px-6 flex flex-col justify-center align-top pt-24 text-slate-200 lg:max-w-7xl m-auto lg:grid lg:grid-cols-2">
-      <div className="fixed bg-hero-texture bg-cover mix-blend-multiply h-screen w-screen" />
-      <div className=" space-y-12 pt-6 pb-12">
+    <div className="px-6 flex flex-col justify-center align-top pt-24 text-slate-200 md:px-8 lg:max-w-7xl m-auto lg:grid lg:grid-cols-2">
+      <div className="fixed top-0 left-0 bg-hero-texture bg-cover mix-blend-multiply h-screen w-screen" />
+      <div className=" space-y-8 pt-6 pb-12">
         <div className=" space-y-4">
           <h1 className=" text-5xl text-center font-bold">
             ¡Bienvenido a ServiHogar!
