@@ -23,42 +23,40 @@ const Input = (props: InputProps) => {
   } = props;
 
   const [, setErrors] = useState<string[]>([]);
+  const [isValid, setIsValid] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleInputChange = (event: { target: { value: string } }) => {
     const text = event.target.value;
-    onChangeText(text); // Update the text value on every change, but don't validate yet.
-  };
+    onChangeText(text);
 
-  const handleInputEndEditing = (event: { target: { value: string } }) => {
-    const text = event.target.value;
-    const [newErrors, errorMessage] = validateInput(text, validations);
+    const [newErrors, newErrorMessage] = validateInput(text, validations);
     setErrors(newErrors);
-    setErrorMessage(errorMessage);
+    setErrorMessage(newErrorMessage);
+    setIsValid(newErrors.length === 0);
   };
 
   return (
-    <>
+    <div className="space-y-2">
       <input
         value={value}
         placeholder={placeholder}
         disabled={disabled}
         onChange={handleInputChange}
-        onBlur={handleInputEndEditing}
-        className={`py-5 px-5 bg-slate-800 text-slate-200 rounded-xl w-full font-medium placeholder:font-semibold placeholder:text-slate-600 focus:ring focus:ring-slate-600 focus:outline-none ${
+        className={`py-5 px-5 bg-slate-800 text-slate-200 rounded-xl w-full min-w-full font-medium placeholder:font-semibold placeholder:text-slate-600 focus:ring focus:ring-slate-600 focus:outline-none ${
           className || ""
         }`}
         type={secureTextEntry ? "password" : "text"}
       />
 
-      {errorMessage && (
-        <div className="w-full">
-          <p className="my-1 ml-4 text-sm text-rose-500 font-semibold opacity-50">
+      {!isValid && errorMessage && (
+        <div className="w-full animate-fadeIn">
+          <p className="pl-4 text-sm text-rose-500 font-semibold opacity-50">
             {errorMessage}
           </p>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

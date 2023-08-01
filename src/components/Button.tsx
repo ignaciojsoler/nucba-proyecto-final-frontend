@@ -11,22 +11,36 @@ interface ButtonProps {
 }
 
 export const Button = (props: ButtonProps) => {
-  const { title = "", disabled = false, onClick, color, size, icon, className } = props;
+  const {
+    title = "",
+    disabled = false,
+    onClick,
+    color,
+    size,
+    icon,
+    className,
+  } = props;
   return (
     <button
       {...props}
       disabled={disabled}
       onClick={onClick}
       className={`
-    ${size === "small" ? "py-2 px-5 text-sm font-semibold" : size === "large" ? "py-6 px-20 text-xl font-semibold" : "py-4 px-12 text-lg font-semibold"}
     ${
-         color === "secondary"
+      size === "small"
+        ? "py-2 px-5 text-sm font-semibold"
+        : size === "large"
+        ? "py-6 px-20 text-xl font-semibold"
+        : "py-4 px-12 text-lg font-semibold"
+    }
+    ${
+      color === "secondary"
         ? " bg-emerald-300 text-slate-800 hover:bg-emerald-200"
         : color === "dark"
         ? "bg-slate-800 hover:bg-slate-700"
         : color === "light"
         ? "bg-slate-200 text-slate-800 hover:bg-slate-300"
-        : color === "transparent" 
+        : color === "transparent"
         ? "bg-transparent text-emerald-500 font-bold hover:text-emerald-300"
         : "bg-emerald-600 text-slate-200 hover:bg-emerald-500"
     }

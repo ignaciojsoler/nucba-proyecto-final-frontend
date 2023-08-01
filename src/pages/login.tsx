@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Input from "../components/Input";
 import { Button } from "../components/Button";
-import { validateInput } from "../helpers/inputValidators";
 import { Loader } from "../components/Loader";
 import logoIcon from "../../public/icons/logo.svg";
+import { validateInput } from "../helpers/inputValidators";
 
 export const Login = () => {
   const [userEmail, setUserEmail] = useState<string>("");
@@ -24,14 +24,17 @@ export const Login = () => {
       return;
     }
 
-    // setIsLoading(true);
+    setIsLoading(true);
 
     // const loginResponse: AxiosResponse = await loginWithEmailAndPassword(
     //   userEmail,
     //   userPassword
     // );
 
-    // setIsLoading(false);
+    setTimeout(() => {
+      
+    setIsLoading(false);
+    }, 5000)
 
     // if (!loginResponse)
     //   return alert("Algo ha salido mal, intentalo de nuevo más tarde");
@@ -48,39 +51,39 @@ export const Login = () => {
 
   return (
     <div className="m-auto max-w-xl h-screen flex flex-col justify-center items-center">
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <div className="p-8 space-y-8 rounded-xl">
-          <div className="space-y-4">
-            <img src={logoIcon} className="m-auto" />
-            <p className="text-slate-200 text-center text-4xl font-bold">
-              ServiHogar
-            </p>
-          </div>
-          <div className="space-y-4">
-            <Input
-              placeholder="Correo electrónico"
-              onChangeText={(e) => setUserEmail(e)}
-              value={userEmail}
-            />
-            <Input
-              placeholder="Contraseña"
-              onChangeText={(e) => setUserPassword(e)}
-              value={userPassword}
-            />
-            <Button
-              title="Iniciar sesión"
-              onClick={handleSubmit}
-              className="w-full"
-            />
-            <p className="text-slate-200 text-center text-sm py-2">
-              ¿Aún no creaste tu cuenta?
-              <span className="text-emerald-600 font-bold"> Registrate</span>
-            </p>
-          </div>
+      {isLoading && <Loader />}
+      <div className="p-8 space-y-8 rounded-xl min-w-full">
+        <div className="space-y-4">
+          <img src={logoIcon} className="m-auto" />
+          <p className="text-slate-200 text-center text-4xl font-bold">
+            ServiHogar
+          </p>
         </div>
-      )}
+        <div className="space-y-4">
+          <Input
+            placeholder="Correo electrónico"
+            onChangeText={(e) => setUserEmail(e)}
+            value={userEmail}
+            validations={["notEmpty", "isEmail", "maxLength:100"]}
+          />
+          <Input
+            placeholder="Contraseña"
+            onChangeText={(e) => setUserPassword(e)}
+            value={userPassword}
+            validations={["notEmpty", "validPassword"]}
+            secureTextEntry={true}
+          />
+          <Button
+            title="Iniciar sesión"
+            onClick={handleSubmit}
+            className="w-full"
+          />
+          <p className="text-slate-200 text-center text-sm py-2">
+            ¿Aún no creaste tu cuenta?
+            <span className="text-emerald-600 font-bold"> Registrate</span>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
