@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Input from "../components/Input";
 import { validateInput } from "../helpers/inputValidators";
@@ -7,6 +7,7 @@ import { signUp } from "../services/services";
 import { Button } from "../components/Button";
 import { Loader } from "../components/Loader";
 import { Link } from "react-router-dom";
+import { getFromStorage, removeFromStorage } from "../helpers/handleStorage";
 // import { signUp } from "../../services/services";
 
 export const SignUp = () => {
@@ -15,6 +16,13 @@ export const SignUp = () => {
   const [userPassword, setUserPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [selectedPlan, setSelectedPlan] = useState<string | null>(null)
+
+  const getSelectedPlanFromStorage = () => {
+    const storagePlan: { value: string } = getFromStorage('selectedPlan');
+    if (!storagePlan) return null;
+    setSelectedPlan(storagePlan.value);
+}
 
   const handleSignUp = async () => {
     const [usernameErrors] = validateInput(userEmail, ["notEmpty", "isEmail"]);
@@ -53,12 +61,21 @@ export const SignUp = () => {
     alert("¡Felicidades, tu registro se ha completado exitosamente!");
   };
 
+  useEffect(() => {
+    getSelectedPlanFromStorage();
+  }, []);
+
+  useEffect(() => {
+    selectedPlan && removeFromStorage('selectedPlan');
+  }, [selectedPlan]);
+  
+
   return (
     <div className="m-auto max-w-xl h-screen flex flex-col justify-center items-center">
-      {isLoading && <Loader />}
+      {isLoading || !selectedPlan && <Loader />}
       <div className="p-8 space-y-4 rounded-xl min-w-full">
         <h4 className="text-slate-200 text-center text-2xl font-bold">
-          Crea una cuenta nueva
+          Crea una cuenta nueva de {selectedPlan}
         </h4>
         <Input
           placeholder="Nombre completo"

@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+import { saveOnStorage } from "../helpers/handleStorage";
 import { Button } from "./Button";
 
 interface PlanCardProps {
@@ -8,6 +10,11 @@ interface PlanCardProps {
 
 export const PlanCard = (props: PlanCardProps) => {
   const { title = "Plan", description = "Descripción", items = [] } = props;
+  const navigate = useNavigate();
+  const handleSavePlanOnStorage = () => {
+    saveOnStorage('selectedPlan', {value: title.toLocaleLowerCase()});
+    navigate('/signup');
+  }
   return (
     <div className="bg-slate-400 bg-opacity-10 rounded-lg p-8 space-y-3">
       <h5 className="font-semibold text-lg">{title}</h5>
@@ -17,7 +24,7 @@ export const PlanCard = (props: PlanCardProps) => {
           return <li className="ml-4">{i}</li>;
         })}
       </ul>
-      <Button title="Elegir plan" onClick={() => {}} color={`${title === "Cliente" ? "secondary" : "primary"}`} widthFull/>
+      <Button title="Elegir plan" onClick={() => handleSavePlanOnStorage()} color={`${title === "Cliente" ? "secondary" : "primary"}`} widthFull/>
     </div>
   );
 };
