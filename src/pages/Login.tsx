@@ -50,7 +50,7 @@ export const Login = () => {
   return (
     <div className="m-auto w-full h-screen flex flex-col justify-center items-center bg-login-img bg-cover">
       {isLoading && <Loader />}
-      <div className="p-8 space-y-8 rounded-xl w-full max-w-xl">
+      <div className="p-8 space-y-8 rounded-xl w-full max-w-xl animate-sladeInFromBottomShort">
         <div className="space-y-4">
           <img src={logoIcon} className="m-auto" />
           <h3 className="text-slate-200 text-center text-4xl font-bold">

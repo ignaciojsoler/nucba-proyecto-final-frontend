@@ -16,7 +16,7 @@ export const PlanCard = (props: PlanCardProps) => {
     navigate("/signup");
   };
   return (
-    <div className=" rounded-lg p-8 space-y-3 bg-slate-800 bg-opacity-40 backdrop-blur-lg">
+    <div className={` rounded-lg p-8 space-y-3 bg-slate-800 bg-opacity-40 backdrop-blur-lg ${title === "Cliente" ? "animate-sladeInFromBottomMedium" : "animate-sladeInFromBottomLong"}`}>
       <h5 className="font-semibold text-lg">{title}</h5>
       <p className="text-sm leading-7">{description}</p>
       <ul className=" list-disc pb-4">

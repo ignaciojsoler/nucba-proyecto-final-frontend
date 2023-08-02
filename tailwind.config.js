@@ -25,11 +25,51 @@ export default {
             opacity: 1
           }
         },
+        sladeInFromBottomShort: {
+          "0%": {
+            opacity: 0,
+            transform: "translateY(10px)"
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translateY(0)"
+          }
+        },
+        sladeInFromBottomMedium: {
+          "0%": {
+            opacity: 0,
+            transform: "translateY(10px)"
+          },
+          "50%": {
+            opacity: 0,
+            transform: "translateY(10px)"
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translateY(0)"
+          }
+        },
+        sladeInFromBottomLong: {
+          "0%": {
+            opacity: 0,
+            transform: "translateY(10px)"
+          },
+          "77%": {
+            opacity: 0,
+            transform: "translateY(10px)"
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translateY(0)"
+          }
+        },
       },
       animation: {
         pong: "pong 1s infinite ease",
         fadeIn: "fadeIn 1s ease",
-        sladeInFromBottom: "sladeInFromBottom .7s ease"
+        sladeInFromBottomShort: "sladeInFromBottomShort .7s ease",
+        sladeInFromBottomMedium: "sladeInFromBottomMedium 1.2s  ease",
+        sladeInFromBottomLong: "sladeInFromBottomLong 1.7s ease-out",
       },
       backgroundImage: {
         'hero-texture': "url('./src/assets/img/bg-texture.jpg')",
