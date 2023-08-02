@@ -9,10 +9,12 @@ export const Navbar = () => {
   return (
     <nav className="absolute w-full z-20">
       <div className="px-6 py-6 flex justify-between items-start m-auto md:justify-between lg:max-w-7xl">
-        <span className="relative z-30 hidden md:flex md:items-center md:space-x-3">
-          <img src={logo} alt="logotype" className="w-8 h-8" />
-          <h6 className="text-slate-200 text-xl font-semibold">ServiHogar</h6>
-        </span>
+        <Link to="/">
+          <span className="relative z-30 hidden md:flex md:items-center md:space-x-3">
+            <img src={logo} alt="logotype" className="w-8 h-8" />
+            <h6 className="text-slate-200 text-xl font-semibold">ServiHogar</h6>
+          </span>
+        </Link>
         <div className="md:hidden">
           <div className="fixed z-20 left-0 bg-gradient-to-b from-slate-900 to-transparent w-full top-0 px-6 pt-6 pb-11 flex justify-between">
             <i className="relative z-30 lg:hidden">

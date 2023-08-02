@@ -76,12 +76,12 @@ export const SignUp = () => {
     <div className="h-full bg-signup-img bg-cover">
       <div className="m-auto max-w-7xl min-h-screen flex flex-col justify-center items-center lg:flex-row lg:h-screen">
       {isLoading && <Loader />}
-      <div className="hidden w-full lg:flex lg:flex-col lg:h-full lg:py-24">
+      <div className="hidden w-full lg:flex lg:flex-col lg:h-full lg:py-28">
         <div className="h-full bg-slate-800 bg-opacity-40 backdrop-blur-lg rounded-2xl p-12 flex flex-col justify-center items-start space-y-8 text-slate-200">
           <h3 className=" text-5xl font-bold">
-            Únete a nuestra comunidad hoy.
+            <span className=" text-purple-700">Únete</span> a nuestra comunidad hoy.
           </h3>
-          <p className=" text-base font-medium">
+          <p className=" text-base font-medium text-slate-400">
             Nuestro proceso de registro es rápido y sencillo. Te tomará tan solo
             unos minutos.
           </p>
@@ -95,7 +95,7 @@ export const SignUp = () => {
       <div className="w-full lg:flex lg:items-center">
         <div className="min-h-full hidden lg:block"></div>
         <div className="pt-24 px-8 space-y-4 rounded-xl min-w-full lg:pt-0">
-          <h4 className="text-slate-200 text-center text-2xl font-bold mb-8">
+          <h4 className="text-slate-200 text-center text-2xl font-bold mb-6">
             Registrarse como {selectedPlan}
           </h4>
           <Input
@@ -129,7 +129,7 @@ export const SignUp = () => {
             onClick={() => handleSignUp()}
             className="w-full"
           />
-          <div className="flex-row justify-center py-2">
+          <div className="flex-row justify-center py-1">
             <p className="text-slate-200 text-center text-sm py-2">
               ¿Ya estás registrado?
               <span className="text-emerald-600 font-bold ml-2">

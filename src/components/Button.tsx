@@ -39,7 +39,7 @@ export const Button = (props: ButtonProps) => {
     }
     ${
       color === "secondary"
-        ? " bg-fuchsia-900 text-slate-200 hover:bg-fuchsia-800"
+        ? " bg-purple-900 text-slate-200 hover:bg-purple-800"
         : color === "dark"
         ? "bg-slate-900 hover:bg-slate-800"
         : color === "neutral"
