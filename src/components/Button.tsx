@@ -4,7 +4,7 @@ interface ButtonProps {
   title?: string;
   disabled?: boolean;
   onClick: () => void;
-  color?: "primary" | "secondary" | "light" | "dark" | "transparent";
+  color?: "primary" | "secondary" | "light" | "dark" | "transparent" | "neutral";
   size?: "small" | "medium" | "large";
   icon?: ReactElement<unknown, never>;
   className?: string;
@@ -32,15 +32,17 @@ export const Button = (props: ButtonProps) => {
       className={`
     ${
       size === "small"
-        ? "text-sm h-12 min-w-30 font-semibold"
+        ? "text-sm px-4 h-12 min-w-30 font-semibold"
         : size === "large"
-        ? "min-w-50 h-20 text-xl font-semibold"
-        : "min-w-40 h-14 font-semibold"
+        ? "px-8 min-w-50 h-20 text-xl font-semibold"
+        : "px-6 min-w-40 h-14 font-semibold"
     }
     ${
       color === "secondary"
-        ? " bg-fuchsia-800 text-slate-200 hover:bg-fuchsia-700"
+        ? " bg-fuchsia-900 text-slate-200 hover:bg-fuchsia-800"
         : color === "dark"
+        ? "bg-slate-900 hover:bg-slate-800"
+        : color === "neutral"
         ? "bg-slate-800 hover:bg-slate-700"
         : color === "light"
         ? "bg-slate-200 text-slate-800 hover:bg-slate-300"

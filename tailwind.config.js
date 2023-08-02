@@ -33,6 +33,8 @@ export default {
       },
       backgroundImage: {
         'hero-texture': "url('./src/assets/img/bg-texture.jpg')",
+        'signup-img': "url('./src/assets/img/signup-img.jpg')",
+        'login-img': "url('./src/assets/img/login-img.jpg')",
       }
     },
   },

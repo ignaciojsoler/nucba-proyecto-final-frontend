@@ -9,13 +9,17 @@ import { Loader } from "../components/Loader";
 import { Link } from "react-router-dom";
 import { getFromStorage } from "../helpers/handleStorage";
 // import { signUp } from "../../services/services";
+import provincesData from "../data/provinces.json";
+import {FaChevronRight} from 'react-icons/fa';
 
 export const SignUp = () => {
+  const sortedProvinces = provincesData.provincias.sort((a, b) =>
+    a.nombre.localeCompare(b.nombre)
+  );
+  console.log(sortedProvinces);
+
   const [username, setUsername] = useState<string>("");
   const [userEmail, setUserEmail] = useState<string>("");
-  const [phone, setPhone] = useState<string>("");
-  const [occupation, setOccupation] = useState<string>("");
-  const [city, setCity] = useState<string>("");
   const [userPassword, setUserPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -30,7 +34,6 @@ export const SignUp = () => {
   const handleSignUp = async () => {
     const [usernameErrors] = validateInput(userEmail, ["notEmpty", "isEmail"]);
     const [emailErrors] = validateInput(userEmail, ["notEmpty", "isEmail"]);
-    const [phoneErrores] = validateInput(userEmail, ["NotEmpty", "isValidPhone"]);
     const [passwordErrors] = validateInput(userPassword, [
       "notEmpty",
       "validPassword",
@@ -39,8 +42,7 @@ export const SignUp = () => {
     if (
       usernameErrors.length > 0 ||
       emailErrors.length > 0 ||
-      passwordErrors.length > 0 ||
-      phoneErrores.length > 0
+      passwordErrors.length > 0
     ) {
       alert(
         "¡Ups! Alguno de los campos ingresados es incorrecto. Por favor, revisa los campos y vuelve a intentarlo."
@@ -71,91 +73,73 @@ export const SignUp = () => {
   }, []);
 
   return (
-    <div className="m-auto max-w-xl h-screen flex flex-col justify-center items-center">
+    <div className="h-full bg-signup-img bg-cover">
+      <div className="m-auto max-w-7xl min-h-screen flex flex-col justify-center items-center lg:flex-row lg:h-screen">
       {isLoading && <Loader />}
-      <div className="p-8 space-y-4 rounded-xl min-w-full">
-        <h4 className="text-slate-200 text-center text-2xl font-bold">
-          Crea una cuenta nueva de {selectedPlan}
-        </h4>
-        {selectedPlan === "cliente" ? (
-          <>
-            <Input
-              placeholder="Nombre completo"
-              onChangeText={setUsername}
-              value={username}
-              validations={["notEmpty", "minLength:8", "maxLength:50"]}
-            />
-            <Input
-              placeholder="Correo electrónico"
-              onChangeText={setUserEmail}
-              value={userEmail}
-              validations={["notEmpty", "isEmail"]}
-            />
-            <Input
-              placeholder="Contraseña"
-              onChangeText={setUserPassword}
-              value={userPassword}
-              validations={["notEmpty", "validPassword"]}
-              secureTextEntry={true}
-            />
-            <Input
-              placeholder="Confirmar contraseña"
-              onChangeText={setConfirmPassword}
-              value={confirmPassword}
-              validations={["notEmpty", `checkPassword:${userPassword}`]}
-              secureTextEntry={true}
-            />
-          </>
-        ) : (
-          <>
-            <Input
-              placeholder="Nombre completo"
-              onChangeText={setUsername}
-              value={username}
-              validations={["notEmpty", "minLength:8", "maxLength:50"]}
-            />
-            <Input
-              placeholder="Correo electrónico"
-              onChangeText={setUserEmail}
-              value={userEmail}
-              validations={["notEmpty", "isEmail"]}
-            />
-            <Input
-            placeholder="Teléfono"
-            onChangeText={setPhone}
-            value={phone}
-            validations={["notEmpty", "isValidPhone"]}
-            />
-            <Input
-              placeholder="Contraseña"
-              onChangeText={setUserPassword}
-              value={userPassword}
-              validations={["notEmpty", "validPassword"]}
-              secureTextEntry={true}
-            />
-            <Input
-              placeholder="Confirmar contraseña"
-              onChangeText={setConfirmPassword}
-              value={confirmPassword}
-              validations={["notEmpty", `checkPassword:${userPassword}`]}
-              secureTextEntry={true}
-            />
-          </>
-        )}
-        <Button
-          title="Registrarme"
-          onClick={() => handleSignUp()}
-          className="w-full"
-        />
-        <div className="flex-row justify-center py-2">
-          <p className="text-slate-200 text-center text-sm py-2">
-            ¿Ya estás registrado?
-            <span className="text-emerald-600 font-bold ml-2">
-              <Link to="/login">Inicia sesión</Link>
-            </span>
+      <div className="hidden w-full lg:flex lg:flex-col lg:h-full lg:py-24">
+        <div className="h-full bg-slate-800 bg-opacity-40 backdrop-blur-lg rounded-2xl p-12 flex flex-col justify-center items-start space-y-8 text-slate-200">
+          <h3 className=" text-5xl font-bold">
+            Únete a nuestra comunidad hoy.
+          </h3>
+          <p className=" text-base font-medium">
+            Nuestro proceso de registro es rápido y sencillo. Te tomará tan solo
+            unos minutos.
           </p>
+          <Button
+            disabled
+            onClick={() => {}}
+            color="light"
+          ><p className="font-bold flex items-center justify-between"><span className="mr-3"><FaChevronRight/></span> Comienza ahora</p></Button>
         </div>
       </div>
+      <div className="w-full lg:flex lg:items-center">
+        <div className="min-h-full hidden lg:block"></div>
+        <div className="pt-24 px-8 space-y-4 rounded-xl min-w-full lg:pt-0">
+          <h4 className="text-slate-200 text-center text-2xl font-bold mb-8">
+            Registrarse como {selectedPlan}
+          </h4>
+          <Input
+            placeholder="Nombre completo"
+            onChangeText={setUsername}
+            value={username}
+            validations={["notEmpty", "minLength:8", "maxLength:50"]}
+          />
+          <Input
+            placeholder="Correo electrónico"
+            onChangeText={setUserEmail}
+            value={userEmail}
+            validations={["notEmpty", "isEmail"]}
+          />
+          <Input
+            placeholder="Contraseña"
+            onChangeText={setUserPassword}
+            value={userPassword}
+            validations={["notEmpty", "validPassword"]}
+            secureTextEntry={true}
+          />
+          <Input
+            placeholder="Confirmar contraseña"
+            onChangeText={setConfirmPassword}
+            value={confirmPassword}
+            validations={["notEmpty", `checkPassword:${userPassword}`]}
+            secureTextEntry={true}
+          />
+          <Button
+            title="Registrarme"
+            onClick={() => handleSignUp()}
+            className="w-full"
+          />
+          <div className="flex-row justify-center py-2">
+            <p className="text-slate-200 text-center text-sm py-2">
+              ¿Ya estás registrado?
+              <span className="text-emerald-600 font-bold ml-2">
+                <Link to="/login">Inicia sesión</Link>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
   );
 };

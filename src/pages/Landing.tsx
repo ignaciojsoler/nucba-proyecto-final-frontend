@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 export const Landing = () => {
   const navigate = useNavigate();
   return (
-    <div className="px-6 flex flex-col justify-center align-top pt-24 text-slate-200 md:px-8 lg:max-w-7xl m-auto lg:grid lg:grid-cols-2">
-      <div className="fixed top-0 left-0 bg-hero-texture bg-cover mix-blend-multiply h-screen w-screen animate-fadeIn" />
+    <div className="px-6 flex flex-col justify-center pt-24 text-slate-200 md:px-8 md:pt-0 md:items-center lg:max-w-7xl m-auto lg:grid lg:grid-cols-2 min-h-screen">
+      <div className="fixed top-0 left-0 bg-hero-texture bg-cover mix-blend-multiply h-screen w-screen" />
       <div className=" space-y-8 pt-6 pb-12 z-10">
         <div className=" space-y-4">
           <h1 className=" text-5xl text-center font-bold">
@@ -38,7 +38,7 @@ export const Landing = () => {
               </ul>
             </div>
           </div>
-          <Button onClick={() => {navigate('/plans')}} title="Comenzar ahora" widthFull />
+          <Button onClick={() => {navigate('/plans')}} title="Empezar ahora" widthFull />
         </div>
       </div>
     </div>

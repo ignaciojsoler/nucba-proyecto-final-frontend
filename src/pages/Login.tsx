@@ -48,9 +48,9 @@ export const Login = () => {
   };
 
   return (
-    <div className="m-auto max-w-xl h-screen flex flex-col justify-center items-center">
+    <div className="m-auto w-full h-screen flex flex-col justify-center items-center bg-login-img bg-cover">
       {isLoading && <Loader />}
-      <div className="p-8 space-y-8 rounded-xl min-w-full">
+      <div className="p-8 space-y-8 rounded-xl w-full max-w-xl">
         <div className="space-y-4">
           <img src={logoIcon} className="m-auto" />
           <h3 className="text-slate-200 text-center text-4xl font-bold">
@@ -58,7 +58,7 @@ export const Login = () => {
           </h3>
         </div>
         <div className="space-y-4">
-          <h4 className="text-slate-200 text-center text-2xl font-bold">Ingresa a tu cuenta</h4>
+          <h4 className="text-slate-200 text-center text-2xl font-bold mb-8">Ingresa a tu cuenta</h4>
           <Input
             placeholder="Correo electrónico"
             onChangeText={(e) => setUserEmail(e)}
