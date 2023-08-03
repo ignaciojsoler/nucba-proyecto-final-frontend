@@ -67,9 +67,9 @@ export default {
       animation: {
         pong: "pong 1s infinite ease",
         fadeIn: "fadeIn 1s ease",
-        sladeInFromBottomShort: "sladeInFromBottomShort .7s ease",
-        sladeInFromBottomMedium: "sladeInFromBottomMedium 1.2s  ease",
-        sladeInFromBottomLong: "sladeInFromBottomLong 1.7s ease-out",
+        sladeInFromBottomShort: "sladeInFromBottomShort .5s ease",
+        sladeInFromBottomMedium: "sladeInFromBottomMedium 1s  ease",
+        sladeInFromBottomLong: "sladeInFromBottomLong 1.5s ease-out",
       },
       backgroundImage: {
         'hero-texture': "url('./src/assets/img/bg-texture.jpg')",
