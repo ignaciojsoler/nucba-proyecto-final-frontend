@@ -8,7 +8,7 @@ import { loginWithEmailAndPassword } from "../services/services";
 import { AxiosResponse } from "axios";
 import { Link } from "react-router-dom";
 
-export const Login = () => {
+const Login = () => {
   const [userEmail, setUserEmail] = useState<string>("");
   const [userPassword, setUserPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -53,12 +53,12 @@ export const Login = () => {
       <div className="p-8 space-y-8 rounded-xl w-full max-w-xl animate-sladeInFromBottomShort">
         <div className="space-y-4">
           <img src={logoIcon} className="m-auto" />
-          <h3 className="text-slate-200 text-center text-4xl font-bold">
+          <h3 className=" text-center text-4xl font-bold">
             ServiHogar
           </h3>
         </div>
         <div className="space-y-4">
-          <h4 className="text-slate-200 text-center text-2xl font-bold mb-8">Ingresa a tu cuenta</h4>
+          <h4 className=" text-center text-2xl font-bold mb-8">Ingresa a tu cuenta</h4>
           <Input
             placeholder="Correo electrónico"
             onChangeText={(e) => setUserEmail(e)}
@@ -77,7 +77,7 @@ export const Login = () => {
             onClick={handleSubmit}
             className="w-full"
           />
-          <p className="text-slate-200 text-center text-sm py-2">
+          <p className=" text-center text-sm py-2">
             ¿Aún no creaste tu cuenta?
             <span className="text-emerald-600 font-bold ml-2"><Link to='/plans'>Registrate</Link></span>
           </p>
@@ -86,3 +86,5 @@ export const Login = () => {
     </div>
   );
 };
+
+export default Login;

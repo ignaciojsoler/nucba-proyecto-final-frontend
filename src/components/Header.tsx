@@ -12,7 +12,7 @@ export const Navbar = () => {
         <Link to="/">
           <span className="relative z-30 hidden md:flex md:items-center md:space-x-3">
             <img src={logo} alt="logotype" className="w-8 h-8" />
-            <h6 className="text-slate-200 text-xl font-semibold">ServiHogar</h6>
+            <h6 className=" text-xl font-semibold">ServiHogar</h6>
           </span>
         </Link>
         <div className="md:hidden">
@@ -32,15 +32,15 @@ export const Navbar = () => {
             }`}
           >
             <Link to="/" onClick={() => setDisplayAside(false)}>
-              <p className="text-slate-200 text-2xl font-bold py-6">Inicio</p>
+              <p className=" text-2xl font-bold py-6">Inicio</p>
             </Link>
             <Link to="/login" onClick={() => setDisplayAside(false)}>
-              <p className="text-slate-200 text-2xl font-bold py-6">
+              <p className=" text-2xl font-bold py-6">
                 Iniciar sesión
               </p>
             </Link>
             <Link to="/plans" onClick={() => setDisplayAside(false)}>
-              <p className="text-slate-200 text-2xl font-bold py-6">
+              <p className=" text-2xl font-bold py-6">
                 Registrarse
               </p>
             </Link>
@@ -48,13 +48,13 @@ export const Navbar = () => {
         </div>
         <div className="hidden md:space-x-10 md:items-center md:flex ">
           <Link to="/" className=" transition duration-150 hover:opacity-80">
-            <p className="text-slate-200 font-semibold">Inicio</p>
+            <p className=" font-semibold">Inicio</p>
           </Link>
           <Link
             to="/login"
             className=" transition duration-150 hover:opacity-80"
           >
-            <p className="text-slate-200 font-semibold">Iniciar sesión</p>
+            <p className=" font-semibold">Iniciar sesión</p>
           </Link>
           <Link to="/plans">
             <Button title="Registrarse" onClick={() => {}} size="small" />
