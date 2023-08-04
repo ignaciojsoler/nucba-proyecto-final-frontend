@@ -28,7 +28,7 @@ export default {
         sladeInFromBottomShort: {
           "0%": {
             opacity: 0,
-            transform: "translateY(10px)"
+            transform: "translateY(20px)"
           },
           "100%": {
             opacity: 1,
@@ -38,11 +38,11 @@ export default {
         sladeInFromBottomMedium: {
           "0%": {
             opacity: 0,
-            transform: "translateY(10px)"
+            transform: "translateY(20px)"
           },
           "50%": {
             opacity: 0,
-            transform: "translateY(10px)"
+            transform: "translateY(20px)"
           },
           "100%": {
             opacity: 1,
@@ -52,11 +52,11 @@ export default {
         sladeInFromBottomLong: {
           "0%": {
             opacity: 0,
-            transform: "translateY(10px)"
+            transform: "translateY(20px)"
           },
           "77%": {
             opacity: 0,
-            transform: "translateY(10px)"
+            transform: "translateY(20px)"
           },
           "100%": {
             opacity: 1,
@@ -67,9 +67,9 @@ export default {
       animation: {
         pong: "pong 1s infinite ease",
         fadeIn: "fadeIn 1s ease",
-        sladeInFromBottomShort: "sladeInFromBottomShort .5s ease",
-        sladeInFromBottomMedium: "sladeInFromBottomMedium 1s  ease",
-        sladeInFromBottomLong: "sladeInFromBottomLong 1.5s ease-out",
+        sladeInFromBottomShort: "sladeInFromBottomShort .3s ease",
+        sladeInFromBottomMedium: "sladeInFromBottomMedium .6s  ease",
+        sladeInFromBottomLong: "sladeInFromBottomLong .9s ease-out",
       },
       backgroundImage: {
         'hero-texture': "url('./src/assets/img/bg-texture.jpg')",

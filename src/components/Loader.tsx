@@ -2,7 +2,7 @@ import React from "react";
 
 export const Loader = () => {
   return (
-    <div className="fixed h-screen w-screen top-0 left-0 flex justify-center items-center bg-slate-950 bg-opacity-70 animate-fadeIn z-50">
+    <div className="absolute h-screen w-screen top-0 left-0 flex justify-center items-center bg-slate-950 bg-opacity-70 animate-fadeIn z-50 backdrop-blur-sm">
       <div role="status" className=" animate-pong">
         <svg
           aria-hidden="true"

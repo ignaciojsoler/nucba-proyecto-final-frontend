@@ -21,7 +21,8 @@ export const loginWithEmailAndPassword = async (
 export const signUp = async (
   name: string,
   email: string,
-  password: string
+  password: string,
+  role: string,
 ): Promise<AxiosResponse> => {
   try {
     const response: AxiosResponse = await axios.post(
@@ -30,6 +31,7 @@ export const signUp = async (
         name,
         email,
         password,
+        role
       },
       {
         timeout: 5000,
