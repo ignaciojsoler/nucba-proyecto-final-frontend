@@ -6,7 +6,7 @@ const Landing = () => {
   return (
     <div className="px-6 flex flex-col justify-center pt-28  md:px-8 md:pt-0 md:items-center lg:max-w-7xl m-auto lg:grid lg:grid-cols-2 min-h-screen">
       <div className="fixed top-0 left-0 bg-hero-texture bg-cover mix-blend-multiply h-screen w-screen" />
-      <div className=" space-y-8 pt-6 z-10 md:pb-0">
+      <div className=" space-y-4 pt-6 z-10 md:pb-0">
         <div className=" space-y-4">
           <h1 className=" text-5xl font-bold">
             ¡Bienvenido a ServiHogar!
