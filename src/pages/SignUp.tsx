@@ -93,8 +93,8 @@ const SignUp = () => {
         <div className="m-auto max-w-7xl min-h-screen flex flex-col justify-center items-center px-6 lg:flex-row lg:h-screen lg:space-x-8">
           <div className="hidden w-full lg:flex lg:flex-col lg:h-full lg:py-28">
             <div className="h-full bg-slate-800 bg-opacity-40 backdrop-blur-lg rounded-2xl p-12 flex flex-col justify-center items-start space-y-8   animate-sladeInFromBottomShort">
-              <h3 className=" text-5xl font-bold">
-                <span className=" text-purple-700">Únete</span> a nuestra
+              <h3 className=" text-6xl font-bold">
+                <span className=" text-purple-700">Unite</span> a nuestra
                 comunidad hoy.
               </h3>
               <p className=" text-base font-medium text-slate-400">
@@ -118,8 +118,18 @@ const SignUp = () => {
           <div className="w-full lg:flex lg:items-center">
             <div className="min-h-full hidden lg:block "></div>
             <div className="pt-28 space-y-4 rounded-xl min-w-full lg:pt-0 animate-sladeInFromBottomMedium">
-              <h4 className=" text-center text-2xl font-bold mb-6">
-                Registrarse como {selectedPlan}
+              <h4 className="text-center text-2xl font-bold mb-6">
+                Registrarse como{" "}
+                <span
+                  className={`${
+                    selectedPlan === "cliente"
+                      ? "text-purple-700"
+                      : "text-emerald-600"
+                  }`}
+                >
+                  {selectedPlan}
+                </span>
+                <Link to="/plans"><span className="text-base transitiion duration-150 font-medium hover:text-slate-300 ml-1">{" "}(cambiar)</span></Link>
               </h4>
               <Input
                 placeholder="Nombre completo"

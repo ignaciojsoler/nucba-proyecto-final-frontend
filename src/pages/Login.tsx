@@ -55,7 +55,7 @@ const Login = () => {
           <img src={logoIcon} className="m-auto" />
           <h3 className=" text-center text-4xl font-bold">ServiHogar</h3>
         </div>
-        <div className="space-y-4">
+        <div className="space-y-4 animate-sladeInFromBottomMedium">
           <h4 className=" text-center text-2xl font-bold mb-8">
             Ingresa a tu cuenta
           </h4>
