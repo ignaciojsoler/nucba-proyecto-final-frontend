@@ -7,6 +7,7 @@ interface InputProps {
   disabled?: boolean;
   validations?: string[];
   onChangeText: (text: string) => void;
+  onChangePaste?: (text: React.ClipboardEvent<HTMLInputElement>) => void;
   secureTextEntry?: boolean;
   className?: string;
 }
@@ -20,21 +21,35 @@ const Input = (props: InputProps) => {
     onChangeText,
     secureTextEntry = false,
     className,
+    onChangePaste
   } = props;
 
-  const [, setErrors] = useState<string[]>([]);
   const [isValid, setIsValid] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleInputChange = (event: { target: { value: string } }) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const text = event.target.value;
     onChangeText(text);
 
-    const [newErrors, newErrorMessage] = validateInput(text, validations);
-    setErrors(newErrors);
-    setErrorMessage(newErrorMessage);
-    setIsValid(newErrors.length === 0);
+    if (validations) {
+      const [newErrors, newErrorMessage] = validateInput(text, validations);
+      setErrorMessage(newErrorMessage);
+      setIsValid(newErrors.length === 0);
+    }
   };
+
+  // const handlePaste = (event: React.ClipboardEvent<HTMLInputElement>) => {
+  //   const pastedText = event.clipboardData.getData("text/plain");
+
+  //   if (validations) {
+  //     const [newErrors, newErrorMessage] = validateInput(
+  //       pastedText,
+  //       validations
+  //     );
+  //     setErrorMessage(newErrorMessage);
+  //     setIsValid(newErrors.length === 0);
+  //   }
+  // };
 
   return (
     <div className="space-y-2">
@@ -43,6 +58,7 @@ const Input = (props: InputProps) => {
         placeholder={placeholder}
         disabled={disabled}
         onChange={handleInputChange}
+        onPaste={onChangePaste}
         className={`p-4 bg-slate-800 text-slate-200 rounded-lg w-full min-w-full font-medium placeholder:font-semibold placeholder:text-slate-600 focus:ring focus:ring-slate-600 focus:outline-none ${
           className || ""
         }`}
