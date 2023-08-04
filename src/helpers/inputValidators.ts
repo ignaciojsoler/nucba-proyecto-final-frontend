@@ -25,7 +25,33 @@ export const notEmpty = (value: string): [boolean, string] => {
   };
   
   export const validPassword = (value: string): [boolean, string] => {
-    return [value.length >= 8, "La contraseña debe tener al menos 8 caracteres."];
+    // La contraseña debe tener al menos 8 caracteres.
+    if (value.length < 8) {
+      return [false, "La contraseña debe tener al menos 8 caracteres."];
+    }
+  
+    // La contraseña debe contener al menos una letra mayúscula.
+    if (!/[A-Z]/.test(value)) {
+      return [false, "La contraseña debe contener al menos una letra mayúscula."];
+    }
+  
+    // La contraseña debe contener al menos una letra minúscula.
+    if (!/[a-z]/.test(value)) {
+      return [false, "La contraseña debe contener al menos una letra minúscula."];
+    }
+  
+    // La contraseña debe contener al menos un número.
+    if (!/\d/.test(value)) {
+      return [false, "La contraseña debe contener al menos un número."];
+    }
+  
+    // La contraseña debe contener al menos un carácter especial (!@#$%^&*-).
+  if (!/[!@#$%^&*-]/.test(value)) {
+    return [false, "La contraseña debe contener al menos un carácter especial (!@#$%^&*-)."];
+  }
+  
+    // La contraseña cumple con todas las reglas, es una contraseña válida.
+    return [true, "Contraseña válida."];
   };
   
   export const checkPassword = (value: string, password: string): [boolean, string] => {
