@@ -11,7 +11,6 @@ const Dashboard = React.lazy(() => import("./pages/Dashboard"));
 const Confirmation = React.lazy(() => import("./pages/Confirmation"));
 
 function App() {
-
   const [loadingPercentage, setLoadingPercentage] = useState<number>(0);
 
   useEffect(() => {
@@ -22,12 +21,12 @@ function App() {
       }
     };
 
-    window.addEventListener('progress', handleProgress);
-    window.addEventListener('load', () => setLoadingPercentage(100));
+    window.addEventListener("progress", handleProgress);
+    window.addEventListener("load", () => setLoadingPercentage(100));
 
     return () => {
-      window.removeEventListener('progress', handleProgress);
-      window.removeEventListener('load', () => setLoadingPercentage(100));
+      window.removeEventListener("progress", handleProgress);
+      window.removeEventListener("load", () => setLoadingPercentage(100));
     };
   }, []);
 
@@ -42,7 +41,6 @@ function App() {
           <Route path="/plans" element={<Plans />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/confirmation" element={<Confirmation />} />
-          <Route path="/loading" element={<Loading loadingPercentage={loadingPercentage}/>} />
         </Routes>
       </Suspense>
     </div>
