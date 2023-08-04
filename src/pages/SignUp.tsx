@@ -41,6 +41,9 @@ const SignUp = () => {
       "validPassword",
     ]);
 
+    if (userPassword !== confirmPassword)
+      return alert("Las contraseñas ingresadas no coinciden");
+
     if (
       usernameErrors.length > 0 ||
       emailErrors.length > 0 ||
@@ -73,7 +76,7 @@ const SignUp = () => {
 
     if (loginResponse.status !== 200) return alert(loginResponse.data.msg);
 
-      saveOnStorage('userEmail', userEmail);
+    saveOnStorage("userEmail", userEmail);
 
     return navigate("/confirmation");
   };
@@ -98,7 +101,11 @@ const SignUp = () => {
                 Nuestro proceso de registro es rápido y sencillo. Te tomará tan
                 solo unos minutos.
               </p>
-              <Button disabled onClick={() => {}} className=" bg-slate-700 hover:bg-slate-700">
+              <Button
+                disabled
+                onClick={() => {}}
+                className=" bg-slate-700 hover:bg-slate-700"
+              >
                 <p className="font-bold flex items-center justify-between">
                   <span className="mr-3">
                     <FaChevronRight />
