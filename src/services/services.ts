@@ -19,7 +19,7 @@ export const loginWithEmailAndPassword = async (
 };
 
 export const signUp = async (
-  username: string,
+  name: string,
   email: string,
   password: string
 ): Promise<AxiosResponse> => {
@@ -27,7 +27,7 @@ export const signUp = async (
     const response: AxiosResponse = await axios.post(
       API_URL + "/auth/signup",
       {
-        username,
+        name,
         email,
         password,
       },
@@ -37,6 +37,7 @@ export const signUp = async (
     );
     return response;
   } catch (err: any) {
+    console.log(err.response)
     return err.response;
   }
 };
