@@ -8,8 +8,8 @@ interface InputProps {
   validations?: string[];
   onChangeText: (text: string) => void;
   onChangePaste?: (text: React.ClipboardEvent<HTMLInputElement>) => void;
-  secureTextEntry?: boolean;
   className?: string;
+  type?: string;
 }
 
 const Input = (props: InputProps) => {
@@ -19,9 +19,9 @@ const Input = (props: InputProps) => {
     disabled = false,
     validations,
     onChangeText,
-    secureTextEntry = false,
     className,
-    onChangePaste
+    onChangePaste,
+    type = "text",
   } = props;
 
   const [isValid, setIsValid] = useState(true);
@@ -54,6 +54,7 @@ const Input = (props: InputProps) => {
   return (
     <div className="space-y-2">
       <input
+        type={type}
         value={value}
         placeholder={placeholder}
         disabled={disabled}
@@ -62,7 +63,6 @@ const Input = (props: InputProps) => {
         className={`p-4 bg-slate-800 text-slate-200 rounded-lg w-full min-w-full font-medium placeholder:font-semibold placeholder:text-slate-600 focus:ring focus:ring-slate-600 focus:outline-none ${
           className || ""
         }`}
-        type={secureTextEntry ? "password" : "text"}
       />
 
       {!isValid && errorMessage && (

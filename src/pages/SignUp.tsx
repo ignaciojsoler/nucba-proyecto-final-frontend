@@ -131,14 +131,14 @@ const SignUp = () => {
                 onChangeText={setUserPassword}
                 value={userPassword}
                 validations={["notEmpty", "validPassword"]}
-                secureTextEntry={true}
+                type="password"
               />
               <Input
                 placeholder="Confirmar contraseña"
                 onChangeText={setConfirmPassword}
                 value={confirmPassword}
                 validations={["notEmpty", `checkPassword:${userPassword}`]}
-                secureTextEntry={true}
+                type="password"
               />
               <Button
                 title="Registrarme"

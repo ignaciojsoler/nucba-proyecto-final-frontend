@@ -53,12 +53,12 @@ const Login = () => {
       <div className="p-8 space-y-8 rounded-xl w-full max-w-xl animate-sladeInFromBottomShort">
         <div className="space-y-4">
           <img src={logoIcon} className="m-auto" />
-          <h3 className=" text-center text-4xl font-bold">
-            ServiHogar
-          </h3>
+          <h3 className=" text-center text-4xl font-bold">ServiHogar</h3>
         </div>
         <div className="space-y-4">
-          <h4 className=" text-center text-2xl font-bold mb-8">Ingresa a tu cuenta</h4>
+          <h4 className=" text-center text-2xl font-bold mb-8">
+            Ingresa a tu cuenta
+          </h4>
           <Input
             placeholder="Correo electrónico"
             onChangeText={(e) => setUserEmail(e)}
@@ -70,7 +70,7 @@ const Login = () => {
             onChangeText={(e) => setUserPassword(e)}
             value={userPassword}
             validations={["notEmpty", "validPassword"]}
-            secureTextEntry={true}
+            type="password"
           />
           <Button
             title="Iniciar sesión"
@@ -79,7 +79,9 @@ const Login = () => {
           />
           <p className=" text-center text-sm py-2">
             ¿Aún no creaste tu cuenta?
-            <span className="text-emerald-600 font-bold ml-2"><Link to='/plans'>Registrate</Link></span>
+            <span className="text-emerald-600 font-bold ml-2">
+              <Link to="/plans">Registrate</Link>
+            </span>
           </p>
         </div>
       </div>
