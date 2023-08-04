@@ -14,7 +14,7 @@ const Loading = ({ loadingPercentage }: LoadingProps) => {
           </div>
         </div>
         <h4 className=" text-4xl font-semibold">
-          Cargando... {Math.round(loadingPercentage)} %
+          {Math.round(loadingPercentage)} %
         </h4>
       </div>
     </div>
