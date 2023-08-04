@@ -36,6 +36,11 @@ export const notEmpty = (value: string): [boolean, string] => {
     const phoneRegex = /^(0[1-9]|11|[2-9]\d{1})([2-9]\d{6,7})$/;
     return [phoneRegex.test(value), "El formato del número de teléfono no es válido. (código de área) número."];
   };
+
+  export function isValidJWT(token: string): [boolean, string] {
+    const jwtRegex = /^[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+$/;
+    return [jwtRegex.test(token), "Formato de token inválido. Por favor, asegúrate de ingresar un token válido."];
+}
   
   export const validateInput = (
     text: string,
@@ -80,6 +85,11 @@ export const notEmpty = (value: string): [boolean, string] => {
           }
         } else if (validation === "validPassword") {
           const [isValid, errorText] = validPassword(text);
+          if (!isValid) {
+            newErrors.push(errorText);
+          }
+        } else if (validation === "isValidJWT") {
+          const [isValid, errorText] = isValidJWT(text);
           if (!isValid) {
             newErrors.push(errorText);
           }
