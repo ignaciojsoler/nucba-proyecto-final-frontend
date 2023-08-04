@@ -32,8 +32,8 @@ function App() {
 
   return (
     <div className="min-h-screen min-w-screen bg-gradient-to-b from-slate-900 to-slate-950 text-slate-200">
-      <Navbar />
       <Suspense fallback={<Loading loadingPercentage={loadingPercentage} />}>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />

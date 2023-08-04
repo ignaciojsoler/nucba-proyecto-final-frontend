@@ -12,7 +12,7 @@ export const PlanCard = (props: PlanCardProps) => {
   const { title = "Plan", description = "Descripción", items = [] } = props;
   const navigate = useNavigate();
   const handleSavePlanOnStorage = () => {
-    saveOnStorage("selectedPlan", { value: title.toLocaleLowerCase() });
+    saveOnStorage("selectedPlan", title.toLocaleLowerCase());
     navigate("/signup");
   };
   return (

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Input from "../components/Input";
 import { Button } from "../components/Button";
 import { Loader } from "../components/Loader";
@@ -7,11 +7,25 @@ import { validateInput } from "../helpers/inputValidators";
 import { loginWithEmailAndPassword } from "../services/services";
 import { AxiosResponse } from "axios";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { updateUser } from "../store/userSlice";
+import { updateToken } from "../store/authenticationTokenSlice";
+import { useDispatch } from "react-redux";
+import { tokenExists } from "../helpers/jwtUtils";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [userEmail, setUserEmail] = useState<string>("");
   const [userPassword, setUserPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const isLoggedIn = () => {
+    const token = tokenExists();
+    if (!token) return;
+    navigate("/dashboard");
+  };
 
   const handleSubmit = async () => {
     const [emailErrors] = validateInput(userEmail, ["notEmpty", "isEmail"]);
@@ -34,18 +48,23 @@ const Login = () => {
       userPassword
     );
 
+    setIsLoading(false);
+
     if (!loginResponse) {
-      setIsLoading(false);
       return alert("Algo ha salido mal, intentalo de nuevo más tarde");
     }
 
     if (loginResponse.status !== 200) {
-      setIsLoading(false);
       return alert(loginResponse.data.msg);
     }
+    console.log(loginResponse.data.user)
+    dispatch(updateToken(loginResponse.data.token));
+    dispatch(updateUser(loginResponse.data.user));
 
-    setIsLoading(false);
+    isLoggedIn();
   };
+
+  useEffect(() => {isLoggedIn()}, []);
 
   return (
     <div className="m-auto w-full h-screen flex flex-col justify-center items-center bg-login-img bg-cover">

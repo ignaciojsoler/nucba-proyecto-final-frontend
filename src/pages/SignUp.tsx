@@ -28,9 +28,9 @@ const SignUp = () => {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
 
   const getSelectedPlanFromStorage = () => {
-    const storagePlan: { value: string } = getFromStorage("selectedPlan");
+    const storagePlan: string = getFromStorage("selectedPlan");
     if (!storagePlan) return null;
-    setSelectedPlan(storagePlan.value);
+    setSelectedPlan(storagePlan);
   };
 
   const handleSignUp = async () => {
