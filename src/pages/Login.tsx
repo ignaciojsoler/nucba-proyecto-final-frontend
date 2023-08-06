@@ -24,10 +24,11 @@ const Login = () => {
   const isLoggedIn = () => {
     const token = tokenExists();
     if (!token) return;
-    navigate("/dashboard");
+    navigate("/home");
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent<EventTarget>) => {
+    e.preventDefault();
     const [emailErrors] = validateInput(userEmail, ["notEmpty", "isEmail"]);
     const [passwordErrors] = validateInput(userPassword, [
       "notEmpty",
@@ -74,7 +75,7 @@ const Login = () => {
           <img src={logoIcon} className="m-auto" />
           <h3 className=" text-center text-4xl font-bold">ServiHogar</h3>
         </div>
-        <div className="space-y-4 animate-sladeInFromBottomMedium">
+        <form className="space-y-4 animate-sladeInFromBottomMedium" onSubmit={(e) => handleSubmit(e)}>
           <h4 className=" text-center text-2xl font-bold mb-8">
             Ingresa a tu cuenta
           </h4>
@@ -93,8 +94,8 @@ const Login = () => {
           />
           <Button
             title="Iniciar sesión"
-            onClick={handleSubmit}
             className="w-full"
+            onClick={() => {}}
           />
           <p className=" text-center text-sm py-2">
             ¿Aún no creaste tu cuenta?
@@ -102,7 +103,7 @@ const Login = () => {
               <Link to="/plans">Registrate</Link>
             </span>
           </p>
-        </div>
+        </form>
       </div>
     </div>
   );

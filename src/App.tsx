@@ -7,7 +7,7 @@ const Landing = React.lazy(() => import("./pages/Landing"));
 const Login = React.lazy(() => import("./pages/Login"));
 const SignUp = React.lazy(() => import("./pages/SignUp"));
 const Plans = React.lazy(() => import("./pages/Plans"));
-const Dashboard = React.lazy(() => import("./pages/Dashboard"));
+const Home = React.lazy(() => import("./pages/Home"));
 const Confirmation = React.lazy(() => import("./pages/Confirmation"));
 
 function App() {
@@ -39,7 +39,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/plans" element={<Plans />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Home />} />
           <Route path="/confirmation" element={<Confirmation />} />
         </Routes>
       </Suspense>

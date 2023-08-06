@@ -2,12 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../interfaces/interfaces";
 import { saveOnStorage } from "../helpers/handleStorage";
 
-interface UserState {
-    user: User | null
-}
-
-const initialState: UserState = {
-    user: null
+const initialState: User = {
+  id: "",
+  name: "",
+  email: "",
+  role: null,
 };
 
 export const userSlice = createSlice({
@@ -15,12 +14,12 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     updateUser: (state, action: PayloadAction<User>) => {
-        console.log(action.payload)
-      state.user = {
+      console.log(action.payload);
+      state = {
         ...state,
         ...action.payload,
       };
-      saveOnStorage('user', state);
+      saveOnStorage("user", state);
     },
   },
 });

@@ -33,7 +33,8 @@ const SignUp = () => {
     setSelectedPlan(storagePlan);
   };
 
-  const handleSignUp = async () => {
+  const handleSignUp = async (e: React.FormEvent<EventTarget>) => {
+    e.preventDefault();
     const [usernameErrors] = validateInput(userEmail, ["notEmpty", "isEmail"]);
     const [emailErrors] = validateInput(userEmail, ["notEmpty", "isEmail"]);
     const [passwordErrors] = validateInput(userPassword, [
@@ -117,7 +118,7 @@ const SignUp = () => {
           </div>
           <div className="w-full lg:flex lg:items-center">
             <div className="min-h-full hidden lg:block "></div>
-            <div className="pt-28 space-y-4 rounded-xl min-w-full lg:pt-0 animate-sladeInFromBottomMedium">
+            <form className="pt-28 space-y-4 rounded-xl min-w-full lg:pt-0 animate-sladeInFromBottomMedium" onSubmit={(e) => handleSignUp(e)}>
               <h4 className="text-center text-2xl font-bold mb-6">
                 Registrarse como{" "}
                 <span
@@ -159,7 +160,7 @@ const SignUp = () => {
               />
               <Button
                 title="Registrarme"
-                onClick={() => handleSignUp()}
+                onClick={() => {}}
                 className="w-full"
               />
               <div className="flex-row justify-center py-1">
@@ -170,7 +171,7 @@ const SignUp = () => {
                   </span>
                 </p>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
