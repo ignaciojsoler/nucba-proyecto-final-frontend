@@ -68,14 +68,14 @@ const Login = () => {
   useEffect(() => {isLoggedIn()}, []);
 
   return (
-    <div className="m-auto w-full h-screen flex flex-col justify-center items-center bg-login-img bg-cover">
+    <div className="m-auto w-full h-screen flex flex-col justify-center items-center bg-login-img bg-cover animate-blurTransition">
       {isLoading && <Loader />}
-      <div className="p-8 space-y-8 rounded-xl w-full max-w-xl animate-sladeInFromBottomShort">
+      <div className="p-8 space-y-8 rounded-xl w-full max-w-xl animate-sladeInFromBottomMedium">
         <div className="space-y-4">
           <img src={logoIcon} className="m-auto" />
           <h3 className=" text-center text-4xl font-bold">ServiHogar</h3>
         </div>
-        <form className="space-y-4 animate-sladeInFromBottomMedium" onSubmit={(e) => handleSubmit(e)}>
+        <form className="space-y-4 animate-sladeInFromBottomLong" onSubmit={(e) => handleSubmit(e)}>
           <h4 className=" text-center text-2xl font-bold mb-8">
             Ingresa a tu cuenta
           </h4>

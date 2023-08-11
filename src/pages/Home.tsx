@@ -19,7 +19,7 @@ const Home = () => {
           className="w-80 md:w-96"
           placeholder="Buscar..."
         /> */}
-        <div className="w-full space-y-4">
+        <div className="w-full space-y-4 py-4">
           <h4 className=" text-2xl font-semibold self-start">Categorías</h4>
           <div className="grid grid-cols-2 gap-3 w-full md:p-0 md:grid-cols-4 ">
             {data.categorias.map((c) => {

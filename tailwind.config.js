@@ -63,6 +63,14 @@ export default {
             transform: "translateY(0)"
           }
         },
+        blurTransition: {
+          "0%": {
+            filter: "blur(16px)"
+          },
+          "100%": {
+            filter: "blur(0px)"
+          }
+        }
       },
       animation: {
         pong: "pong 1s infinite ease",
@@ -70,6 +78,7 @@ export default {
         sladeInFromBottomShort: "sladeInFromBottomShort .3s ease",
         sladeInFromBottomMedium: "sladeInFromBottomMedium .6s  ease",
         sladeInFromBottomLong: "sladeInFromBottomLong .9s ease-out",
+        blurTransition: "blurTransition .3s ease"
       },
       backgroundImage: {
         'hero-texture': "url('./src/assets/img/bg-texture.jpg')",
