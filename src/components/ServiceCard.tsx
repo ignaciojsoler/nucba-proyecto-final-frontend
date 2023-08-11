@@ -7,6 +7,26 @@
 //   userId: string;
 // }
 
+import carpineteria from "../assets/img/services/carpinteria.png";
+import cerrajeria from "../assets/img/services/cerrajeria.png";
+import electricidad from "../assets/img/services/electricidad.png";
+import gas from "../assets/img/services/gas.png";
+import jardineria from "../assets/img/services/jardineria.png";
+import limpieza from "../assets/img/services/limpieza.png";
+import mudanzas from "../assets/img/services/mudanzas.png";
+import plomeria from "../assets/img/services/plomeria.png";
+
+const categoriesImages = [
+  carpineteria,
+  cerrajeria,
+  electricidad,
+  gas,
+  jardineria,
+  limpieza,
+  mudanzas,
+  plomeria,
+];
+
 const ServiceCard = () => {
   return (
     <div className="group rounded-lg overflow-hidden bg-slate-900 grid grid-cols-6 h-48">
@@ -18,7 +38,13 @@ const ServiceCard = () => {
           quo. Dolorum veniam accusantium pariatur
         </p>
       </div>
-      <div className="bg-red-400 h-full col-span-2 col-start-5"></div>
+      <div className=" bg-gradient-to-b from-emerald-600 to-emerald-800 h-48 col-span-2 col-start-5 flex justify-center items-center">
+        <img
+          src={categoriesImages[6]}
+          className="object-cover h-full"
+          alt="category image"
+        />
+      </div>
     </div>
   );
 };
