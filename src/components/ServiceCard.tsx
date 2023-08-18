@@ -11,6 +11,7 @@ interface ServiceCardProps {
   idx: number;
 }
 const ServiceCard = ({ idx }: ServiceCardProps) => {
+  console.log(idx)
   return (
     <div className="group rounded-lg overflow-hidden bg-slate-900 grid grid-cols-6 cursor-pointer transition duration-150 hover:bg-slate-800">
       <div
@@ -19,7 +20,7 @@ const ServiceCard = ({ idx }: ServiceCardProps) => {
         <img
           src=""
           className="object-cover drop-shadow-xl h-40 z-10"
-          alt="user image"
+          alt="service image"
         />
        <div className="absolute opacity-60 w-full h-full bg-gradient-to-b from-transparent to-slate-600"></div>
       </div>

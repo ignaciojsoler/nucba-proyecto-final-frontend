@@ -1,5 +1,6 @@
 import banner from '../assets/img/banner.jpg';
 import { Categories } from "../components/Categories";
+import { Workers } from '../components/Workers';
 import Services from '../components/Services';
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
           <img src={banner} alt="banner" className="animate-sladeInFromBottomShort"/>
         </article>
         <Categories/>
+        <Workers/>
         <Services/>
       </section>
     </main>

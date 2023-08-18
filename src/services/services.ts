@@ -55,3 +55,15 @@ export const verifyAccount = async (token: string): Promise<AxiosResponse> => {
     return err.response;
   }
 };
+
+export const getWorkers = async (): Promise<AxiosResponse> => {
+  try {
+    const response: AxiosResponse = await axios.get(
+      API_URL + '/worker'
+    );
+    return response;
+  } catch (err: any) {
+    console.log(err.response);
+    return err.response;
+  }
+}
