@@ -1,0 +1,142 @@
+[
+  {
+    "id": "1",
+    "title": "Reparación de muebles",
+    "description": "Reparación y restauración de muebles de madera.",
+    "hourlyRate": 30,
+    "userId": "user123",
+    "worker": {
+      "id": "user123",
+      "role": "WORKER",
+      "name": "Juan Pérez",
+      "email": "juan@example.com"
+    },
+    "category": "Carpintería"
+  },
+  {
+    "id": "2",
+    "title": "Podado de césped",
+    "description": "Corte y mantenimiento de césped y jardines.",
+    "hourlyRate": 25,
+    "userId": "user456",
+    "worker": {
+      "id": "user456",
+      "role": "WORKER",
+      "name": "María García",
+      "email": "maria@example.com"
+    },
+    "category": "Jardinería"
+  },
+  {
+    "id": "3",
+    "title": "Instalación de caldera",
+    "description": "Instalación y mantenimiento de sistemas de calefacción.",
+    "hourlyRate": 50,
+    "userId": "user789",
+    "worker": {
+      "id": "user789",
+      "role": "WORKER",
+      "name": "Carlos Martínez",
+      "email": "carlos@example.com"
+    },
+    "category": "Gas"
+  },
+  {
+    "id": "4",
+    "title": "Limpieza de ventanas",
+    "description": "Limpieza y mantenimiento de ventanas y cristales.",
+    "hourlyRate": 20,
+    "userId": "user234",
+    "worker": {
+      "id": "user234",
+      "role": "WORKER",
+      "name": "Ana López",
+      "email": "ana@example.com"
+    },
+    "category": "Limpieza"
+  },
+  {
+    "id": "5",
+    "title": "Pintura de interiores",
+    "description": "Pintura y decoración de interiores de viviendas.",
+    "hourlyRate": 35,
+    "userId": "user567",
+    "worker": {
+      "id": "user567",
+      "role": "WORKER",
+      "name": "Pedro Ramirez",
+      "email": "pedro@example.com"
+    },
+    "category": "Carpintería"
+  },
+  {
+    "id": "6",
+    "title": "Reparación de fontanería",
+    "description": "Reparación y mantenimiento de sistemas de fontanería.",
+    "hourlyRate": 40,
+    "userId": "user890",
+    "worker": {
+      "id": "user890",
+      "role": "WORKER",
+      "name": "Laura Fernández",
+      "email": "laura@example.com"
+    },
+    "category": "Plomería"
+  },
+  {
+    "id": "7",
+    "title": "Mantenimiento de electrodomésticos",
+    "description": "Mantenimiento y reparación de electrodomésticos.",
+    "hourlyRate": 28,
+    "userId": "user123",
+    "worker": {
+      "id": "user123",
+      "role": "WORKER",
+      "name": "Juan Pérez",
+      "email": "juan@example.com"
+    },
+    "category": "Electricidad"
+  },
+  {
+    "id": "8",
+    "title": "Diseño de paisajes",
+    "description": "Diseño y planificación de paisajes y jardines.",
+    "hourlyRate": 45,
+    "userId": "user456",
+    "worker": {
+      "id": "user456",
+      "role": "WORKER",
+      "name": "María García",
+      "email": "maria@example.com"
+    },
+    "category": "Jardinería"
+  },
+  {
+    "id": "9",
+    "title": "Servicio de mudanzas",
+  "description": "Realizamos mudanzas residenciales y comerciales.",
+  "hourlyRate": 60,
+  "userId": "user567",
+    "worker": {
+      "id": "user789",
+      "role": "WORKER",
+      "name": "Carlos Martínez",
+      "email": "carlos@example.com"
+    },
+    "category": "Mudanzas"
+  },
+  {
+    "id": "10",
+    "title": "Montaje de muebles",
+    "description": "Montaje y ensamblaje de muebles y accesorios.",
+    "hourlyRate": 22,
+    "userId": "user234",
+    "worker": {
+      "id": "user234",
+      "role": "WORKER",
+      "name": "Ana López",
+      "email": "ana@example.com"
+    },
+    "category": "Carpintería"
+  }
+]

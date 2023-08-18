@@ -1,17 +1,11 @@
-// interface ServiceCardProps {
-//   id: string;
-//   title: string;
-//   description: string;
-//   hourlyRate: number;
-//   category: string;
-//   userId: string;
-// }
+import { Service } from "../interfaces/interfaces";
 
 interface ServiceCardProps {
-  idx: number;
+ service: Service
 }
-const ServiceCard = ({ idx }: ServiceCardProps) => {
-  console.log(idx)
+
+const ServiceCard = ({service}: ServiceCardProps) => {
+  const {title, description,hourlyRate,worker} = service;
   return (
     <div className="group rounded-lg overflow-hidden bg-slate-900 grid grid-cols-6 cursor-pointer transition duration-150 hover:bg-slate-800">
       <div
@@ -25,11 +19,11 @@ const ServiceCard = ({ idx }: ServiceCardProps) => {
        <div className="absolute opacity-60 w-full h-full bg-gradient-to-b from-transparent to-slate-600"></div>
       </div>
       <div className="space-y-1 p-6 col-span-6 lg:col-span-4">
-        <h4 className="font-bold text-3xl ">Título</h4>
-        <span className="text-xs">Carlos Pérez</span>
-        <h5 className={`font-bold text-xl text-emerald-600`}>$1000/h</h5>
-        <p className=" text-slate-400">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, minima
+        <h4 className="font-bold text-3xl text line-clamp-1">{title}</h4>
+        <span className="text-xs line-clamp-1">{worker.name}</span>
+        <h5 className={`font-bold text-xl text-emerald-600 line-clamp-1`}>${hourlyRate}/h</h5>
+        <p className=" text-slate-400 line-clamp-2">
+          {description}
         </p>
       </div>
     </div>

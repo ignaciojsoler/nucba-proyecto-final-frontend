@@ -1,6 +1,6 @@
 export interface User {
   id: string;
-  role: UserType | null;
+  role: string | null;
   name: string;
   email: string;
   profileImage?: string | null;
@@ -12,21 +12,12 @@ export interface User {
   services?: Service[];
 }
 
-export enum UserType {
-  CLIENT,
-  WORKER,
-  ADMIN,
-}
-
 export interface Service {
   id: string;
   title: string;
   description: string;
-  image?: string | null;
+  category: string,
   hourlyRate: number;
-  createdAt: Date;
-  updatedAt: Date;
-  deleted: boolean;
   userId: string;
   worker: User;
 }
