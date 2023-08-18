@@ -25,7 +25,7 @@ const WorkerCard = ({ worker }: WorkerCardProps) => {
           className={`object-cover drop-shadow-xl h-40 z-10 group-hover:scale-105 transition duration-150 ease-in ${!profileImage && "p-5"}`}
           alt="User image"
         />
-        <div className="absolute opacity-60 w-full h-full bg-gradient-to-b from-transparent to-slate-600"></div>
+        <div className="absolute opacity-60 w-full h-ful"></div>
       </div>
       <div className="space-y-1 p-6 col-span-6 lg:col-span-4">
         <h4 className="font-bold text-3xl line-clamp-1">{name}</h4>

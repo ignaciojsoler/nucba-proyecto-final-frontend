@@ -1,4 +1,6 @@
 import { Service } from "../interfaces/interfaces";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+
 import plomeriaImg from "../assets/img/services/plomeria.png";
 import electricidadImg from "../assets/img/services/electricidad.png";
 import gasImg from "../assets/img/services/gas.png";
@@ -15,44 +17,44 @@ interface ServiceCardProps {
 const categoriesAttributes = [
   {
     name: "Plomería",
-    backgroundColor: "rgb(197, 215, 235)", // Light Blue
-    img: plomeriaImg,
+    color: "rgb(197, 215, 235)", // Light Blue
+    img: plomeriaImg
   },
   {
     name: "Electricidad",
-    backgroundColor: "rgb(246, 211, 155)", // Light Orange
-    img: electricidadImg,
+    color: "rgb(246, 211, 155)", // Light Orange
+    img: electricidadImg
   },
   {
     name: "Gas",
-    backgroundColor: "rgb(189, 223, 191)", // Light Green
-    img: gasImg,
+    color: "rgb(189, 223, 191)", // Light Green
+    img: gasImg
   },
   {
     name: "Cerrajería",
-    backgroundColor: "rgb(255, 191, 191)", // Light Red
-    img: cerrajeriaImg,
+    color: "rgb(255, 191, 191)", // Light Red
+    img: cerrajeriaImg
   },
   {
     name: "Limpieza",
-    backgroundColor: "rgb(216, 191, 216)", // Light Purple
-    img: limpiezaImg,
+    color: "rgb(216, 191, 216)", // Light Purple
+    img: limpiezaImg
   },
   {
     name: "Jardinería",
-    backgroundColor: "rgb(194, 223, 200)", // Light Mint Green
-    img: jardineriaImg,
+    color: "rgb(194, 223, 200)", // Light Mint Green
+    img: jardineriaImg
   },
   {
     name: "Mudanzas",
-    backgroundColor: "rgb(255, 226, 204)", // Light Peach
-    img: mudanzasImg,
+    color: "rgb(255, 226, 204)", // Light Peach
+    img: mudanzasImg
   },
   {
     name: "Carpintería",
-    backgroundColor: "rgb(228, 196, 208)", // Light Pink
-    img: carpinteriaImg,
-  },
+    color: "rgb(228, 196, 208)", // Light Pink
+    img: carpinteriaImg
+  }
 ];
 
 const ServiceCard = ({ service }: ServiceCardProps) => {
@@ -62,27 +64,25 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
   );
   return (
     <div className="group rounded-lg overflow-hidden bg-slate-900 grid grid-cols-6 cursor-pointer transition duration-150 hover:bg-slate-800">
-      <div
-        className={`relative h-full col-span-6 flex justify-center items-center lg:col-span-2 lg:order-last bg-opacity-80 transition duration-150 opacity-90 group-hover:opacity-100`}
-        style={{
-          backgroundColor: serviceCategoryAttributes?.backgroundColor,
-        }}
-      >
-        <h6 className="absolute top-4 left-4 text-xl font-semibold text-slate-800">{category}</h6>
-        <img
-          src={serviceCategoryAttributes?.img}
-          className="absolute -bottom-5 -right-5 drop-shadow-xl h-40 z-10 transition ease-in duration-150 group-hover:scale-105"
-          alt="service image"
-        />
-        <div className="absolute opacity-60 w-full h-full"></div>
-      </div>
-      <div className="space-y-1 p-6 col-span-6 lg:col-span-4">
-        <h4 className="font-bold text-3xl text line-clamp-1">{title}</h4>
-        <span className="text-xs line-clamp-1">{worker.name}</span>
+      <div className="space-y-1 p-6 col-span-5">
+        <h4 className="font-bold text-xl text line-clamp-1">{title}</h4>
+        <span className="text-xs line-clamp-1 font-semibold">{worker.name}</span>
         <h5 className={`font-bold text-xl text-emerald-600 line-clamp-1`}>
           ${hourlyRate}/h
         </h5>
         <p className=" text-slate-400 line-clamp-2">{description}</p>
+      </div>
+      <div className="col-span-1 flex flex-col items-center justify-between">
+        <div className="relative m-7">
+          <AiOutlineHeart size={20}/>
+        </div>
+        <div className="w-full h-16 self-end rounded-tl-xl flex justify-center items-center" style={{backgroundColor: serviceCategoryAttributes?.color}}>
+        <img
+          className="object-cover drop-shadow-xl h-12 z-12"
+          src={serviceCategoryAttributes?.img}
+          alt="service image"
+        />
+        </div>
       </div>
     </div>
   );
