@@ -28,10 +28,10 @@ const WorkerCard = ({ worker }: WorkerCardProps) => {
         <div className="absolute opacity-60 w-full h-full bg-gradient-to-b from-transparent to-slate-600"></div>
       </div>
       <div className="space-y-1 p-6 col-span-6 lg:col-span-4">
-        <h4 className="font-bold text-3xl ">{name}</h4>
-        <span className="text-xs">{city}</span>
-        <h5 className={`font-bold text-xl text-emerald-600`}>{occupation}</h5>
-        <p className=" text-slate-400">{bio}</p>
+        <h4 className="font-bold text-3xl line-clamp-1">{name}</h4>
+        <span className="text-xs line-clamp-1">{city}</span>
+        <h5 className={`font-bold text-xl text-emerald-600 line-clamp-1`}>{occupation}</h5>
+        <p className=" text-slate-400 line-clamp-2">{bio}</p>
       </div>
     </div>
   );
