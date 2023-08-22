@@ -10,7 +10,7 @@ export interface User {
   city?: string | null;
   bio?: string | null;
   services?: Service[];
-  createdAt: Date;
+  createdAt?: Date;
 }
 
 export interface Service {

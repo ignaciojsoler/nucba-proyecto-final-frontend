@@ -17,7 +17,7 @@ interface ProfileCardProps {
 const ProfileCard = ({ worker }: ProfileCardProps) => {
   const { name, email, bio, city, occupation, profileImage, phone, createdAt } =
     worker;
-  const createdAtDate = new Date(createdAt);
+  const createdAtDate = createdAt ? new Date(createdAt) : null;
 
   const [isSavedAsFavorite, setIsSavedAsFavorite] = useState<boolean>(false);
 
@@ -69,7 +69,7 @@ const ProfileCard = ({ worker }: ProfileCardProps) => {
               Miembro desde:
             </p>
             <p className="font-medium">
-              {createdAtDate.toLocaleString("es-ES", {
+              {createdAtDate?.toLocaleString("es-ES", {
                 year: "numeric",
                 month: "long",
               })}
