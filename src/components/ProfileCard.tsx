@@ -38,7 +38,7 @@ const ProfileCard = ({ worker }: ProfileCardProps) => {
           alt="User image"
         />
         <div
-          className="absolute top-8 right-2 "
+          className="absolute top-8 right-2 cursor-pointer"
           onClick={() => handleSetAsFavorite()}
         >
           {isSavedAsFavorite ? (
