@@ -10,43 +10,43 @@
         "id": 2,
         "nombre": "Electricidad",
         "description": "Instalación, reparación y mantenimiento de sistemas eléctricos, interruptores, enchufes, iluminación, etc.",
-        "image": "./src/assets/img/electricidad.jpg"
+        "image": "/src/assets/img/electricidad.jpg"
       },
       {
         "id": 3,
         "nombre": "Gas",
         "description": "Servicios relacionados con sistemas de gas, como instalaciones, inspecciones y reparaciones.",
-        "image": "./src/assets/img/gas.jpg"
+        "image": "/src/assets/img/gas.jpg"
       },
       {
         "id": 4,
         "nombre": "Cerrajería",
         "description": "Apertura de puertas, cambio de cerraduras, duplicado de llaves, etc.",
-        "image": "./src/assets/img/cerrajeria.jpg"
+        "image": "/src/assets/img/cerrajeria.jpg"
       },
       {
         "id": 5,
         "nombre": "Limpieza",
         "description": "Servicios de limpieza para el hogar, incluyendo limpieza general, limpieza a fondo, limpieza de alfombras, etc.",
-        "image": "./src/assets/img/limpieza.jpg"
+        "image": "/src/assets/img/limpieza.jpg"
       },
       {
         "id": 6,
         "nombre": "Jardinería",
         "description": "Mantenimiento de jardines, poda de árboles, diseño paisajístico, entre otros.",
-        "image": "./src/assets/img/jardineria.jpg"
+        "image": "/src/assets/img/jardineria.jpg"
       },
       {
         "id": 7,
         "nombre": "Mudanzas",
         "description": "Otros servicios de reparación y mantenimiento del hogar, como arreglos de paredes, pintura, carpintería básica, etc.",
-        "image": "./src/assets/img/mudanzas.jpg"
+        "image": "/src/assets/img/mudanzas.jpg"
       },
       {
         "id": 8,
         "nombre": "Carpintería",
         "description": "Trabajos relacionados con la madera y la carpintería, como reparación de muebles, instalación de estanterías, armarios empotrados, puertas y ventanas, entre otros.",
-        "image": "./src/assets/img/carpinteria.jpg"
+        "image": "/src/assets/img/carpinteria.jpg"
       }
     ]
   }
