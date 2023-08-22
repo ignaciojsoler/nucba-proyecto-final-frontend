@@ -5,7 +5,9 @@ import {
   AiOutlineHeart,
   AiOutlineMail,
   AiOutlinePhone,
+  AiOutlineCalendar
 } from "react-icons/ai";
+import {HiOutlineLocationMarker} from 'react-icons/hi'
 import { useState } from "react";
 
 interface ProfileCardProps {
@@ -61,8 +63,8 @@ const ProfileCard = ({ worker }: ProfileCardProps) => {
         <div className="pt-6 space-y-3">
           <div className="flex justify-between">
             <p className="text-slate-400 flex items-center">
-              <span className="mr-1">
-                <AiOutlineMail />
+              <span className="mr-2">
+                <AiOutlineCalendar />
               </span>
               Miembro desde:
             </p>
@@ -75,7 +77,18 @@ const ProfileCard = ({ worker }: ProfileCardProps) => {
           </div>
           <div className="flex justify-between">
             <p className="text-slate-400 flex items-center">
-              <span className="mr-1">
+              <span className="mr-2">
+                <HiOutlineLocationMarker />
+              </span>
+              Ciudad:
+            </p>
+            <p className="font-medium">
+              {city}
+            </p>
+          </div>
+          <div className="flex justify-between">
+            <p className="text-slate-400 flex items-center">
+              <span className="mr-2">
                 <AiOutlinePhone />
               </span>
               Teléfono:
@@ -84,7 +97,7 @@ const ProfileCard = ({ worker }: ProfileCardProps) => {
           </div>
           <div className="flex justify-between flex-wrap overflow-auto">
             <p className="text-slate-400 flex items-center">
-              <span className="mr-1">
+              <span className="mr-2">
                 <AiOutlineMail />
               </span>
               Email:
