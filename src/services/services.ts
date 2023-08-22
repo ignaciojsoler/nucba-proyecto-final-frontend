@@ -70,3 +70,15 @@ export const getWorkers = async (): Promise<AxiosResponse> => {
     return err.response;
   }
 }
+
+export const getWorkerById = async (workerId: string): Promise<AxiosResponse> => {
+  try {
+    const response: AxiosResponse = await axios.get(
+      API_URL + `/worker/${workerId}`
+    );
+    return response;
+  } catch (err: any) {
+    console.log(err.response);
+    return err.response;
+  }
+}

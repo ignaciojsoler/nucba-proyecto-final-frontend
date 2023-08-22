@@ -1,5 +1,6 @@
 import { User } from "../interfaces/interfaces";
 import defaultUserIcon from "../assets/icons/default-user.svg";
+import { Link } from "react-router-dom";
 
 interface WorkerCardProps {
   worker: User;
@@ -8,14 +9,10 @@ interface WorkerCardProps {
 const WorkerCard = ({ worker }: WorkerCardProps) => {
   const { id, name, occupation, city, profileImage, bio } = worker;
 
-  const handleOnClick = () => {
-    alert(id);
-  }
-  
   return (
-    <div 
+    <Link
+    to={`../worker/${id}`} 
     className="group rounded-lg overflow-hidden bg-slate-900 grid grid-cols-6 cursor-pointer transition duration-150 hover:bg-slate-800"
-    onClick={() => handleOnClick()}
     >
       <div
         className={`relative h-full col-span-6 flex justify-center items-center lg:col-span-2 lg:order-last bg-opacity-80 transition duration-150 group-hover:bg-opacity-60`}
@@ -33,7 +30,7 @@ const WorkerCard = ({ worker }: WorkerCardProps) => {
         <h5 className={`font-bold text-xl text-emerald-600 line-clamp-1`}>{occupation}</h5>
         <p className=" text-slate-400 line-clamp-2">{bio}</p>
       </div>
-    </div>
+    </Link>
   );
 };
 

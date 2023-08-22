@@ -6,7 +6,7 @@ import bgLandingDesktop from "../assets/img/bg-landing-desktop.jpg";
 const Landing = () => {
   const navigate = useNavigate();
   return (
-    <div className="m-auto w-full h-screen flex flex-col justify-center items-center">
+    <main className="m-auto w-full h-screen flex flex-col justify-center items-center">
       <section className="p-8 space-y-8 rounded-xl w-full z-10 pt-36 md:max-w-2xl lg:max-w-7xl md:pt-0">
         <div className="space-y-6 md:max-w-2xl lg:max-w-2xl"> 
           <h1 className=" text-5xl font-bold md:text-8xl animate-sladeInFromBottomShort">
@@ -39,7 +39,7 @@ const Landing = () => {
           className="hidden md:block min-h-screen object-cover animate-blurTransition"
         />
       </div>
-    </div>
+    </main>
   );
 };
 

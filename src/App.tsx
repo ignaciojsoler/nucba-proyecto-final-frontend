@@ -2,6 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import { Navbar } from "./components/Header";
 import React, { Suspense, useState, useEffect } from "react";
 import Loading from "./pages/Loading";
+import ServiceDetail from "./pages/ServiceDetail";
+import WorkerDetail from "./pages/WorkerDetail";
 
 const Landing = React.lazy(() => import("./pages/Landing"));
 const Login = React.lazy(() => import("./pages/Login"));
@@ -41,6 +43,8 @@ function App() {
           <Route path="/plans" element={<Plans />} />
           <Route path="/home" element={<Home />} />
           <Route path="/confirmation" element={<Confirmation />} />
+          <Route path="/worker/:id" element={<WorkerDetail/>}/>
+          <Route path="/service/:id" element={<ServiceDetail/>}/>
         </Routes>
       </Suspense>
     </div>
