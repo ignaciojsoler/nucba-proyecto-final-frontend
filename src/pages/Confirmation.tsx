@@ -2,35 +2,31 @@ import { useEffect, useState } from "react";
 import { MdOutlineEmail } from "react-icons/md";
 import { getFromStorage } from "../helpers/handleStorage";
 import Input from "../components/Input";
-import { isValidJWT } from "../helpers/jwtUtils";
 import { Loader } from "../components/Loader";
 import { verifyAccount } from "../services/services";
 import { AxiosResponse } from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { maxLength, minLength } from "../helpers/inputValidators";
+import { Button } from "../components/Button";
 
 const Confirmation = () => {
-
   const navigate = useNavigate();
 
   const [userEmail, setUserEmail] = useState<string>("");
-  const [userToken, setUserToken] = useState<string>("");
+  const [userCode, setUserCode] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [userIsVerified, setUserIsVerified] = useState<boolean>(false);
 
-  const handleToken = async (inputToken: string) => {
-    setUserToken(inputToken);
-  };
-
-  const handlePaste = async (event: React.ClipboardEvent<HTMLInputElement>) => {
-    const pastedText = event.clipboardData.getData("text/plain");
-    if (!isValidJWT(pastedText)) return console.log("mal");
+  const handleSubmit = async () => {
+    if (!minLength(userCode, 6) && !maxLength(userCode, 6)) return null;
     setIsLoading(true);
-    const verifiedUser: AxiosResponse = await verifyAccount(pastedText);
+    const verifiedUser: AxiosResponse = await verifyAccount(userEmail, userCode);
     setIsLoading(false);
+    console.log(userCode)
     if (!verifiedUser || verifiedUser.status !== 200) {
       return alert(
-        "Token de verificación inválido o expirado. Revisa tu correo nuevamente o intenta registrarte de nuevo."
+        "Código de verificación inválido o expirado. Revisa tu correo nuevamente o intenta registrarte de nuevo."
       );
     }
     setUserIsVerified(true);
@@ -47,7 +43,7 @@ const Confirmation = () => {
       {isLoading && <Loader />}
       <div className="m-auto min-h-screen py-28  px-6 max-w-7xl flex justify-center items-center">
         {userIsVerified ? (
-          <div className="flex flex-col justify-center items-center bg-slate-800 bg-opacity-40 p-8 pb-12 space-y-4 rounded-xl animate-sladeInFromBottomShort lg:px-12">
+          <form className="flex flex-col justify-center items-center bg-slate-800 bg-opacity-40 p-8 pb-12 space-y-4 rounded-xl animate-sladeInFromBottomShort lg:px-12">
             <div className="h-40 text-emerald-600 animate-sladeInFromBottomMedium">
               <MdOutlineEmail size={{ heigth: "full" }} />
             </div>
@@ -64,7 +60,7 @@ const Confirmation = () => {
                 </h5>
               </Link>
             </div>
-          </div>
+          </form>
         ) : (
           <div className="flex flex-col justify-center items-center bg-slate-800 bg-opacity-40 p-8 pb-12 space-y-4 rounded-xl animate-sladeInFromBottomShort lg:px-12">
             <div className="h-40 text-emerald-600 animate-sladeInFromBottomMedium">
@@ -75,7 +71,7 @@ const Confirmation = () => {
                 ¡Felicidades! Te has registrado correctamente
               </h3>
               <p className="text-slate-400 text-center leading-8">
-                Se ha enviado un tóken de verificación a su correo electrónico{" "}
+                Se ha enviado un código de verificación a su correo electrónico{" "}
                 <b>{userEmail}</b>
                 <br />
                 Verifique su bandeja de entrada.{" "}
@@ -84,13 +80,19 @@ const Confirmation = () => {
                   posible que el mensaje se encuentre allí.
                 </b>
               </p>
-              <Input
-                value={userToken}
-                onChangeText={(e) => handleToken(e)}
-                placeholder="Ingresar tóken"
-                onChangePaste={(e) => handlePaste(e)}
-                validations={["isValidJWT"]}
-              />
+              <div className="pt-2 m-auto space-y-3">
+                <Input
+                  value={userCode}
+                  onChangeText={(e) => setUserCode(e)}
+                  placeholder="Ingresar código"
+                  className=""
+                />
+                <Button
+                  title="Confirmar"
+                  onClick={() => handleSubmit()}
+                  widthFull
+                />
+              </div>
             </div>
           </div>
         )}

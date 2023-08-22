@@ -22,7 +22,7 @@ const WorkerCard = ({ worker }: WorkerCardProps) => {
       >
         <img
           src={profileImage ?? defaultUserIcon}
-          className={`object-cover drop-shadow-xl h-40 z-10 group-hover:scale-105 transition duration-150 ease-in ${!profileImage && "p-5"}`}
+          className={`object-cover drop-shadow-xl h-40 z-10 transition duration-150 ease-in ${!profileImage && "p-5"}`}
           alt="User image"
         />
         <div className="absolute opacity-60 w-full h-ful"></div>

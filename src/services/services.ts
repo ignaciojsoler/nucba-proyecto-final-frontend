@@ -44,10 +44,13 @@ export const signUp = async (
   }
 };
 
-export const verifyAccount = async (token: string): Promise<AxiosResponse> => {
+export const verifyAccount = async (email: string, verificationCode: string): Promise<AxiosResponse> => {
   try {
-    const response: AxiosResponse = await axios.get(
-      API_URL + `/auth/verify/${token}`
+    const response: AxiosResponse = await axios.post(
+      API_URL + `/auth/verify`, {
+        email,
+        verificationCode
+      }
     );
     return response;
   } catch (err: any) {

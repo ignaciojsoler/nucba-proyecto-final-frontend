@@ -22,7 +22,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const isLoggedIn = () => {
-    const token = tokenExists();
+    const token = tokenExists(); 
     if (!token) return;
     navigate("/home");
   };
@@ -58,7 +58,6 @@ const Login = () => {
     if (loginResponse.status !== 200) {
       return alert(loginResponse.data.msg);
     }
-    console.log(loginResponse.data.user)
     dispatch(updateToken(loginResponse.data.token));
     dispatch(updateUser(loginResponse.data.user));
 

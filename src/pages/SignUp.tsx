@@ -59,7 +59,6 @@ const SignUp = () => {
 
     const role =
       selectedPlan.toLocaleUpperCase() === "CLIENTE" ? "CLIENT" : "WORKER";
-    console.log(role);
 
     setIsLoading(true);
 
