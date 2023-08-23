@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Navbar } from "./components/Header";
-import React, { Suspense, useState, useEffect } from "react";
+import React, { Suspense } from "react";
 import Loading from "./pages/Loading";
 import ServiceDetail from "./pages/ServiceDetail";
 import WorkerDetail from "./pages/WorkerDetail";
@@ -13,28 +13,10 @@ const Home = React.lazy(() => import("./pages/Home"));
 const Confirmation = React.lazy(() => import("./pages/Confirmation"));
 
 function App() {
-  const [loadingPercentage, setLoadingPercentage] = useState<number>(0);
-
-  useEffect(() => {
-    const handleProgress = (event: ProgressEvent) => {
-      if (event.lengthComputable) {
-        const percentComplete = (event.loaded / event.total) * 100;
-        setLoadingPercentage(percentComplete);
-      }
-    };
-
-    window.addEventListener("progress", handleProgress);
-    window.addEventListener("load", () => setLoadingPercentage(100));
-
-    return () => {
-      window.removeEventListener("progress", handleProgress);
-      window.removeEventListener("load", () => setLoadingPercentage(100));
-    };
-  }, []);
 
   return (
     <div className="min-h-screen min-w-screen bg-gradient-to-b from-slate-900 to-slate-950 text-slate-200">
-      <Suspense fallback={<Loading loadingPercentage={loadingPercentage} />}>
+      <Suspense fallback={<Loading />}>
         <Navbar />
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -45,6 +27,7 @@ function App() {
           <Route path="/confirmation" element={<Confirmation />} />
           <Route path="/worker/:id" element={<WorkerDetail/>}/>
           <Route path="/service/:id" element={<ServiceDetail/>}/>
+          <Route path="/loading" element={<Loading/>}/>
         </Routes>
       </Suspense>
     </div>

@@ -1,20 +1,28 @@
 import logoIcon from "../assets/icons/logo.svg";
+import {useState, useEffect} from "react";
 
-interface LoadingProps {
-  loadingPercentage: number;
-}
+const Loading = () => {
+  const [dots, setDots] = useState<string>("");
 
-const Loading = ({ loadingPercentage }: LoadingProps) => {
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setDots((prevDots) => (prevDots === "..." ? "" : prevDots + "."));
+    }, 200);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
   return (
     <div className="max-w-7xl m-auto min-w-screen min-h-screen bg-gradient-to-b from-slate-900 to-slate-950 flex">
-      <div className="h-full m-auto space-y-6 animate-fadeIn">
+      <div className="h-full m-auto space-y-6 animate-fadeIn animate-pulse">
         <div role="status">
           <div className="space-y-4">
-            <img src={logoIcon} className="m-auto" />
+            <img src={logoIcon} className="m-auto"/>
           </div>
         </div>
-        <h4 className=" text-4xl font-semibold text-center">
-          {Math.round(loadingPercentage)} %
+        <h4 className=" text-4xl font-semibold text-start">
+          Cargando{dots}
         </h4>
       </div>
     </div>
