@@ -41,6 +41,7 @@ const ProfileCard = ({ worker }: ProfileCardProps) => {
             !profileImage && "p-5"
           }`}
           alt="User image"
+          loading="lazy"
         />
         <div
           className="absolute top-8 right-2 cursor-pointer"

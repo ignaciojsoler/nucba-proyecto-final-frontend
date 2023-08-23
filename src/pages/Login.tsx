@@ -71,7 +71,7 @@ const Login = () => {
       {isLoading && <Loader />}
       <div className="p-8 space-y-8 rounded-xl w-full max-w-xl animate-sladeInFromBottomMedium">
         <div className="space-y-4">
-          <img src={logoIcon} className="m-auto" />
+          <img src={logoIcon} alt="Logo icon" className="m-auto" loading="lazy"/>
           <h3 className=" text-center text-4xl font-bold">ServiHogar</h3>
         </div>
         <form className="space-y-4 animate-sladeInFromBottomLong" onSubmit={(e) => handleSubmit(e)}>

@@ -64,8 +64,9 @@ const CategoryCard = (props: CategoryCardProps) => {
         <div className="h-full w-full bg-slate-900 absolute top-0 left-0 opacity-70 transition-opacity duration-150 group-hover:opacity-40"></div>
         <img
           src={categoryImage?.image}
-          alt="category image"
+          alt="Category image"
           className="object-cover h-full w-full"
+          loading="lazy"
         />
       </div>
       <h5 className="font-bold text-xl">{data.name}</h5>

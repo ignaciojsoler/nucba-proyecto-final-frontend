@@ -99,7 +99,8 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
           <img
             className="object-cover drop-shadow-xl h-12 z-12"
             src={serviceCategoryAttributes?.img}
-            alt="service image"
+            alt="Service image"
+            loading="lazy"
           />
         </div>
       </div>
