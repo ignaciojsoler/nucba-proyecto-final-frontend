@@ -20,7 +20,7 @@ const WorkerDetail = () => {
     if (workerData.status !== 200) {
       return alert(workerData.data.msg);
     }
-    setWorker(workerData.data);
+    setWorker(workerData.data.userData);
   };
 
   useEffect(() => {
