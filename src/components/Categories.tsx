@@ -11,6 +11,7 @@ export const Categories = () => {
             <CategoryCard
               key={c.id}
               data={{
+                id: c.id,
                 name: c.nombre,
                 description: c.description,
                 image: c.image,

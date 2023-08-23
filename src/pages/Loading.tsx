@@ -13,7 +13,7 @@ const Loading = ({ loadingPercentage }: LoadingProps) => {
             <img src={logoIcon} className="m-auto" />
           </div>
         </div>
-        <h4 className=" text-4xl font-semibold">
+        <h4 className=" text-4xl font-semibold text-center">
           {Math.round(loadingPercentage)} %
         </h4>
       </div>
