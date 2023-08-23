@@ -9,6 +9,7 @@ import {
 } from "react-icons/ai";
 import {HiOutlineLocationMarker} from 'react-icons/hi'
 import { useState } from "react";
+import { Button } from "./Button";
 
 interface ProfileCardProps {
   worker: User;
@@ -25,8 +26,12 @@ const ProfileCard = ({ worker }: ProfileCardProps) => {
     setIsSavedAsFavorite(!isSavedAsFavorite);
   };
 
+  const handleCall = () => {
+    window.location.href = `tel:${phone}`;
+  };
+
   return (
-    <div className="bg-slate-800 w-full lg:w-[24rem] rounded-lg px-6 animate-sladeInFromBottomShort">
+    <div className="bg-slate-900 w-full lg:w-[36rem] rounded-lg px-6 animate-sladeInFromBottomShort">
       <div
         className={`relative h-full col-span-6 flex justify-center items-center bg-opacity-80 transition duration-150 group-hover:bg-opacity-60`}
       >
@@ -103,6 +108,9 @@ const ProfileCard = ({ worker }: ProfileCardProps) => {
               Email:
             </p>
             <p className="text-end font-medium">{email}</p>
+          </div>
+          <div className="pt-6">
+          <Button onClick={() => handleCall()} widthFull title="Llamar"/>
           </div>
         </div>
       </div>

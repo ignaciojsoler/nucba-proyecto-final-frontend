@@ -73,11 +73,11 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
   }
 
   return (
-    <Link to={`../service/${service.id}`} className="group rounded-lg overflow-hidden bg-slate-900 grid grid-cols-6 cursor-pointer transition duration-150 hover:bg-slate-800 animate-sladeInFromBottomShort">
+    <Link to={`../service/${service.id}`} className="group rounded-lg overflow-hidden bg-slate-900 grid grid-cols-6 cursor-pointer transition duration-150 hover:bg-slate-800 animate-sladeInFromBottomShort" style={{minHeight: "11.25rem"}}>
       <div className="space-y-1 p-6 col-span-5">
         <h4 className="font-bold text-xl text line-clamp-1">{title}</h4>
         <span className="text-xs line-clamp-1 font-semibold">
-          {worker.name}
+          {worker.name ?? ""}
         </span>
         <h5 className={`font-bold text-xl text-emerald-600 line-clamp-1`}>
           ${hourlyRate}/h
