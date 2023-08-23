@@ -27,7 +27,6 @@ function App() {
           <Route path="/confirmation" element={<Confirmation />} />
           <Route path="/worker/:id" element={<WorkerDetail/>}/>
           <Route path="/service/:id" element={<ServiceDetail/>}/>
-          <Route path="/loading" element={<Loading/>}/>
         </Routes>
       </Suspense>
     </div>
