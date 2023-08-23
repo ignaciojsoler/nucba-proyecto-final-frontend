@@ -73,7 +73,7 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
   }
 
   return (
-    <Link to={`../service/${service.id}`} className="group rounded-lg overflow-hidden bg-slate-900 grid grid-cols-6 cursor-pointer transition duration-150 hover:bg-slate-800">
+    <Link to={`../service/${service.id}`} className="group rounded-lg overflow-hidden bg-slate-900 grid grid-cols-6 cursor-pointer transition duration-150 hover:bg-slate-800 animate-sladeInFromBottomShort">
       <div className="space-y-1 p-6 col-span-5">
         <h4 className="font-bold text-xl text line-clamp-1">{title}</h4>
         <span className="text-xs line-clamp-1 font-semibold">

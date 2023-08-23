@@ -26,7 +26,7 @@ const ProfileCard = ({ worker }: ProfileCardProps) => {
   };
 
   return (
-    <div className="bg-slate-800 w-full lg:w-[24rem] rounded-lg px-6">
+    <div className="bg-slate-800 w-full lg:w-[24rem] rounded-lg px-6 animate-sladeInFromBottomShort">
       <div
         className={`relative h-full col-span-6 flex justify-center items-center bg-opacity-80 transition duration-150 group-hover:bg-opacity-60`}
       >
