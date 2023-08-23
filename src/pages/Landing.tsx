@@ -1,7 +1,7 @@
 import { Button } from "../components/Button";
 import { useNavigate } from "react-router-dom";
-import bgLandingMobile from "../assets/img/bg-landing-mobile.jpg";
-import bgLandingDesktop from "../assets/img/bg-landing-desktop.jpg";
+import bgLandingMobile from "../assets/img/bg-landing-mobile.webp";
+import bgLandingDesktop from "../assets/img/bg-landing-desktop.webp";
 
 const Landing = () => {
   const navigate = useNavigate();

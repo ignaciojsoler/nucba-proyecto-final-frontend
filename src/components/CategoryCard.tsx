@@ -1,11 +1,11 @@
-import plomeriaImg from "/src/assets/img/plomeria.jpg";
-import electricidadImg from "/src/assets/img/electricidad.jpg";
-import gasImg from "/src/assets/img/gas.jpg";
-import cerrajeriaImg from "/src/assets/img/cerrajeria.jpg";
-import limpiezaImg from "/src/assets/img/limpieza.jpg";
-import jardineriaImg from "/src/assets/img/jardineria.jpg";
-import mudanzasImg from "/src/assets/img/mudanzas.jpg";
-import carpinteriaImg from "/src/assets/img/carpinteria.jpg";
+import plomeriaImg from "/src/assets/img/plomeria.webp";
+import electricidadImg from "/src/assets/img/electricidad.webp";
+import gasImg from "/src/assets/img/gas.webp";
+import cerrajeriaImg from "/src/assets/img/cerrajeria.webp";
+import limpiezaImg from "/src/assets/img/limpieza.webp";
+import jardineriaImg from "/src/assets/img/jardineria.webp";
+import mudanzasImg from "/src/assets/img/mudanzas.webp";
+import carpinteriaImg from "/src/assets/img/carpinteria.webp";
 
 interface CategoryCardProps {
   data: {
