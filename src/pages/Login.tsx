@@ -12,6 +12,7 @@ import { updateUser } from "../store/userSlice";
 import { updateToken } from "../store/authenticationTokenSlice";
 import { useDispatch } from "react-redux";
 import { tokenExists } from "../helpers/jwtUtils";
+import loginBackground from "../assets/img/login-img.jpg";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const isLoggedIn = () => {
-    const token = tokenExists(); 
+    const token = tokenExists();
     if (!token) return;
     navigate("/home");
   };
@@ -64,17 +65,30 @@ const Login = () => {
     isLoggedIn();
   };
 
-  useEffect(() => {isLoggedIn()}, []);
+  useEffect(() => {
+    isLoggedIn();
+  }, []);
 
   return (
-    <div className="m-auto w-full h-screen flex flex-col justify-center items-center bg-login-img bg-cover animate-blurTransition">
+    <div
+      className="m-auto w-full h-screen flex flex-col justify-center items-center bg-cover animate-blurTransition"
+      style={{ backgroundImage: `url(${loginBackground})` }}
+    >
       {isLoading && <Loader />}
       <div className="p-8 space-y-8 rounded-xl w-full max-w-xl animate-sladeInFromBottomMedium">
         <div className="space-y-4">
-          <img src={logoIcon} alt="Logo icon" className="m-auto" loading="lazy"/>
+          <img
+            src={logoIcon}
+            alt="Logo icon"
+            className="m-auto"
+            loading="lazy"
+          />
           <h3 className=" text-center text-4xl font-bold">ServiHogar</h3>
         </div>
-        <form className="space-y-4 animate-sladeInFromBottomLong" onSubmit={(e) => handleSubmit(e)}>
+        <form
+          className="space-y-4 animate-sladeInFromBottomLong"
+          onSubmit={(e) => handleSubmit(e)}
+        >
           <h4 className=" text-center text-2xl font-bold mb-8">
             Ingresa a tu cuenta
           </h4>
