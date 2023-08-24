@@ -1,6 +1,6 @@
 import ContentLoader from "react-content-loader";
 
-const ServiceCardSkeleton = () => {
+const WorkerCardSkeleton = () => {
   return (
     <div className=" bg-slate-900 rounded-lg animate-sladeInFromBottomShort">
       <ContentLoader
@@ -20,4 +20,4 @@ const ServiceCardSkeleton = () => {
   );
 };
 
-export default ServiceCardSkeleton;
+export default WorkerCardSkeleton;
