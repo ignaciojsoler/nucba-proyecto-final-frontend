@@ -82,3 +82,15 @@ export const getWorkerById = async (workerId: string): Promise<AxiosResponse> =>
     return err.response;
   }
 }
+
+export const getServices = async (): Promise<AxiosResponse> => {
+  try {
+    const response: AxiosResponse = await axios.get(
+      API_URL + `/services`
+    );
+    return response;
+  } catch (err: any) {
+    console.log(err.response);
+    return err.response;
+  }
+}
