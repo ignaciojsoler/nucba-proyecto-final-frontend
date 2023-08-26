@@ -6,7 +6,8 @@ interface ButtonProps {
   onClick: () => void;
   color?: "primary" | "secondary" | "light" | "dark" | "transparent" | "neutral";
   size?: "small" | "medium" | "large";
-  icon?: ReactElement<unknown, never>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  icon?: ReactElement<unknown, any>;
   className?: string;
   children?: ReactElement,
   widthFull?: boolean
@@ -52,10 +53,10 @@ export const Button = (props: ButtonProps) => {
     }
     ${className || ""}
     ${widthFull ? "w-full" : ""}
-    transition-color duration-200 rounded-lg active:opacity-80
+    inline-flex space-x-2 justify-center items-center transition-color duration-200 rounded-lg active:opacity-80
     `}
     >
-      {icon} {title} {children}
+      <p>{icon}</p> <p>{title}</p> <p>{children}</p>
     </button>
   );
 };

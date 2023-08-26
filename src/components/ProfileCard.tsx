@@ -5,20 +5,30 @@ import {
   AiOutlineHeart,
   AiOutlineMail,
   AiOutlinePhone,
-  AiOutlineCalendar
+  AiOutlineCalendar,
 } from "react-icons/ai";
-import {HiOutlineLocationMarker} from 'react-icons/hi'
+import { HiOutlineLocationMarker } from "react-icons/hi";
 import { useState } from "react";
 import { Button } from "./Button";
+import { callUserPhone } from "../helpers/callUserPhone";
+import { useNavigate } from "react-router-dom";
 
 interface ProfileCardProps {
   worker: User;
+  className?: string;
+  buttonFunction?: "visitProfile" | "callUserPhone";
 }
 
-const ProfileCard = ({ worker }: ProfileCardProps) => {
+const ProfileCard = ({
+  worker,
+  className,
+  buttonFunction = "callUserPhone",
+}: ProfileCardProps) => {
   const { name, email, bio, city, occupation, profileImage, phone, createdAt } =
     worker;
   const createdAtDate = createdAt ? new Date(createdAt) : null;
+
+  const navigate = useNavigate();
 
   const [isSavedAsFavorite, setIsSavedAsFavorite] = useState<boolean>(false);
 
@@ -26,12 +36,10 @@ const ProfileCard = ({ worker }: ProfileCardProps) => {
     setIsSavedAsFavorite(!isSavedAsFavorite);
   };
 
-  const handleCall = () => {
-    window.location.href = `tel:${phone}`;
-  };
-
   return (
-    <div className="bg-slate-900 w-full lg:w-[36rem] rounded-lg px-6 animate-sladeInFromBottomShort">
+    <div
+      className={`bg-slate-900 w-full lg:w-[36rem] rounded-lg px-6 ${className}`}
+    >
       <div
         className={`relative h-full col-span-6 flex justify-center items-center bg-opacity-80 transition duration-150 group-hover:bg-opacity-60`}
       >
@@ -88,9 +96,7 @@ const ProfileCard = ({ worker }: ProfileCardProps) => {
               </span>
               Ciudad:
             </p>
-            <p className="font-medium">
-              {city}
-            </p>
+            <p className="font-medium">{city}</p>
           </div>
           <div className="flex justify-between">
             <p className="text-slate-400 flex items-center">
@@ -111,7 +117,17 @@ const ProfileCard = ({ worker }: ProfileCardProps) => {
             <p className="text-end font-medium">{email}</p>
           </div>
           <div className="pt-6">
-          <Button onClick={() => handleCall()} widthFull title="Llamar"/>
+            <Button
+              onClick={
+                buttonFunction === "callUserPhone"
+                  ? () => callUserPhone(worker.phone)
+                  : () => navigate(`../worker/${worker.id}`)
+              }
+              widthFull
+              title={
+                buttonFunction === "callUserPhone" ? "Llamar" : "Visitar perfil"
+              }
+            />
           </div>
         </div>
       </div>
