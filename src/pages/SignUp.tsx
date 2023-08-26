@@ -12,6 +12,7 @@ import { getFromStorage, saveOnStorage } from "../helpers/handleStorage";
 // import provincesData from "../data/provinces.json";
 import { FaChevronRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import signupImg from "../assets/img/signup-img.jpg";
 
 const SignUp = () => {
   // const sortedProvinces = provincesData.provincias.sort((a, b) =>
@@ -89,7 +90,10 @@ const SignUp = () => {
     <>
       {isLoading && <Loader />}
 
-      <div className="h-full bg-signup-img bg-cover">
+      <div
+        className="h-full bg-cover"
+        style={{ backgroundImage: `url(${signupImg})` }}
+      >
         <div className="m-auto max-w-7xl min-h-screen flex flex-col justify-center items-center px-6 lg:flex-row lg:h-screen lg:space-x-8">
           <div className="hidden w-full lg:flex lg:flex-col lg:h-full lg:py-28">
             <div className="h-full bg-slate-800 bg-opacity-40 backdrop-blur-lg rounded-2xl p-12 flex flex-col justify-center items-start space-y-8   animate-sladeInFromBottomShort">
@@ -117,7 +121,10 @@ const SignUp = () => {
           </div>
           <div className="w-full lg:flex lg:items-center">
             <div className="min-h-full hidden lg:block "></div>
-            <form className="pt-28 space-y-4 rounded-xl min-w-full lg:pt-0 animate-sladeInFromBottomMedium" onSubmit={(e) => handleSignUp(e)}>
+            <form
+              className="pt-28 space-y-4 rounded-xl min-w-full lg:pt-0 animate-sladeInFromBottomMedium"
+              onSubmit={(e) => handleSignUp(e)}
+            >
               <h4 className="text-center text-2xl font-bold mb-6">
                 Registrarse como{" "}
                 <span
@@ -129,7 +136,12 @@ const SignUp = () => {
                 >
                   {selectedPlan}
                 </span>
-                <Link to="/plans"><span className="text-base transitiion duration-150 font-medium hover:text-slate-300 ml-1">{" "}(cambiar)</span></Link>
+                <Link to="/plans">
+                  <span className="text-base transitiion duration-150 font-medium hover:text-slate-300 ml-1">
+                    {" "}
+                    (cambiar)
+                  </span>
+                </Link>
               </h4>
               <Input
                 placeholder="Nombre completo"

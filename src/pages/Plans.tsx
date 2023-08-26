@@ -1,11 +1,12 @@
 import { PlanCard } from "../components/PlanCard";
 import data from "../data/plans.json";
+import signupImg from "../assets/img/signup-img.jpg";
 
 const plansData = data;
 
 const Plans = () => {
   return (
-    <div className="h-full bg-signup-img bg-cover animate-blurTransition">
+    <div className="h-full bg-cover animate-blurTransition" style={{ backgroundImage: `url(${signupImg})` }}>
       <div className="m-auto min-h-screen py-28  px-8 max-w-7xl flex justify-center items-center">
         <div className="flex flex-col space-y-10">
           <h3 className=" text-4xl text-center font-bold animate-sladeInFromBottomShort">

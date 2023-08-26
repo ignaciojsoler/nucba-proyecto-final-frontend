@@ -21,6 +21,7 @@ const WorkerCard = ({ worker }: WorkerCardProps) => {
           src={profileImage ?? defaultUserIcon}
           className={`object-cover drop-shadow-xl h-40 z-10 transition duration-150 ease-in ${!profileImage && "p-5"}`}
           alt="User image"
+          loading="lazy"
         />
         <div className="absolute opacity-60 w-full h-ful"></div>
       </div>

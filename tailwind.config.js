@@ -81,11 +81,6 @@ export default {
         sladeInFromBottomLong: "sladeInFromBottomLong .9s ease-out",
         blurTransition: "blurTransition .3s ease"
       },
-      backgroundImage: {
-        'hero-texture': "url('./src/assets/img/bg-texture.jpg')",
-        'signup-img': "url('./src/assets/img/signup-img.jpg')",
-        'login-img': "url('./src/assets/img/login-img.jpg')",
-      }
     },
   },
   plugins: [

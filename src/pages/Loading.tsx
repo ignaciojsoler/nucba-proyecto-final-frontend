@@ -15,10 +15,10 @@ const Loading = () => {
   }, []);
   return (
     <div className="max-w-7xl m-auto min-w-screen min-h-screen bg-gradient-to-b from-slate-900 to-slate-950 flex">
-      <div className="h-full m-auto space-y-6 animate-fadeIn animate-pulse">
+      <div className="h-full m-auto space-y-6 animate-pulse">
         <div role="status">
           <div className="space-y-4">
-            <img src={logoIcon} className="m-auto"/>
+            <img src={logoIcon} alt="Logo icon" className="m-auto" loading="lazy"/>
           </div>
         </div>
         <h4 className=" text-4xl font-semibold text-start">

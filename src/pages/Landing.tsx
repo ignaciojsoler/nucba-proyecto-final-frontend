@@ -30,13 +30,15 @@ const Landing = () => {
       <div className="absolute m-auto top-0 max-h-screen overflow-hidden">
         <img
           src={bgLandingMobile}
-          alt="workers image"
+          alt="Workers image"
           className=" md:hidden min-h-screen object-cover"
+          loading="lazy"
         />
         <img
           src={bgLandingDesktop}
-          alt="workers "
+          alt="Workers image"
           className="hidden md:block min-h-screen object-cover animate-blurTransition"
+          loading="lazy"
         />
       </div>
     </main>
