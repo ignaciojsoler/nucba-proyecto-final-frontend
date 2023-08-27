@@ -20,8 +20,6 @@ const Services = () => {
     handleGetServices();
   }, []);
 
-  if (!services) return null;
-
   return (
     <article className="w-full space-y-4 py-4 animate-sladeInFromBottomLarge">
       <div className="flex justify-between items-end">
