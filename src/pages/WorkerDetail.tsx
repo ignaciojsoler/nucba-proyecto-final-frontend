@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Loader } from "../components/Loader";
 import { getWorkerById } from "../services/services";
 import { User } from "../interfaces/interfaces";
 import ProfileCard from "../components/ProfileCard";
 import ServiceCard from "../components/ServiceCard";
+import ServiceCardSkeleton from "../components/Skeletons/ServiceCardSkeleton";
+import ProfileCardSkeleton from "../components/Skeletons/ProfileCardSkeleton";
 
 const WorkerDetail = () => {
   const { pathname } = useLocation();
@@ -15,37 +16,45 @@ const WorkerDetail = () => {
 
   const handleGetWorkerById = async () => {
     const workerData = await getWorkerById(workerId);
-    setIsLoading(false);
     if (!workerData)
       return alert("Algo ha salido mal, intentalo de nuevo más tarde");
     if (workerData.status !== 200) {
       return alert(workerData.data.msg);
     }
     setWorker(workerData.data.userData);
+    setIsLoading(false);
   };
 
   useEffect(() => {
     handleGetWorkerById();
   }, []);
 
-  if (!worker) return null;
-
   return (
     <>
-      {isLoading && <Loader />}
       <section className="min-h-screen max-w-7xl m-auto px-6 pb-12">
         <div className="pt-28 h-full w-full flex flex-col items-start lg:flex-row gap-8">
-          <ProfileCard worker={worker} className="animate-sladeInFromBottomShort"/>
+          {isLoading || !worker ? (
+             <ProfileCardSkeleton />
+          ) : (
+            <ProfileCard
+              worker={worker}
+              className="animate-sladeInFromBottomShort"
+            />
+          )}
           <article className="w-full space-y-4">
             <h4 className=" text-2xl font-semibold self-start animate-sladeInFromBottomMedium">
               Servicios
             </h4>
             <div className="grid grid-cols-1 gap-6 w-full md:p-0 md:grid-cols-2 animate-sladeInFromBottomMedium">
-              {worker.services?.map((s) => {
-                return (
-                  <ServiceCard service={{ ...s, worker }} key={worker.id} />
-                );
-              })}
+              {isLoading
+                ? Array.from({ length: 8 }, (_, index) => (
+                    <ServiceCardSkeleton key={index} />
+                  ))
+                : worker?.services?.map((s) => {
+                    return (
+                      <ServiceCard service={{ ...s, worker }} key={worker.id} />
+                    );
+                  })}
             </div>
           </article>
         </div>
