@@ -12,7 +12,7 @@ export const Categories = () => {
               key={c.id}
               data={{
                 id: c.id,
-                name: c.nombre,
+                name: c.name,
                 description: c.description,
                 image: c.image,
               }}

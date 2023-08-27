@@ -8,14 +8,14 @@ interface SearchResultProps {
 
 const SearchResult = ({ occupation, category }: SearchResultProps) => {
   return (
-    <>
+    <article className="flex flex-col">
       <h4 className=" text-3xl self-start">
         Resultados de{" "}
         <span className="font-semibold">{category}</span>
       </h4>
       <WorkersResults occupation={occupation} />
       <ServicesResults category={category} />
-    </>
+    </article>
   );
 };
 

@@ -15,7 +15,7 @@ const ServicesResults = ({ category }: ServicesResultsProps) => {
     const servicesData = await getServices({ category });
     if (!servicesData) return;
     setServices(servicesData.data);
-    // setIsLoading(false);
+    setIsLoading(false);
   };
 
   useEffect(() => {

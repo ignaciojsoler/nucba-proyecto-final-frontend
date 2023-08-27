@@ -1,3 +1,4 @@
+import CategoriesFilters from "../components/CategoriesFilters";
 import SearchResult from "../components/SearchResult";
 import {useLocation} from "react-router-dom"
 
@@ -9,7 +10,8 @@ const CategoriesPage = () => {
 
   return (
     <main className="min-h-screen max-w-7xl m-auto px-6">
-      <section className="flex flex-col items-center pt-28 space-y-6">
+      <section className="flex items-start pt-28 gap-8">
+        <CategoriesFilters  category={category}/>
         <SearchResult 
         occupation={occupation}
         category={category}
