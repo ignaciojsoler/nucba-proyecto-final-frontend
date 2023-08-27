@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { Navbar } from "./components/Header";
 import React, { Suspense } from "react";
 import Loading from "./pages/Loading";
-import ServiceDetail from "./pages/ServiceDetail";
+import Service from "./pages/ServicePage";
 import WorkerDetail from "./pages/WorkerDetail";
 
 const Landing = React.lazy(() => import("./pages/Landing"));
@@ -26,7 +26,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/confirmation" element={<Confirmation />} />
           <Route path="/worker/:id" element={<WorkerDetail/>}/>
-          <Route path="/service/:id" element={<ServiceDetail/>}/>
+          <Route path="/service/:id" element={<Service/>}/>
         </Routes>
       </Suspense>
     </div>

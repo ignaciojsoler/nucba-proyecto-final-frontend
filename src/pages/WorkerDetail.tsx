@@ -16,13 +16,13 @@ const WorkerDetail = () => {
 
   const handleGetWorkerById = async () => {
     const workerData = await getWorkerById(workerId);
+    setIsLoading(false);
     if (!workerData)
       return alert("Algo ha salido mal, intentalo de nuevo más tarde");
     if (workerData.status !== 200) {
       return alert(workerData.data.msg);
     }
     setWorker(workerData.data.userData);
-    setIsLoading(false);
   };
 
   useEffect(() => {
