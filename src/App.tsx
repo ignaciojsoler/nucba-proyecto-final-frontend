@@ -4,6 +4,7 @@ import React, { Suspense } from "react";
 import Loading from "./pages/Loading";
 import Service from "./pages/ServicePage";
 import WorkerDetail from "./pages/WorkerDetail";
+import CategoriesPage from "./pages/CategoriesPage";
 
 const Landing = React.lazy(() => import("./pages/Landing"));
 const Login = React.lazy(() => import("./pages/Login"));
@@ -27,6 +28,7 @@ function App() {
           <Route path="/confirmation" element={<Confirmation />} />
           <Route path="/worker/:id" element={<WorkerDetail/>}/>
           <Route path="/service/:id" element={<Service/>}/>
+          <Route path="/categories" element={<CategoriesPage/>}/>
         </Routes>
       </Suspense>
     </div>
