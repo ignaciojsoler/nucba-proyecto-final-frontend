@@ -9,6 +9,7 @@ import { RootState } from "../store/store";
 import { useDispatch } from "react-redux";
 import { AxiosResponse } from "axios";
 import { addFavoriteService, removeFavoriteService } from "../store/favoritesSlice";
+import Spinner from "./Spinner";
 
 interface ServiceCardProps {
   service: Service;
@@ -53,7 +54,6 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
         const removedFromFavorites: AxiosResponse = await removeServiceFromFavorites(favoriteService.id, token);
         setIsLoading(false);
         if (!removedFromFavorites || removedFromFavorites.status !== 200) return null;
-        console.log("wep")
         dispatch(removeFavoriteService(removedFromFavorites.data.result.id));
         setIsSavedAsFavorite(false);
       } catch (error) {
@@ -95,7 +95,9 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
       </div>
       <div className="flex flex-col items-center justify-between">
         {isLoading ? (
-          "cargando..."
+          <div className="relative m-7 h-5 w-5">
+            <Spinner/>
+          </div>
         ) : (
           <div
             className="relative m-7"
