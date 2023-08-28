@@ -2,7 +2,7 @@ import ContentLoader from "react-content-loader";
 
 const ServiceDetailSkeleton = () => {
   return (
-    <div className="animate-sladeInFromBottomShort w-full">
+    <div className="w-full">
       <ContentLoader
         speed={2}
         height={300}

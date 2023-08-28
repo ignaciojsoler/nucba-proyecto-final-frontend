@@ -73,10 +73,10 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
   }
 
   return (
-    <Link to={`../service/${service.id}`} className="group rounded-lg overflow-hidden bg-slate-900 grid grid-cols-6 cursor-pointer transition duration-150 hover:bg-slate-800 animate-sladeInFromBottomShort" style={{minHeight: "11.25rem"}}>
-      <div className="space-y-1 p-6 col-span-5">
+    <Link to={`../service/${service.id}`} className="group rounded-lg overflow-hidden bg-slate-900 flex justify-between cursor-pointer transition duration-150 hover:bg-slate-800 animate-sladeInFromBottomShort" style={{minHeight: "11.25rem"}}>
+      <div className="space-y-1 p-6">
         <h4 className="font-bold text-xl text line-clamp-1">{title}</h4>
-        <span className="text-xs line-clamp-1 font-semibold">
+        <span className="line-clamp-1">
           {worker.name ?? ""}
         </span>
         <h5 className={`font-bold text-xl text-emerald-600 line-clamp-1`}>
@@ -84,7 +84,7 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
         </h5>
         <p className=" text-slate-400 line-clamp-2">{description}</p>
       </div>
-      <div className="col-span-1 flex flex-col items-center justify-between">
+      <div className="flex flex-col items-center justify-between">
         <div className="relative m-7 " onClick={() => handleSetAsFavorite()}>
           {isSavedAsFavorite ? (
             <AiFillHeart size={20} color={"rgb(5, 150, 105)"}/>
@@ -93,7 +93,7 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
           )}
         </div>
         <div
-          className="w-full h-16 self-end rounded-tl-xl flex justify-center items-center"
+          className="w-16 h-16 self-end rounded-tl-xl flex justify-center items-center"
           style={{ backgroundColor: serviceCategoryAttributes?.color }}
         >
           <img

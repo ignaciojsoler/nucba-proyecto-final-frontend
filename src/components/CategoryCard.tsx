@@ -6,6 +6,7 @@ import limpiezaImg from "/src/assets/img/limpieza.webp";
 import jardineriaImg from "/src/assets/img/jardineria.webp";
 import mudanzasImg from "/src/assets/img/mudanzas.webp";
 import carpinteriaImg from "/src/assets/img/carpinteria.webp";
+import {Link} from "react-router-dom";
 
 interface CategoryCardProps {
   data: {
@@ -13,6 +14,7 @@ interface CategoryCardProps {
     name: string;
     description: string;
     image?: string;
+    occupation: string;
   };
 }
 
@@ -59,6 +61,7 @@ const CategoryCard = (props: CategoryCardProps) => {
     c => c.id === data.id
   )
   return (
+    <Link to={`../categories/?occupation=${data.occupation}&category=${data.name}`}>
     <div className="group rounded-lg bg-slate-800 backdrop-blur-lg overflow-hidden h-24 p-3 flex w-full cursor-pointer md:h-26 lg:h-32">
       <div className="absolute -z-10 w-full h-full top-0 left-0 transition group-hover:scale-105">
         <div className="h-full w-full bg-slate-900 absolute top-0 left-0 opacity-70 transition-opacity duration-150 group-hover:opacity-40"></div>
@@ -70,7 +73,7 @@ const CategoryCard = (props: CategoryCardProps) => {
         />
       </div>
       <h5 className="font-bold text-xl">{data.name}</h5>
-    </div>
+    </div></Link>
   );
 };
 

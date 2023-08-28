@@ -44,14 +44,15 @@ export const signUp = async (
   }
 };
 
-export const verifyAccount = async (email: string, verificationCode: string): Promise<AxiosResponse> => {
+export const verifyAccount = async (
+  email: string,
+  verificationCode: string
+): Promise<AxiosResponse> => {
   try {
-    const response: AxiosResponse = await axios.post(
-      API_URL + `/auth/verify`, {
-        email,
-        verificationCode
-      }
-    );
+    const response: AxiosResponse = await axios.post(API_URL + `/auth/verify`, {
+      email,
+      verificationCode,
+    });
     return response;
   } catch (err: any) {
     console.log(err.response);
@@ -59,19 +60,29 @@ export const verifyAccount = async (email: string, verificationCode: string): Pr
   }
 };
 
-export const getWorkers = async (): Promise<AxiosResponse> => {
+export const getWorkers = async (queryParams?: {
+  occupation?: string | null;
+}): Promise<AxiosResponse> => {
   try {
-    const response: AxiosResponse = await axios.get(
-      API_URL + '/worker'
-    );
+    let url = API_URL + "/worker";
+
+    if (queryParams && queryParams.occupation !== null) {
+      url += `?occupation=${queryParams.occupation}`;
+    }
+
+    console.log("url",url)
+
+    const response: AxiosResponse = await axios.get(url);
     return response;
   } catch (err: any) {
     console.log(err.response);
     return err.response;
   }
-}
+};
 
-export const getWorkerById = async (workerId: string): Promise<AxiosResponse> => {
+export const getWorkerById = async (
+  workerId: string
+): Promise<AxiosResponse> => {
   try {
     const response: AxiosResponse = await axios.get(
       API_URL + `/worker/${workerId}`
@@ -81,21 +92,31 @@ export const getWorkerById = async (workerId: string): Promise<AxiosResponse> =>
     console.log(err.response);
     return err.response;
   }
-}
+};
 
-export const getServices = async (): Promise<AxiosResponse> => {
+export const getServices = async (queryParams?: {
+  category?: string | null;
+}): Promise<AxiosResponse> => {
   try {
-    const response: AxiosResponse = await axios.get(
-      API_URL + `/services`
-    );
+    let url = API_URL + "/services";
+
+    if (queryParams && queryParams.category !== null) {
+      url += `?category=${queryParams.category}`;
+    }
+
+
+    const response: AxiosResponse = await axios.get(url);
+
     return response;
   } catch (err: any) {
     console.log(err.response);
     return err.response;
   }
-}
+};
 
-export const getServiceById = async (serviceId: string): Promise<AxiosResponse> => {
+export const getServiceById = async (
+  serviceId: string
+): Promise<AxiosResponse> => {
   try {
     const response: AxiosResponse = await axios.get(
       API_URL + `/services/${serviceId}`
@@ -105,4 +126,4 @@ export const getServiceById = async (serviceId: string): Promise<AxiosResponse> 
     console.log(err.response);
     return err.response;
   }
-}
+};

@@ -23,7 +23,6 @@ const Confirmation = () => {
     setIsLoading(true);
     const verifiedUser: AxiosResponse = await verifyAccount(userEmail, userCode);
     setIsLoading(false);
-    console.log(userCode)
     if (!verifiedUser || verifiedUser.status !== 200) {
       return alert(
         "Código de verificación inválido o expirado. Revisa tu correo nuevamente o intenta registrarte de nuevo."
