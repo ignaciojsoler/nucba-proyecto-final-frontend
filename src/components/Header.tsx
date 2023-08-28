@@ -28,7 +28,7 @@ export const Navbar = () => {
   return (
     <nav className="absolute w-full z-20">
       <div className="px-6 py-6 flex justify-between items-start m-auto md:justify-between lg:max-w-7xl">
-        <Link to="/">
+        <Link to="/home">
           <span className="relative z-30 hidden md:flex md:items-center md:space-x-3">
             <img src={logo} alt="Logotype" className="w-8 h-8" loading="lazy" />
             <h6 className=" text-xl font-semibold">ServiHogar</h6>

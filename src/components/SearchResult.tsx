@@ -9,9 +9,9 @@ interface SearchResultProps {
 const SearchResult = ({ occupation, category }: SearchResultProps) => {
   return (
     <article className="flex flex-col gap-y-6 pb-6 w-full">
-      <h4 className="text-2xl md:text-3xl self-start">
+      <h4 className="text-2xl md:text-3xl self-start font-semibold">
         Resultados de{" "}
-        <span className="font-semibold text-emerald-600">{category ? category : "todas las categorías"}</span>
+        <span className="font-bold text-emerald-600">{category ? category : "todas las categorías"}</span>
       </h4>
       <WorkersResults occupation={occupation} />
       <ServicesResults category={category} />
