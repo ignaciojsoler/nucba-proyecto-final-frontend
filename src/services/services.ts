@@ -60,9 +60,19 @@ export const verifyAccount = async (
   }
 };
 
-export const getWorkers = async (): Promise<AxiosResponse> => {
+export const getWorkers = async (queryParams?: {
+  occupation?: string | null;
+}): Promise<AxiosResponse> => {
   try {
-    const response: AxiosResponse = await axios.get(API_URL + "/worker");
+    let url = API_URL + "/worker";
+
+    if (queryParams && queryParams.occupation !== null) {
+      url += `?occupation=${queryParams.occupation}`;
+    }
+
+    console.log("url",url)
+
+    const response: AxiosResponse = await axios.get(url);
     return response;
   } catch (err: any) {
     console.log(err.response);
