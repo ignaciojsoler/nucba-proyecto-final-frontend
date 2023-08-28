@@ -14,10 +14,10 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     updateUser: (state, action: PayloadAction<User>) => {
-      state = {
-        ...state,
-        ...action.payload,
-      };
+      state.id = action.payload.id;
+      state.name = action.payload.name;
+      state.email = action.payload.email;
+      state.role = action.payload.role;
       saveOnStorage("user", state);
     },
   },

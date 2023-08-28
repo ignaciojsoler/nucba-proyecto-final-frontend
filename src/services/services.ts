@@ -70,7 +70,7 @@ export const getWorkers = async (queryParams?: {
       url += `?occupation=${queryParams.occupation}`;
     }
 
-    console.log("url",url)
+    console.log("url", url);
 
     const response: AxiosResponse = await axios.get(url);
     return response;
@@ -104,7 +104,6 @@ export const getServices = async (queryParams?: {
       url += `?category=${queryParams.category}`;
     }
 
-
     const response: AxiosResponse = await axios.get(url);
 
     return response;
@@ -121,6 +120,27 @@ export const getServiceById = async (
     const response: AxiosResponse = await axios.get(
       API_URL + `/services/${serviceId}`
     );
+    return response;
+  } catch (err: any) {
+    console.log(err.response);
+    return err.response;
+  }
+};
+
+export const saveServiceAsFavorite = async (
+  token: string,
+  userId: string,
+  serviceId: string
+): Promise<AxiosResponse> => {
+  try {
+    const response: AxiosResponse = await axios.post(API_URL + `/favorites`, {
+      userId,
+      serviceId,
+    }, {
+      headers: {
+        Authorization: token
+      }
+    });
     return response;
   } catch (err: any) {
     console.log(err.response);

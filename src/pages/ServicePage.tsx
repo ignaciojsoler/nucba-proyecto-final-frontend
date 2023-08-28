@@ -18,9 +18,9 @@ const ServicePage = () => {
     const serviceData = await getServiceById(serviceId);
     setIsLoading(false);
     if (!serviceData)
-      return alert("Algo ha salido mal, intentalo de nuevo más tarde");
+      return console.log("Algo ha salido mal, intentalo de nuevo más tarde");
     if (serviceData.status !== 200) {
-      return alert(serviceData.data.msg);
+      return console.log(serviceData.data.msg);
     }
     setService(serviceData.data);
   };
@@ -35,8 +35,9 @@ const ServicePage = () => {
         <div className="pt-28 h-full w-full flex flex-col items-start lg:flex-row gap-8">
           {isLoading || !service ? (
             <>
-            <ServiceDetailSkeleton/>
-            <ProfileCardSkeleton/></>
+              <ServiceDetailSkeleton />
+              <ProfileCardSkeleton />
+            </>
           ) : (
             <>
               <ServiceDetail service={service} />

@@ -1,14 +1,11 @@
 import { User } from "../interfaces/interfaces";
 import defaultUserIcon from "../assets/icons/default-user.svg";
 import {
-  AiFillHeart,
-  AiOutlineHeart,
   AiOutlineMail,
   AiOutlinePhone,
   AiOutlineCalendar,
 } from "react-icons/ai";
 import { HiOutlineLocationMarker } from "react-icons/hi";
-import { useState } from "react";
 import { Button } from "./Button";
 import { callUserPhone } from "../helpers/callUserPhone";
 import { useNavigate } from "react-router-dom";
@@ -30,12 +27,6 @@ const ProfileCard = ({
 
   const navigate = useNavigate();
 
-  const [isSavedAsFavorite, setIsSavedAsFavorite] = useState<boolean>(false);
-
-  const handleSetAsFavorite = () => {
-    setIsSavedAsFavorite(!isSavedAsFavorite);
-  };
-
   return (
     <div
       className={`bg-slate-900 w-full lg:w-[36rem] rounded-lg px-6 ${className}`}
@@ -51,16 +42,6 @@ const ProfileCard = ({
           alt="User image"
           loading="lazy"
         />
-        <div
-          className="absolute top-8 right-2 cursor-pointer"
-          onClick={() => handleSetAsFavorite()}
-        >
-          {isSavedAsFavorite ? (
-            <AiFillHeart size={20} color={"rgb(5, 150, 105)"} />
-          ) : (
-            <AiOutlineHeart size={20} color={"rgb(5, 150, 105)"} />
-          )}
-        </div>
       </div>
       <div className="py-6 divide-y space-y-3 divide-slate-400/20">
         <div className="space-y-1 pb-3">

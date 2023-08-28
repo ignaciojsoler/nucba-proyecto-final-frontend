@@ -18,9 +18,9 @@ const WorkerDetail = () => {
     const workerData = await getWorkerById(workerId);
     setIsLoading(false);
     if (!workerData)
-      return alert("Algo ha salido mal, intentalo de nuevo más tarde");
+      return console.log("Algo ha salido mal, intentalo de nuevo más tarde");
     if (workerData.status !== 200) {
-      return alert(workerData.data.msg);
+      return console.log(workerData.data.msg);
     }
     setWorker(workerData.data.userData);
   };
@@ -34,7 +34,7 @@ const WorkerDetail = () => {
       <section className="min-h-screen max-w-7xl m-auto px-6 pb-12">
         <div className="pt-28 h-full w-full flex flex-col items-start lg:flex-row gap-8">
           {isLoading || !worker ? (
-             <ProfileCardSkeleton />
+            <ProfileCardSkeleton />
           ) : (
             <ProfileCard
               worker={worker}
@@ -46,7 +46,7 @@ const WorkerDetail = () => {
               Servicios
             </h4>
             <div className="grid grid-cols-1 gap-6 w-full md:p-0 md:grid-cols-2 animate-sladeInFromBottomMedium">
-              {isLoading
+              {isLoading || !worker
                 ? Array.from({ length: 8 }, (_, index) => (
                     <ServiceCardSkeleton key={index} />
                   ))

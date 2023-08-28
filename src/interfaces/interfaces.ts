@@ -22,3 +22,13 @@ export interface Service {
   userId: string;
   worker: User;
 }
+
+export interface FavoriteService {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  userId: string;
+  serviceId: string;
+  user: User;
+  service: Service;
+}
