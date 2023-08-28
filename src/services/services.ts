@@ -152,6 +152,26 @@ export const saveServiceAsFavorite = async (
   }
 };
 
+export const removeServiceFromFavorites = async (
+  favoriteId: string,
+  token: string
+): Promise<AxiosResponse> => {
+  try {
+    const response: AxiosResponse = await axios.delete(
+      API_URL + `/favorites/${favoriteId}`,
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+    return response;
+  } catch (err: any) {
+    console.log(err.response);
+    return err.response;
+  }
+};
+
 export const getUserFavoritesServices = async (
   token: string,
   userId: string

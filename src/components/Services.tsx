@@ -23,13 +23,14 @@ const Services = () => {
     if (!token || !userId) return null;
     const favoritesServices: AxiosResponse = await getUserFavoritesServices(token, userId);
     if (!favoritesServices || favoritesServices.status !== 200) return null;
-    saveOnStorage("favorites", favoritesServices.data);
+    saveOnStorage("favoritesServices", favoritesServices.data);
     dispatch(setFavoritesServices(favoritesServices.data));
   }
 
   const handleGetServices = async () => {
-    const servicesData = await getServices();
-    if (!servicesData) return;
+    const servicesData: AxiosResponse = await getServices();
+    if (!servicesData || servicesData.status !== 200) return;
+    console.log(servicesData)
     setServices(servicesData.data);
     setIsLoading(false);
   };

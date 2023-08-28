@@ -3,9 +3,12 @@ import { Service } from "../interfaces/interfaces";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { categoriesAttributes } from "../helpers/categoriesAttributes";
 import { useNavigate } from "react-router-dom";
-import { saveServiceAsFavorite } from "../services/services";
+import { removeServiceFromFavorites, saveServiceAsFavorite } from "../services/services";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { RootState } from "../store/store";
+import { useDispatch } from "react-redux";
+import { AxiosResponse } from "axios";
+import { addFavoriteService, removeFavoriteService } from "../store/favoritesSlice";
 
 interface ServiceCardProps {
   service: Service;
@@ -18,6 +21,8 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
   const userId = useSelector((state: RootState) => state.user.id);
   const favorites = useSelector((state: RootState) => state.favorites);
 
+  const dispatch = useDispatch();
+
   const [isSavedAsFavorite, setIsSavedAsFavorite] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [redirect, setRedirect] = useState<boolean>(false);
@@ -27,17 +32,35 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
   );
 
   const handleSetAsFavorite = async () => {
-    try {
-      if (!token || !userId || !id) return null;
-      setIsLoading(true);
-      const savedAsFavorite = await saveServiceAsFavorite(token, userId, id);
-      setIsLoading(false);
-      if (!savedAsFavorite) return null;
-      console.log(savedAsFavorite)
-      setIsSavedAsFavorite(!isSavedAsFavorite);
-    } catch (error) {
-      console.log(error);
+    if (!isSavedAsFavorite) {
+      try {
+        if (!token || !userId || !id) return null;
+        setIsLoading(true);
+        const savedAsFavorite: AxiosResponse = await saveServiceAsFavorite(token, userId, id);
+        setIsLoading(false);
+        if (!savedAsFavorite || savedAsFavorite.status !== 200) return null;
+        dispatch(addFavoriteService(savedAsFavorite.data.result));
+        setIsSavedAsFavorite(true);
+      } catch (error) {
+        console.log(error);
+      }
+    } else if (isSavedAsFavorite) {
+      try {
+        if (!token || !userId || !id) return null;
+        const favoriteService = favorites.favoritesServices.find(service => service.userId === userId && service.serviceId === id);
+        if (!favoriteService || favoriteService === undefined) return null;
+        setIsLoading(true);
+        const removedFromFavorites: AxiosResponse = await removeServiceFromFavorites(favoriteService.id, token);
+        setIsLoading(false);
+        if (!removedFromFavorites || removedFromFavorites.status !== 200) return null;
+        console.log("wep")
+        dispatch(removeFavoriteService(removedFromFavorites.data.result.id));
+        setIsSavedAsFavorite(false);
+      } catch (error) {
+        console.log(error);
+      }
     }
+    
   };
 
   const isServiceSavedAsFavorite = () => {
