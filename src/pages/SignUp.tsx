@@ -69,7 +69,6 @@ const SignUp = () => {
       userPassword,
       role
     );
-    console.log(await loginResponse);
     setIsLoading(false);
 
     if (!loginResponse)

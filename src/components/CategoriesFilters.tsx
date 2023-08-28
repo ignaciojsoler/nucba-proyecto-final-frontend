@@ -9,7 +9,6 @@ interface CategoriesFiltersProps {
 
 const CategoriesFilters = ({ category }: CategoriesFiltersProps) => {
   const [displayCategories, setDisplayCategories] = useState<boolean>(false);
-  console.log(category)
   return (
     <article className="bg-slate-900 rounded-lg p-6 space-y-1 w-full lg:w-auto">
       <div className="flex justify-between items-center">
