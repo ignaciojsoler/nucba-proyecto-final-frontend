@@ -8,7 +8,7 @@ interface SearchResultProps {
 
 const SearchResult = ({ occupation, category }: SearchResultProps) => {
   return (
-    <article className="flex flex-col gap-y-4">
+    <article className="flex flex-col gap-y-4 w-full">
       <h4 className="text-2xl md:text-3xl self-start">
         Resultados de{" "}
         <span className="font-semibold">{category}</span>
