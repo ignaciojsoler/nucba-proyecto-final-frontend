@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Service } from "../interfaces/interfaces";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
@@ -10,7 +10,7 @@ import limpiezaImg from "../assets/img/services/limpieza.png";
 import jardineriaImg from "../assets/img/services/jardineria.png";
 import mudanzasImg from "../assets/img/services/mudanzas.png";
 import carpinteriaImg from "../assets/img/services/carpinteria.png";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface ServiceCardProps {
   service: Service;
@@ -62,7 +62,10 @@ const categoriesAttributes = [
 const ServiceCard = ({ service }: ServiceCardProps) => {
   const { title, description, hourlyRate, worker } = service;
 
+  const navigate = useNavigate();
+
   const [isSavedAsFavorite, setIsSavedAsFavorite] = useState<boolean>(false);
+  const [redirect, setRedirect] = useState<boolean>(false);
 
   const serviceCategoryAttributes = categoriesAttributes.find(
     (c) => c.name === service.category
@@ -72,8 +75,14 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
     setIsSavedAsFavorite(!isSavedAsFavorite);
   }
 
+  useEffect(() => {
+    if (redirect) {
+      navigate(`../service/${service.id}`);
+    }
+  }, [redirect])
+
   return (
-    <Link to={`../service/${service.id}`} className="group rounded-lg overflow-hidden bg-slate-900 flex justify-between cursor-pointer transition duration-150 hover:bg-slate-800 animate-sladeInFromBottomShort" style={{minHeight: "11.25rem"}}>
+    <div className="group rounded-lg overflow-hidden bg-slate-900 flex justify-between cursor-pointer transition duration-150 hover:bg-slate-800 animate-sladeInFromBottomShort" style={{minHeight: "11.25rem"}} onClick={() => setRedirect(true)}>
       <div className="space-y-1 p-6">
         <h4 className="font-bold text-xl text line-clamp-1">{title}</h4>
         <span className="line-clamp-1">
@@ -85,7 +94,10 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
         <p className=" text-slate-400 line-clamp-2">{description}</p>
       </div>
       <div className="flex flex-col items-center justify-between">
-        <div className="relative m-7 " onClick={() => handleSetAsFavorite()}>
+        <div className="relative m-7" onClick={(e) => {
+          e.stopPropagation();
+          handleSetAsFavorite();
+        }}>
           {isSavedAsFavorite ? (
             <AiFillHeart size={20} color={"rgb(5, 150, 105)"}/>
           ) : (
@@ -104,7 +116,7 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
           />
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
