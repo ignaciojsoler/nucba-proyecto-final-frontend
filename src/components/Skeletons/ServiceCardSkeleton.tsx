@@ -2,7 +2,7 @@ import ContentLoader from "react-content-loader";
 
 const ServiceCardSkeleton = () => {
   return (
-    <div className=" bg-slate-900 rounded-lg animate-sladeInFromBottomShort">
+    <div className=" bg-slate-900 rounded-lg">
       <ContentLoader
         speed={2}
         width="full"
