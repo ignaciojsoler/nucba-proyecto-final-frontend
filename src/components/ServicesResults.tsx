@@ -27,7 +27,9 @@ const ServicesResults = ({ category }: ServicesResultsProps) => {
     <article className="w-full">
       <div className="flex flex-col gap-y-4">
         <h4 className=" text-2xl self-start">Servicios</h4>
-        {isLoading || !services ? <WorkerCardSkeleton/> : services.map(s => <ServiceCard service={s}/>)}
+        {isLoading || !services ? <WorkerCardSkeleton/> : <>
+        {services.length ? services.map(s => <ServiceCard service={s}/>) : <p>No se han encontrado servicios para esta categoría</p>}
+        </>}
       </div>
     </article>
   );
