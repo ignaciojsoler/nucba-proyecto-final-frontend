@@ -1,54 +1,60 @@
 {
-    "categorias": [
-      {
-        "id": 1,
-        "name": "Plomería",
-        "description": "Reparación y mantenimiento de tuberías, grifos, inodoros, lavabos, duchas, etc.",
-        "image": "./src/assets/img/plomeria.jpg"
-      },
-      {
-        "id": 2,
-        "name": "Electricidad",
-        "description": "Instalación, reparación y mantenimiento de sistemas eléctricos, interruptores, enchufes, iluminación, etc.",
-        "image": "/src/assets/img/electricidad.jpg"
-      },
-      {
-        "id": 3,
-        "name": "Gas",
-        "description": "Servicios relacionados con sistemas de gas, como instalaciones, inspecciones y reparaciones.",
-        "image": "/src/assets/img/gas.jpg"
-      },
-      {
-        "id": 4,
-        "name": "Cerrajería",
-        "description": "Apertura de puertas, cambio de cerraduras, duplicado de llaves, etc.",
-        "image": "/src/assets/img/cerrajeria.jpg"
-      },
-      {
-        "id": 5,
-        "name": "Limpieza",
-        "description": "Servicios de limpieza para el hogar, incluyendo limpieza general, limpieza a fondo, limpieza de alfombras, etc.",
-        "image": "/src/assets/img/limpieza.jpg"
-      },
-      {
-        "id": 6,
-        "name": "Jardinería",
-        "description": "Mantenimiento de jardines, poda de árboles, diseño paisajístico, entre otros.",
-        "image": "/src/assets/img/jardineria.jpg"
-      },
-      {
-        "id": 7,
-        "name": "Mudanzas",
-        "description": "Otros servicios de reparación y mantenimiento del hogar, como arreglos de paredes, pintura, carpintería básica, etc.",
-        "image": "/src/assets/img/mudanzas.jpg"
-      },
-      {
-        "id": 8,
-        "name": "Carpintería",
-        "description": "Trabajos relacionados con la madera y la carpintería, como reparación de muebles, instalación de estanterías, armarios empotrados, puertas y ventanas, entre otros.",
-        "image": "/src/assets/img/carpinteria.jpg"
-      }
-    ]
-  }
-  
-  
+  "categorias": [
+    {
+      "id": 1,
+      "name": "Plomería",
+      "description": "Reparación y mantenimiento de tuberías, grifos, inodoros, lavabos, duchas, etc.",
+      "image": "./src/assets/img/plomeria.jpg",
+      "occupation": "Plomero"
+    },
+    {
+      "id": 2,
+      "name": "Electricidad",
+      "description": "Instalación, reparación y mantenimiento de sistemas eléctricos, interruptores, enchufes, iluminación, etc.",
+      "image": "/src/assets/img/electricidad.jpg",
+      "occupation": "Electricista"
+    },
+    {
+      "id": 3,
+      "name": "Gas",
+      "description": "Servicios relacionados con sistemas de gas, como instalaciones, inspecciones y reparaciones.",
+      "image": "/src/assets/img/gas.jpg",
+      "occupation": "Gasista"
+    },
+    {
+      "id": 4,
+      "name": "Cerrajería",
+      "description": "Apertura de puertas, cambio de cerraduras, duplicado de llaves, etc.",
+      "image": "/src/assets/img/cerrajeria.jpg",
+      "occupation": "Cerrajero"
+    },
+    {
+      "id": 5,
+      "name": "Limpieza",
+      "description": "Servicios de limpieza para el hogar, incluyendo limpieza general, limpieza a fondo, limpieza de alfombras, etc.",
+      "image": "/src/assets/img/limpieza.jpg",
+      "occupation": "Limpiador"
+    },
+    {
+      "id": 6,
+      "name": "Jardinería",
+      "description": "Mantenimiento de jardines, poda de árboles, diseño paisajístico, entre otros.",
+      "image": "/src/assets/img/jardineria.jpg",
+      "occupation": "Jardinero"
+    },
+    {
+      "id": 7,
+      "name": "Mudanzas",
+      "description": "Otros servicios de reparación y mantenimiento del hogar, como arreglos de paredes, pintura, carpintería básica, etc.",
+      "image": "/src/assets/img/mudanzas.jpg",
+      "occupation": "Mudancero"
+    },
+    {
+      "id": 8,
+      "name": "Carpintería",
+      "description": "Trabajos relacionados con la madera y la carpintería, como reparación de muebles, instalación de estanterías, armarios empotrados, puertas y ventanas, entre otros.",
+      "image": "/src/assets/img/carpinteria.jpg",
+      "occupation": "Carpintero"
+    }
+  ]
+}

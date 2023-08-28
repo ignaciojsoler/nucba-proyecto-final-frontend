@@ -14,7 +14,7 @@ const CategoriesFilters = ({category}: CategoriesFiltersProps) => {
       <ul className="">
         {categories.categorias.map((c) => {
           return (
-            <Link to={`./?category=${c.name}`}>
+            <Link to={`./?occupation=${c.occupation}&category=${c.name}`}>
               <p className={`py-1 transition duration-150 hover:opacity-80 text-slate-400 ${c.name === category && "text-slate-100 font-semibold"}`}>{c.name}</p>
             </Link>
           );
