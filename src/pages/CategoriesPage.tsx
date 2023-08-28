@@ -10,7 +10,7 @@ const CategoriesPage = () => {
 
   return (
     <main className="min-h-screen max-w-7xl m-auto px-6">
-      <section className="flex items-start pt-28 gap-8">
+      <section className="flex flex-col lg:flex-row items-start pt-28 gap-8">
         <CategoriesFilters 
         category={category}/>
         <SearchResult 

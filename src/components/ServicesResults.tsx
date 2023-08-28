@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Service } from "../interfaces/interfaces";
 import { getServices } from "../services/services";
 import WorkerCardSkeleton from "./Skeletons/WorkerCardSkeleton";
+import ServiceCard from "./ServiceCard";
 
 interface ServicesResultsProps {
   category: string | null;
@@ -20,13 +21,13 @@ const ServicesResults = ({ category }: ServicesResultsProps) => {
 
   useEffect(() => {
     handleGetServices();
-  }, []);
+  }, [category]);
 
   return (
     <article className="w-full">
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-y-4">
         <h4 className=" text-2xl self-start">Servicios</h4>
-        {isLoading || !services ? <WorkerCardSkeleton/> : "resultados"}
+        {isLoading || !services ? <WorkerCardSkeleton/> : services.map(s => <ServiceCard service={s}/>)}
       </div>
     </article>
   );
