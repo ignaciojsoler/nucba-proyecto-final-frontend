@@ -16,6 +16,7 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
   const navigate = useNavigate();
   const token = useSelector((state: RootState) => state.token.token);
   const userId = useSelector((state: RootState) => state.user.id);
+  const favorites = useSelector((state: RootState) => state.favorites);
 
   const [isSavedAsFavorite, setIsSavedAsFavorite] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -27,26 +28,33 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
 
   const handleSetAsFavorite = async () => {
     try {
-      console.log("token", token)
-      console.log("userId", userId)
-      console.log("id", id)
       if (!token || !userId || !id) return null;
       setIsLoading(true);
       const savedAsFavorite = await saveServiceAsFavorite(token, userId, id);
       setIsLoading(false);
       if (!savedAsFavorite) return null;
-      console.log(saveServiceAsFavorite)
+      console.log(savedAsFavorite)
       setIsSavedAsFavorite(!isSavedAsFavorite);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const isServiceSavedAsFavorite = () => {
+    const savedAsFavoriteService = favorites.favoritesServices.find(s => s.serviceId === service.id);
+    if (!savedAsFavoriteService || savedAsFavoriteService === undefined) return;
+    setIsSavedAsFavorite(true);
+  }
+
   useEffect(() => {
     if (redirect) {
       navigate(`../service/${service.id}`);
     }
   }, [redirect]);
+
+  useEffect(() => {
+    isServiceSavedAsFavorite();
+  }, [favorites]);
 
   return (
     <div

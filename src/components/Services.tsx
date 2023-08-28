@@ -1,13 +1,31 @@
 import { Service } from "../interfaces/interfaces";
-import { getServices } from "../services/services";
+import { getServices, getUserFavoritesServices } from "../services/services";
 import ServiceCard from "./ServiceCard";
 import { useEffect, useState } from "react";
 import ServiceCardSkeleton from "./Skeletons/ServiceCardSkeleton";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../store/store";
+import { setFavoritesServices } from "../store/favoritesSlice";
+import { AxiosResponse } from "axios";
+import { saveOnStorage } from "../helpers/handleStorage";
 
 const Services = () => {
   const [services, setServices] = useState<Service[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const dispatch = useDispatch();
+
+  const token = useSelector((state: RootState) => state.token.token);
+  const userId = useSelector((state: RootState) => state.user.id);
+
+  const handleGetFavoritesServices = async () => {
+    if (!token || !userId) return null;
+    const favoritesServices: AxiosResponse = await getUserFavoritesServices(token, userId);
+    if (!favoritesServices || favoritesServices.status !== 200) return null;
+    saveOnStorage("favorites", favoritesServices.data);
+    dispatch(setFavoritesServices(favoritesServices.data));
+  }
 
   const handleGetServices = async () => {
     const servicesData = await getServices();
@@ -17,6 +35,7 @@ const Services = () => {
   };
 
   useEffect(() => {
+    handleGetFavoritesServices();
     handleGetServices();
   }, []);
 

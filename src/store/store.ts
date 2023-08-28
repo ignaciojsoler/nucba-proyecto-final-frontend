@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import userSlice from './userSlice'
 import authenticationTokenSlice from './authenticationTokenSlice'
+import favoritesSlice from './favoritesSlice'
 
 export const store = configureStore({
   reducer: {
     user: userSlice,
-    token: authenticationTokenSlice
+    token: authenticationTokenSlice,
+    favorites: favoritesSlice,
   },
 })
 

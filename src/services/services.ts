@@ -133,14 +133,38 @@ export const saveServiceAsFavorite = async (
   serviceId: string
 ): Promise<AxiosResponse> => {
   try {
-    const response: AxiosResponse = await axios.post(API_URL + `/favorites`, {
-      userId,
-      serviceId,
-    }, {
-      headers: {
-        Authorization: token
+    const response: AxiosResponse = await axios.post(
+      API_URL + `/favorites`,
+      {
+        userId,
+        serviceId,
+      },
+      {
+        headers: {
+          Authorization: token,
+        },
       }
-    });
+    );
+    return response;
+  } catch (err: any) {
+    console.log(err.response);
+    return err.response;
+  }
+};
+
+export const getUserFavoritesServices = async (
+  token: string,
+  userId: string
+) => {
+  try {
+    const response: AxiosResponse = await axios.get(
+      API_URL + `/favorites/${userId}`,
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
     return response;
   } catch (err: any) {
     console.log(err.response);

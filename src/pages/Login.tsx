@@ -13,6 +13,7 @@ import { updateToken } from "../store/authenticationTokenSlice";
 import { useDispatch } from "react-redux";
 import { tokenExists } from "../helpers/jwtUtils";
 import loginBackground from "../assets/img/login-img.jpg";
+import { saveOnStorage } from "../helpers/handleStorage";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -59,6 +60,10 @@ const Login = () => {
     if (loginResponse.status !== 200) {
       return alert(loginResponse.data.msg);
     }
+    
+    saveOnStorage('token', loginResponse.data.token);
+    saveOnStorage('user', loginResponse.data.user);
+
     dispatch(updateToken(loginResponse.data.token));
     dispatch(updateUser(loginResponse.data.user));
 

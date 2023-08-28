@@ -6,6 +6,7 @@ import Service from "./pages/ServicePage";
 import WorkerDetail from "./pages/WorkerDetail";
 import CategoriesPage from "./pages/CategoriesPage";
 import useScrollToTop from "./hooks/useScrollToTop";
+import { useGetStorageData } from "./hooks/useGetStorageData";
 
 const Landing = React.lazy(() => import("./pages/Landing"));
 const Login = React.lazy(() => import("./pages/Login"));
@@ -16,6 +17,7 @@ const Confirmation = React.lazy(() => import("./pages/Confirmation"));
 
 function App() {
   useScrollToTop();
+  useGetStorageData();
   return (
     <div className="min-h-screen min-w-screen bg-gradient-to-b from-slate-900 to-slate-950 text-slate-200">
       <Suspense fallback={<Loading />}>

@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../interfaces/interfaces";
-import { saveOnStorage } from "../helpers/handleStorage";
 
 const initialState: User = {
   id: "",
@@ -18,7 +17,6 @@ export const userSlice = createSlice({
       state.name = action.payload.name;
       state.email = action.payload.email;
       state.role = action.payload.role;
-      saveOnStorage("user", state);
     },
   },
 });
