@@ -8,9 +8,7 @@ export function isValidJWT(token: string) {
 export const tokenExists = () => {
     const userToken = getFromStorage('token');
     if (!userToken) return null;
-    console.log(userToken.token)
     const isValidToken = isValidJWT(userToken);
-    console.log(isValidToken)
     if (!isValidToken) return null;
     return isValidToken;
 }
