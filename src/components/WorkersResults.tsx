@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getWorkers } from "../services/services";
+import { getUsers } from "../services/services";
 import WorkerCardSkeleton from "./Skeletons/WorkerCardSkeleton";
 import WorkerCard from "./WorkerCard";
 import { User } from "../interfaces/interfaces";
@@ -13,9 +13,9 @@ const WorkersResults = ({ occupation }: WorkersResultsProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const handleGetWorkers = async () => {
-    const workersData = await getWorkers({ occupation });
+    const workersData = await getUsers("worker", { occupation });
     if (!workersData) return;
-    setWorkers(workersData.data.workers);
+    setWorkers(workersData.data.users);
     setIsLoading(false);
   };
 

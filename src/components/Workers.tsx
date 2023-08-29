@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getWorkers } from "../services/services";
+import { getUsers } from "../services/services";
 import { User } from "../interfaces/interfaces";
 import WorkerCard from "./WorkerCard";
 import { Link } from "react-router-dom";
@@ -10,9 +10,9 @@ export const Workers = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const handleGetWorkers = async () => {
-    const wokersData = await getWorkers();
+    const wokersData = await getUsers("worker");
     if (!wokersData) return;
-    setWorkers(wokersData.data.workers);
+    setWorkers(wokersData.data.users);
     setIsLoading(false);
   };
 

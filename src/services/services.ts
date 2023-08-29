@@ -60,14 +60,18 @@ export const verifyAccount = async (
   }
 };
 
-export const getWorkers = async (queryParams?: {
+export const getUsers = async (role: string = "worker", queryParams?: {
   occupation?: string | null;
 }): Promise<AxiosResponse> => {
   try {
-    let url = API_URL + "/worker";
+    let url = API_URL + "/user";
+
+    if (role) {
+      url += `?role=${role}`;
+    }
 
     if (queryParams && queryParams.occupation !== null) {
-      url += `?occupation=${queryParams.occupation}`;
+      url += `&occupation=${queryParams.occupation}`;
     }
 
     const response: AxiosResponse = await axios.get(url);

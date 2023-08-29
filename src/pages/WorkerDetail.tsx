@@ -30,36 +30,32 @@ const WorkerDetail = () => {
   }, []);
 
   return (
-    <>
-      <section className="min-h-screen max-w-7xl m-auto px-6 pb-12">
-        <div className="pt-28 h-full w-full flex flex-col items-start lg:flex-row gap-8">
-          {isLoading || !worker ? (
-            <ProfileCardSkeleton />
-          ) : (
-            <ProfileCard
-              worker={worker}
-              className="animate-sladeInFromBottomShort"
-            />
-          )}
-          <article className="w-full space-y-4">
-            <h4 className=" text-2xl font-semibold self-start animate-sladeInFromBottomMedium">
-              Servicios
-            </h4>
-            <div className="grid grid-cols-1 gap-6 w-full md:p-0 md:grid-cols-2 animate-sladeInFromBottomMedium">
-              {isLoading || !worker
-                ? Array.from({ length: 8 }, (_, index) => (
-                    <ServiceCardSkeleton key={index} />
-                  ))
-                : worker?.services?.map((s) => {
-                    return (
-                      <ServiceCard service={{ ...s, worker }} key={s.id} />
-                    );
-                  })}
-            </div>
-          </article>
-        </div>
-      </section>
-    </>
+    <section className="min-h-screen max-w-7xl m-auto px-6 pb-12">
+      <div className="pt-28 h-full w-full flex flex-col items-start lg:flex-row gap-8">
+        {isLoading || !worker ? (
+          <ProfileCardSkeleton />
+        ) : (
+          <ProfileCard
+            worker={worker}
+            className="animate-sladeInFromBottomShort"
+          />
+        )}
+        <article className="w-full space-y-4">
+          <h4 className=" text-2xl font-semibold self-start animate-sladeInFromBottomMedium">
+            Servicios
+          </h4>
+          <div className="grid grid-cols-1 gap-6 w-full md:p-0 md:grid-cols-2 animate-sladeInFromBottomMedium">
+            {isLoading || !worker
+              ? Array.from({ length: 8 }, (_, index) => (
+                  <ServiceCardSkeleton key={index} />
+                ))
+              : worker?.services?.map((s) => {
+                  return <ServiceCard service={{ ...s, worker }} key={s.id} />;
+                })}
+          </div>
+        </article>
+      </div>
+    </section>
   );
 };
 
