@@ -44,7 +44,7 @@ const ServicePage = () => {
               <ProfileCard
                 worker={service.worker}
                 className="animate-sladeInFromBottomMedium"
-                buttonFunction="visitProfile"
+                ButtonFunction="visitProfile"
               />
             </>
           )}

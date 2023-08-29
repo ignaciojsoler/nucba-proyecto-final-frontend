@@ -10,7 +10,7 @@ const UserAvatarDropdown = () => {
     useState<boolean>(false);
 
   const dropdownOptions = [
-    { onClick: () => navigate("/perfil"), text: "Perfil" },
+    { onClick: () => navigate("/profile"), text: "Perfil" },
     { onClick: () => logOut(navigate), text: "Cerrar sesión" },
   ];
 
@@ -41,7 +41,7 @@ const UserAvatarDropdown = () => {
     >
       <img src={defaultUserIcon} alt="User avatar" className="w-full h-full" />
       {displayDropdownItems && (
-        <ul className="absolute text-end top-14 p-6 space-y-3 w-40 rounded-lg bg-slate-900 bg-opacity-80 backdrop-blur-2xl animate-sladeInFromBottomShort">
+        <ul className="absolute text-end top-14 p-6 space-y-3 w-40 rounded-lg bg-slate-900 bg-opacity-80 backdrop-blur-xl shadow-2xl animate-sladeInFromBottomShort">
           {dropdownOptions.map((dropDownTiem) => {
             return (
               <li 

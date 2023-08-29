@@ -78,7 +78,7 @@ export const Navbar = () => {
             }`}
           >
             {renderNavLinks()}
-            <Link to="/perfil" onClick={closeAside}>
+            <Link to="/profile" onClick={closeAside}>
               <p className=" text-2xl font-bold py-6 md:font-semibold md:py-0 md:text-base">
                 Perfil
               </p>

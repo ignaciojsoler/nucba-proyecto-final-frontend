@@ -30,7 +30,6 @@ const Services = () => {
   const handleGetServices = async () => {
     const servicesData: AxiosResponse = await getServices();
     if (!servicesData || servicesData.status !== 200) return;
-    console.log(servicesData)
     setServices(servicesData.data);
     setIsLoading(false);
   };

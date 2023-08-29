@@ -5,7 +5,6 @@ const ServiceCardSkeleton = () => {
     <div className=" bg-slate-900 rounded-lg">
       <ContentLoader
         speed={2}
-        width="full"
         height={180}
         backgroundColor="rgb(30 41 59)"
         foregroundColor="rgb(51 65 85)"

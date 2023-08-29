@@ -52,7 +52,7 @@ const WorkerDetail = () => {
                   ))
                 : worker?.services?.map((s) => {
                     return (
-                      <ServiceCard service={{ ...s, worker }} key={worker.id} />
+                      <ServiceCard service={{ ...s, worker }} key={s.id} />
                     );
                   })}
             </div>

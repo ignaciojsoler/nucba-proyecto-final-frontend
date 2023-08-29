@@ -70,8 +70,6 @@ export const getWorkers = async (queryParams?: {
       url += `?occupation=${queryParams.occupation}`;
     }
 
-    console.log("url", url);
-
     const response: AxiosResponse = await axios.get(url);
     return response;
   } catch (err: any) {

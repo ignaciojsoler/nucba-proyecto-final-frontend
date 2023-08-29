@@ -13,13 +13,13 @@ import { useNavigate } from "react-router-dom";
 interface ProfileCardProps {
   worker: User;
   className?: string;
-  buttonFunction?: "visitProfile" | "callUserPhone";
+  ButtonFunction?: "visitProfile" | "callUserPhone";
 }
 
 const ProfileCard = ({
   worker,
   className,
-  buttonFunction = "callUserPhone",
+  ButtonFunction = "callUserPhone",
 }: ProfileCardProps) => {
   const { name, email, bio, city, occupation, profileImage, phone, createdAt } =
     worker;
@@ -100,13 +100,13 @@ const ProfileCard = ({
           <div className="pt-6">
             <Button
               onClick={
-                buttonFunction === "callUserPhone"
+                ButtonFunction === "callUserPhone"
                   ? () => callUserPhone(worker.phone)
                   : () => navigate(`../worker/${worker.id}`)
               }
               widthFull
               title={
-                buttonFunction === "callUserPhone" ? "Llamar" : "Visitar perfil"
+                ButtonFunction === "callUserPhone" ? "Llamar" : "Visitar perfil"
               }
             />
           </div>

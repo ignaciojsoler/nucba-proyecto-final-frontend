@@ -34,7 +34,7 @@ const CategoriesFilters = ({ category }: CategoriesFiltersProps) => {
         </Link>
         {categories.categorias.map((c) => {
           return (
-            <Link to={`./?occupation=${c.occupation}&category=${c.name}`} onClick={() => setDisplayCategories(false)}>
+            <Link key={c.id} to={`./?occupation=${c.occupation}&category=${c.name}`} onClick={() => setDisplayCategories(false)}>
               <p
                 className={`py-1 transition duration-150 hover:opacity-80  ${
                   c.name === category ? "text-emerald-600 font-semibold" : "text-slate-400"
