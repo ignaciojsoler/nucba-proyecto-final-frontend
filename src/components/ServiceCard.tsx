@@ -95,7 +95,7 @@ const ServiceCard = ({ service, userId }: ServiceCardProps) => {
   useEffect(() => {
     isServiceSavedAsFavorite();
   }, [favorites]);
-
+ 
   return (
     <div
       className="group rounded-lg overflow-hidden bg-slate-900 flex justify-between cursor-pointer transition duration-150 hover:bg-slate-800 animate-sladeInFromBottomShort"
@@ -115,7 +115,7 @@ const ServiceCard = ({ service, userId }: ServiceCardProps) => {
           <div className="relative m-7 h-5 w-5">
             <Spinner />
           </div>
-        ) : userId && userId === worker.id ? (
+        ) : userId && userId === service.userId ? (
           <div
             className="relative m-7"
             onClick={(e) => {

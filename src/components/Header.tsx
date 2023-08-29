@@ -6,9 +6,12 @@ import logo from "../assets/icons/logo.svg";
 import { useEffect } from "react";
 import { tokenExists } from "../helpers/jwtUtils";
 import UserAvatarDropdown from "./UserAvatarDropdown";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 export const Navbar = () => {
   const location = useLocation();
+  const { name } = useSelector((state: RootState) => state.user);
 
   const [displayAside, setDisplayAside] = useState(false);
   const [isLoggedIn, setisLoggedIn] = useState<boolean>(false);
@@ -91,7 +94,10 @@ export const Navbar = () => {
         <div className="hidden md:space-x-10 md:items-center md:flex">
           {renderNavLinks()}
           {isLoggedIn ? (
-            <UserAvatarDropdown />
+            <>
+              <div className="font-semibold cursor-default">{name}</div>
+              <UserAvatarDropdown />
+            </>
           ) : (
             <Link to="/plans">
               <Button title="Registrarse" onClick={() => {}} size="small" />

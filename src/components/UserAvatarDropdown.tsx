@@ -42,11 +42,12 @@ const UserAvatarDropdown = () => {
       <img src={defaultUserIcon} alt="User avatar" className="w-full h-full" />
       {displayDropdownItems && (
         <ul className="absolute text-end top-14 p-6 space-y-3 w-40 rounded-lg bg-slate-900 bg-opacity-80 backdrop-blur-xl shadow-2xl animate-sladeInFromBottomShort">
-          {dropdownOptions.map((dropDownTiem) => {
+          {dropdownOptions.map((dropDownTiem, idx) => {
             return (
               <li 
               className="block font-medium transition duration-150 hover:opacity-70"
               onClick={dropDownTiem.onClick}
+              key={idx}
               >
                 {dropDownTiem.text}
               </li>
