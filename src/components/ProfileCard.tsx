@@ -14,6 +14,7 @@ interface ProfileCardProps {
   worker: User;
   className?: string;
   ButtonFunction?: "visitProfile" | "callUserPhone" | "editProfile";
+  userId?: string;
 }
 
 const ProfileCard = ({
@@ -70,24 +71,30 @@ const ProfileCard = ({
               })}
             </p>
           </div>
-          <div className="flex justify-between">
+          {city && <div className="flex justify-between">
             <p className="text-slate-400 flex items-center">
               <span className="mr-2">
                 <HiOutlineLocationMarker />
               </span>
               Ciudad:
             </p>
-            <p className={`font-medium ${!city && "text-slate-500"}`}>{city ?? "No especificada"}</p>
-          </div>
-          <div className="flex justify-between">
-            <p className="text-slate-400 flex items-center">
-              <span className="mr-2">
-                <AiOutlinePhone />
-              </span>
-              Teléfono:
+            <p className={`font-medium ${!city && "text-slate-500"}`}>
+              {city ?? "No especificada"}
             </p>
-            <p className={`font-medium ${!phone && "text-slate-500"}`}>{phone ?? "No especificado"}</p>
-          </div>
+          </div>}
+          {phone && (
+            <div className="flex justify-between">
+              <p className="text-slate-400 flex items-center">
+                <span className="mr-2">
+                  <AiOutlinePhone />
+                </span>
+                Teléfono:
+              </p>
+              <p className={`font-medium ${!phone && "text-slate-500"}`}>
+                {phone}
+              </p>
+            </div>
+          )}
           <div className="flex justify-between flex-wrap overflow-auto">
             <p className="text-slate-400 flex items-center">
               <span className="mr-2">

@@ -6,13 +6,27 @@ import ProfileCard from "../components/ProfileCard";
 import ServiceCard from "../components/ServiceCard";
 import ServiceCardSkeleton from "../components/Skeletons/ServiceCardSkeleton";
 import ProfileCardSkeleton from "../components/Skeletons/ProfileCardSkeleton";
+import { isExpired, decodeToken } from "react-jwt";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 const WorkerDetail = () => {
   const { pathname } = useLocation();
   const userId = pathname.substring(pathname.lastIndexOf("/") + 1);
 
+  const token = useSelector((state: RootState) => state.token);
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [worker, setWorker] = useState<User | null>(null);
+  const [userDecodedToken, setUserDecodedToken] = useState<User | null>(null);
+
+  const getUserDecodedToken = async () => {
+    if (!token.token) return;
+    if (isExpired(token.token)) return;
+    const decodedToken = decodeToken<User>(token.token);
+    if (!decodedToken) return;
+    setUserDecodedToken(decodedToken);
+  };
 
   const handleGetWorkerById = async () => {
     const workerData = await getUserById(userId);
@@ -26,8 +40,12 @@ const WorkerDetail = () => {
   };
 
   useEffect(() => {
-    handleGetWorkerById();
+    getUserDecodedToken();
   }, []);
+
+  useEffect(() => {
+      handleGetWorkerById();
+  }, [userDecodedToken]);
 
   return (
     <section className="min-h-screen max-w-7xl m-auto px-6 pb-12">
@@ -50,7 +68,13 @@ const WorkerDetail = () => {
                   <ServiceCardSkeleton key={index} />
                 ))
               : worker?.services?.map((s) => {
-                  return <ServiceCard service={{ ...s, worker }} key={s.id} />;
+                  return (
+                    <ServiceCard
+                      service={{ ...s, worker }}
+                      key={s.id}
+                      userId={userDecodedToken?.id}
+                    />
+                  );
                 })}
           </div>
         </article>

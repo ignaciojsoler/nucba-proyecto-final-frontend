@@ -26,7 +26,6 @@ const ProfilePage = () => {
   }
 
   const handleGetUserById = async () => {
-    console.log(userDecodedToken)
     if (!userDecodedToken) return;
     const userData: AxiosResponse = await getUserById(userDecodedToken.id);
     setIsLoading(false);
@@ -72,11 +71,11 @@ const ProfilePage = () => {
                       <ServiceCardSkeleton key={index} />
                     ))
                   : user?.services?.map((service) => {
-                      console.log(service);
                       return (
                         <ServiceCard
                           service={service}
                           key={service.id}
+                          userId={userDecodedToken?.id}
                         />
                       );
                     })}
