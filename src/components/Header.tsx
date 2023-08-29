@@ -40,7 +40,11 @@ export const Navbar = () => {
 
   useEffect(() => {
     const token = tokenExists();
-    if (token) setisLoggedIn(true);
+    if (token) {
+      setisLoggedIn(true);
+    } else {
+      setisLoggedIn(false);
+    }
   }, [location]);
 
   return (

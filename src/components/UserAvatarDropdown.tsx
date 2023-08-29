@@ -11,7 +11,7 @@ const UserAvatarDropdown = () => {
 
   const dropdownOptions = [
     { onClick: () => navigate("/perfil"), text: "Perfil" },
-    { onClick: () => logOut(), text: "Cerrar sesión" },
+    { onClick: () => logOut(navigate), text: "Cerrar sesión" },
   ];
 
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -44,7 +44,10 @@ const UserAvatarDropdown = () => {
         <ul className="absolute text-end top-14 p-6 space-y-3 w-40 rounded-lg bg-slate-900 bg-opacity-80 backdrop-blur-2xl animate-sladeInFromBottomShort">
           {dropdownOptions.map((dropDownTiem) => {
             return (
-              <li className="block font-medium transition duration-150 hover:opacity-70">
+              <li 
+              className="block font-medium transition duration-150 hover:opacity-70"
+              onClick={dropDownTiem.onClick}
+              >
                 {dropDownTiem.text}
               </li>
             );
