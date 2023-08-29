@@ -42,6 +42,7 @@ const ProfilePage = () => {
           <ProfileCard
             worker={user}
             className="animate-sladeInFromBottomShort"
+            ButtonFunction="editProfile"
           />
         )}
         <article className="w-full space-y-4">

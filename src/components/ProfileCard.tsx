@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 interface ProfileCardProps {
   worker: User;
   className?: string;
-  ButtonFunction?: "visitProfile" | "callUserPhone";
+  ButtonFunction?: "visitProfile" | "callUserPhone" | "editProfile";
 }
 
 const ProfileCard = ({
@@ -77,7 +77,7 @@ const ProfileCard = ({
               </span>
               Ciudad:
             </p>
-            <p className="font-medium">{city}</p>
+            <p className={`font-medium ${!city && "text-slate-500"}`}>{city ?? "No especificada"}</p>
           </div>
           <div className="flex justify-between">
             <p className="text-slate-400 flex items-center">
@@ -86,7 +86,7 @@ const ProfileCard = ({
               </span>
               Teléfono:
             </p>
-            <p className="font-medium">{phone}</p>
+            <p className={`font-medium ${!phone && "text-slate-500"}`}>{phone ?? "No especificado"}</p>
           </div>
           <div className="flex justify-between flex-wrap overflow-auto">
             <p className="text-slate-400 flex items-center">
@@ -102,11 +102,17 @@ const ProfileCard = ({
               onClick={
                 ButtonFunction === "callUserPhone"
                   ? () => callUserPhone(worker.phone)
-                  : () => navigate(`../worker/${worker.id}`)
+                  : ButtonFunction === "visitProfile"
+                  ? () => navigate(`../worker/${worker.id}`)
+                  : () => navigate(`./edit`)
               }
               widthFull
               title={
-                ButtonFunction === "callUserPhone" ? "Llamar" : "Visitar perfil"
+                ButtonFunction === "callUserPhone"
+                  ? "Llamar"
+                  : ButtonFunction === "visitProfile"
+                  ? "Visitar perfil"
+                  : "Editar"
               }
             />
           </div>
