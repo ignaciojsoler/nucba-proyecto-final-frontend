@@ -14,5 +14,5 @@ export const useGetStorageData = () => {
 
   if (token) dispatch(updateToken(token));
   if (user) dispatch(updateUser(user));
-  if (favoritesServices) dispatch(setFavoritesServices(favoritesServices));
+  if (favoritesServices) dispatch(setFavoritesServices(favoritesServices.favoritesServices));
 };
