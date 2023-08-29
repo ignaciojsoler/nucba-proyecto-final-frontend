@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { getWorkerById } from "../services/services";
+import { getUserById } from "../services/services";
 import { User } from "../interfaces/interfaces";
 import ProfileCard from "../components/ProfileCard";
 import ServiceCard from "../components/ServiceCard";
@@ -9,13 +9,13 @@ import ProfileCardSkeleton from "../components/Skeletons/ProfileCardSkeleton";
 
 const WorkerDetail = () => {
   const { pathname } = useLocation();
-  const workerId = pathname.substring(pathname.lastIndexOf("/") + 1);
+  const userId = pathname.substring(pathname.lastIndexOf("/") + 1);
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [worker, setWorker] = useState<User | null>(null);
 
   const handleGetWorkerById = async () => {
-    const workerData = await getWorkerById(workerId);
+    const workerData = await getUserById(userId);
     setIsLoading(false);
     if (!workerData)
       return console.log("Algo ha salido mal, intentalo de nuevo más tarde");

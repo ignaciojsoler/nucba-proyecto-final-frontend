@@ -82,12 +82,12 @@ export const getUsers = async (role: string = "worker", queryParams?: {
   }
 };
 
-export const getWorkerById = async (
-  workerId: string
+export const getUserById = async (
+  userId: string
 ): Promise<AxiosResponse> => {
   try {
     const response: AxiosResponse = await axios.get(
-      API_URL + `/worker/${workerId}`
+      API_URL + `/user/${userId}`
     );
     return response;
   } catch (err: any) {

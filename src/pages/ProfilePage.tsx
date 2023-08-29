@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
 import ProfileCardSkeleton from "../components/Skeletons/ProfileCardSkeleton";
 import ProfileCard from "../components/ProfileCard";
-import { getWorkerById } from "../services/services";
+import { getUserById } from "../services/services";
 import { User } from "../interfaces/interfaces";
 import { AxiosResponse } from "axios";
 import ServiceCardSkeleton from "../components/Skeletons/ServiceCardSkeleton";
 import ServiceCard from "../components/ServiceCard";
+import { useLocation } from "react-router-dom";
 
 const ProfilePage = () => {
+  const { pathname } = useLocation();
+  const userId = pathname.substring(pathname.lastIndexOf("/") + 1);
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [user, setUser] = useState<User | null>(null);
 
   const handleGetUserById = async () => {
-    const userData: AxiosResponse = await getWorkerById(workerId);
+    const userData: AxiosResponse = await getUserById(userId);
     setIsLoading(false);
     if (!userData)
       return console.log("Algo ha salido mal, intentalo de nuevo más tarde");
