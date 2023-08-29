@@ -23,6 +23,13 @@ export const notEmpty = (value: string): [boolean, string] => {
       "El formato del correo electrónico no es válido.",
     ];
   };
+
+  export const isGreaterThanZero = (value: number): [boolean, string] => {
+    return [
+      value > 0,
+      "El valor debe ser mayor que 0.",
+    ];
+  };
   
   export const validPassword = (value: string): [boolean, string] => {
     // La contraseña debe tener al menos 8 caracteres.
@@ -116,6 +123,12 @@ export const notEmpty = (value: string): [boolean, string] => {
           }
         } else if (validation === "isValidJWT") {
           const [isValid, errorText] = isValidJWT(text);
+          if (!isValid) {
+            newErrors.push(errorText);
+          }
+        } else if (validation === "isGreaterThanZero") {
+          const value = Number(text);
+          const [isValid, errorText] = isGreaterThanZero(value);
           if (!isValid) {
             newErrors.push(errorText);
           }

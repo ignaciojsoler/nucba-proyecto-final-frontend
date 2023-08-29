@@ -2,12 +2,13 @@ import { Route, Routes } from "react-router-dom";
 import { Navbar } from "./components/Header";
 import React, { Suspense } from "react";
 import Loading from "./pages/Loading";
-import Service from "./pages/ServicePage";
 import WorkerDetail from "./pages/WorkerDetail";
 import CategoriesPage from "./pages/CategoriesPage";
 import useScrollToTop from "./hooks/useScrollToTop";
 import { useGetStorageData } from "./hooks/useGetStorageData";
 import ProfilePage from "./pages/ProfilePage";
+import ServicePage from "./pages/ServicePage";
+import EditService from "./pages/EditService";
 
 const Landing = React.lazy(() => import("./pages/Landing"));
 const Login = React.lazy(() => import("./pages/Login"));
@@ -32,7 +33,8 @@ function App() {
           <Route path="/confirmation" element={<Confirmation />} />
           <Route path="/worker/:id" element={<WorkerDetail/>}/>
           <Route path="/profile" element={<ProfilePage/>}/>
-          <Route path="/service/:id" element={<Service/>}/>
+          <Route path="/service/:id" element={<ServicePage/>}/>
+          <Route path="/service/edit/:id" element={<EditService/>}/>
           <Route path="/categories" element={<CategoriesPage/>}/>
         </Routes>
       </Suspense>

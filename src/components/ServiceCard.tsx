@@ -120,7 +120,7 @@ const ServiceCard = ({ service, userId }: ServiceCardProps) => {
             className="relative m-7"
             onClick={(e) => {
               e.stopPropagation();
-              handleSetAsFavorite();
+              navigate(`../service/edit/${service.id}`);
             }}
           >
             <AiOutlineEdit size={20} color={"rgb(5, 150, 105)"}/>
