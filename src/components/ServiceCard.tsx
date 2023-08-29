@@ -10,7 +10,6 @@ import { useDispatch } from "react-redux";
 import { AxiosResponse } from "axios";
 import { addFavoriteService, removeFavoriteService } from "../store/favoritesSlice";
 import Spinner from "./Spinner";
-import { isExpired, decodeToken } from "react-jwt";
 interface ServiceCardProps {
   service: Service;
 }
@@ -68,10 +67,6 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
     const savedAsFavoriteService = favorites.favoritesServices.find(s => s.serviceId === service.id);
     if (!savedAsFavoriteService || savedAsFavoriteService === undefined) return;
     setIsSavedAsFavorite(true);
-  }
-
-  const getDecodedToken = () => {
-    
   }
 
   useEffect(() => {
