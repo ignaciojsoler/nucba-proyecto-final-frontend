@@ -15,13 +15,20 @@ const ProfilePage = () => {
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [user, setUser] = useState<User | null>(null);
+  const [userDecodedToken, setUserDecodedToken] = useState<User | null>(null);
 
-  const handleGetUserById = async () => {
+  const getUserDecodedToken = async () => {
     if (!token.token) return;
     if (isExpired(token.token)) return;
     const decodedToken = decodeToken<User>(token.token);
     if (!decodedToken) return;
-    const userData: AxiosResponse = await getUserById(decodedToken.id);
+    setUserDecodedToken(decodedToken);
+  }
+
+  const handleGetUserById = async () => {
+    console.log(userDecodedToken)
+    if (!userDecodedToken) return;
+    const userData: AxiosResponse = await getUserById(userDecodedToken.id);
     setIsLoading(false);
     if (!userData)
       return console.log("Algo ha salido mal, intentalo de nuevo más tarde");
@@ -32,8 +39,14 @@ const ProfilePage = () => {
   };
 
   useEffect(() => {
-    handleGetUserById();
+    getUserDecodedToken();
   }, []);
+  
+  useEffect(() => {
+    if (userDecodedToken) {
+      handleGetUserById();
+    }
+  }, [userDecodedToken]);
 
   return (
     <section className="min-h-screen max-w-7xl m-auto px-6 pb-12">
@@ -55,29 +68,37 @@ const ProfilePage = () => {
               </h4>
               <div className="grid grid-cols-1 gap-6 w-full md:p-0 md:grid-cols-2 animate-sladeInFromBottomMedium">
                 {isLoading || !user
-              ? Array.from({ length: 8 }, (_, index) => (
-                  <ServiceCardSkeleton key={index} />
-                ))
-              : user?.services?.map((service) => {
-                console.log(service)
-                  return <ServiceCard service={ service } key={service.id} />;
-                })}
+                  ? Array.from({ length: 8 }, (_, index) => (
+                      <ServiceCardSkeleton key={index} />
+                    ))
+                  : user?.services?.map((service) => {
+                      console.log(service);
+                      return (
+                        <ServiceCard
+                          service={service}
+                          key={service.id}
+                        />
+                      );
+                    })}
               </div>
             </>
           )}
-          {user && <>
-            <h4 className=" text-2xl font-semibold self-start animate-sladeInFromBottomMedium">
-            Favoritos
-          </h4>
-          <div className="grid grid-cols-1 gap-6 w-full md:p-0 md:grid-cols-2 animate-sladeInFromBottomMedium">
-            {/* {isLoading || !user
+          {user && (
+            <>
+              <h4 className=" text-2xl font-semibold self-start animate-sladeInFromBottomMedium">
+                Favoritos
+              </h4>
+              <div className="grid grid-cols-1 gap-6 w-full md:p-0 md:grid-cols-2 animate-sladeInFromBottomMedium">
+                {/* {isLoading || !user
               ? Array.from({ length: 8 }, (_, index) => (
                   <ServiceCardSkeleton key={index} />
                 ))
               : user?.services?.map((s) => {
                   return <ServiceCard service={{ ...s, worker }} key={s.id} />;
                 })} */}
-          </div></>}
+              </div>
+            </>
+          )}
         </article>
       </div>
     </section>
