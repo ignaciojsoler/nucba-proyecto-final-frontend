@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import { AxiosResponse } from "axios";
 import { addFavoriteService, removeFavoriteService } from "../store/favoritesSlice";
 import Spinner from "./Spinner";
-
+import { isExpired, decodeToken } from "react-jwt";
 interface ServiceCardProps {
   service: Service;
 }
@@ -70,6 +70,10 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
     setIsSavedAsFavorite(true);
   }
 
+  const getDecodedToken = () => {
+    
+  }
+
   useEffect(() => {
     if (redirect) {
       navigate(`../service/${service.id}`);
@@ -88,7 +92,7 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
     >
       <div className="space-y-1 p-6">
         <h4 className="font-bold text-xl text line-clamp-1">{title}</h4>
-        <span className="line-clamp-1">{worker.name ?? ""}</span>
+        <span className="line-clamp-1">{worker?.name ?? ""}</span>
         <h5 className={`font-bold text-xl text-emerald-600 line-clamp-1`}>
           ${hourlyRate}/h
         </h5>

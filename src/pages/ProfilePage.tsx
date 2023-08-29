@@ -4,9 +4,11 @@ import ProfileCard from "../components/ProfileCard";
 import { getUserById } from "../services/services";
 import { User } from "../interfaces/interfaces";
 import { AxiosResponse } from "axios";
-import {  useSelector } from "react-redux/es/hooks/useSelector";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import { RootState } from "../store/store";
 import { isExpired, decodeToken } from "react-jwt";
+import ServiceCardSkeleton from "../components/Skeletons/ServiceCardSkeleton";
+import ServiceCard from "../components/ServiceCard";
 
 const ProfilePage = () => {
   const token = useSelector((state: RootState) => state.token);
@@ -46,8 +48,26 @@ const ProfilePage = () => {
           />
         )}
         <article className="w-full space-y-4">
-          <h4 className=" text-2xl font-semibold self-start animate-sladeInFromBottomMedium">
-            Servicios
+          {user?.role === "WORKER" && (
+            <>
+              <h4 className=" text-2xl font-semibold self-start animate-sladeInFromBottomMedium">
+                Servicios
+              </h4>
+              <div className="grid grid-cols-1 gap-6 w-full md:p-0 md:grid-cols-2 animate-sladeInFromBottomMedium">
+                {isLoading || !user
+              ? Array.from({ length: 8 }, (_, index) => (
+                  <ServiceCardSkeleton key={index} />
+                ))
+              : user?.services?.map((service) => {
+                console.log(service)
+                  return <ServiceCard service={ service } key={service.id} />;
+                })}
+              </div>
+            </>
+          )}
+          {user && <>
+            <h4 className=" text-2xl font-semibold self-start animate-sladeInFromBottomMedium">
+            Favoritos
           </h4>
           <div className="grid grid-cols-1 gap-6 w-full md:p-0 md:grid-cols-2 animate-sladeInFromBottomMedium">
             {/* {isLoading || !user
@@ -57,7 +77,7 @@ const ProfilePage = () => {
               : user?.services?.map((s) => {
                   return <ServiceCard service={{ ...s, worker }} key={s.id} />;
                 })} */}
-          </div>
+          </div></>}
         </article>
       </div>
     </section>
