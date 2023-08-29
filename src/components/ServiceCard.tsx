@@ -64,6 +64,7 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
   };
 
   const isServiceSavedAsFavorite = () => {
+    if (!Array.isArray(favorites.favoritesServices)) return;
     const savedAsFavoriteService = favorites.favoritesServices.find(s => s.serviceId === service.id);
     if (!savedAsFavoriteService || savedAsFavoriteService === undefined) return;
     setIsSavedAsFavorite(true);

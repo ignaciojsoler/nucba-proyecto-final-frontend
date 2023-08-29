@@ -4,8 +4,6 @@ import ProfileCard from "../components/ProfileCard";
 import { getUserById } from "../services/services";
 import { User } from "../interfaces/interfaces";
 import { AxiosResponse } from "axios";
-import ServiceCardSkeleton from "../components/Skeletons/ServiceCardSkeleton";
-import ServiceCard from "../components/ServiceCard";
 import { useLocation } from "react-router-dom";
 
 const ProfilePage = () => {
