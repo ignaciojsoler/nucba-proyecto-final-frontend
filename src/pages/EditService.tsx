@@ -9,10 +9,9 @@ import SelectInput from "../components/SeletInput";
 import categoriesData from "../data/categories.json";
 
 const categories = categoriesData.categorias.map((categoria) => ({
-    value: categoria.id.toString(),
-    label: categoria.name,
-  }));
-  
+  value: categoria.name,
+  label: categoria.name,
+}));
 
 const EditService = () => {
   const { pathname } = useLocation();
@@ -32,9 +31,13 @@ const EditService = () => {
     setService(serviceData.data);
   };
 
+  const handleRemoveService = () => {
+    alert("estas seguro?");
+  };
+
   const handleSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
-    return;
+    
   };
 
   useEffect(() => {
@@ -44,7 +47,7 @@ const EditService = () => {
   return (
     <div className="m-auto w-full h-screen flex flex-col justify-center items-center bg-cover animate-blurTransition">
       {isLoading && <Loader />}
-      <div className="p-8 space-y-8 rounded-xl w-full max-w-xl animate-sladeInFromBottomMedium">
+      <div className="p-8 space-y-4 rounded-xl w-full max-w-xl animate-sladeInFromBottomMedium">
         <form
           className="space-y-4 animate-sladeInFromBottomLong"
           onSubmit={(e) => handleSubmit(e)}
@@ -95,10 +98,12 @@ const EditService = () => {
           <SelectInput
             placeholder="Seleccionar categoría"
             options={categories}
-            onChange={(category) => setService((prevState: Service | null) => ({
+            onChange={(category) =>
+              setService((prevState: Service | null) => ({
                 ...prevState!,
                 category,
-              }))}
+              }))
+            }
             value={service?.category}
           />
           <Button
@@ -107,6 +112,14 @@ const EditService = () => {
             onClick={() => {}}
           />
         </form>
+        {service?.id && (
+          <Button
+            title="Eliminar"
+            onClick={() => handleRemoveService()}
+            widthFull
+            color="outline"
+          />
+        )}
       </div>
     </div>
   );

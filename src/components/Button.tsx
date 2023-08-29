@@ -4,7 +4,7 @@ interface ButtonProps {
   title?: string;
   disabled?: boolean;
   onClick: () => void;
-  color?: "primary" | "secondary" | "light" | "dark" | "transparent" | "neutral";
+  color?: "primary" | "secondary" | "light" | "dark" | "transparent" | "neutral" | "outline";
   size?: "small" | "medium" | "large";
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   icon?: ReactElement<unknown, any>;
@@ -47,6 +47,8 @@ export const Button = (props: ButtonProps) => {
         ? "bg-slate-800 hover:bg-slate-700"
         : color === "light"
         ? "bg-slate-200 text-slate-800 hover:bg-slate-300"
+        : color === "outline"
+        ? "bg-transparent text-emerald-600 font-bold border-2 border-emerald-600 hover:text-emerald-500 hover:border-emerald-500"
         : color === "transparent"
         ? "bg-transparent text-slate-200 font-bold hover:text-slate-300"
         : "bg-emerald-600 text-slate-200 hover:bg-emerald-500"
