@@ -31,7 +31,7 @@ export const Navbar = () => {
   const renderNavLinks = () => {
     return navLinks.map((link) => (
       <Link to={link.path} key={link.path} onClick={closeAside}>
-        <p className=" text-2xl font-bold py-6 md:font-semibold md:py-0 md:text-base">
+        <p className=" text-2xl font-bold py-6 transition duration-150 md:font-semibold md:py-0 md:text-base hover:opacity-70">
           {link.text}
         </p>
       </Link>
@@ -53,29 +53,41 @@ export const Navbar = () => {
           </span>
         </Link>
         <div className="md:hidden">
-          <div className="fixed z-20 left-0 bg-gradient-to-b from-slate-900 to-transparent w-full top-0 px-6 pt-6 pb-11 flex justify-between items-center">
-            <div className="z-30">
+          <div className="fixed z-20 left-0 bg-gradient-to-b from-slate-900 to-transparent w-full top-0 px-6 pt-6 pb-11 flex justify-between">
+            <i className="relative z-30 lg:hidden">
+              <img
+                src={logo}
+                alt="Logotype"
+                className="w-10 h-10"
+                loading="lazy"
+              />
+            </i>
             <Hamburger
               color="white"
               onToggle={() => setDisplayAside(!displayAside)}
               toggled={displayAside}
             />
-            </div>
-            <UserAvatarDropdown/>
-            <div
-            className={`fixed flex flex-col top-0 h-screen w-screen bg-slate-900 bg-opacity-90 backdrop-blur-lg z-10 transition-all duration-300 ease-in-out pt-28 pl-8 ${
+          </div>
+          <div
+            className={`fixed flex flex-col top-0 h-screen w-screen bg-slate-900 bg-opacity-90 backdrop-blur-3xl z-10 transition-all duration-300 ease-in-out pt-28 pl-8 ${
               !displayAside ? " -left-full" : "left-0"
             }`}
           >
             {renderNavLinks()}
+            <Link to="/perfil" onClick={closeAside}>
+              <p className=" text-2xl font-bold py-6 md:font-semibold md:py-0 md:text-base">
+                Perfil
+              </p>
+            </Link>
+            <p className=" text-2xl font-bold py-6 md:font-semibold md:py-0 md:text-base">
+              Cerrar sesión
+            </p>
           </div>
-          </div>
-        
         </div>
         <div className="hidden md:space-x-10 md:items-center md:flex">
           {renderNavLinks()}
           {isLoggedIn ? (
-            <UserAvatarDropdown/>
+            <UserAvatarDropdown />
           ) : (
             <Link to="/plans">
               <Button title="Registrarse" onClick={() => {}} size="small" />
