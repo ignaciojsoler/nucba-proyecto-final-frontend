@@ -10,7 +10,7 @@ interface CategoriesFiltersProps {
 const CategoriesFilters = ({ category }: CategoriesFiltersProps) => {
   const [displayCategories, setDisplayCategories] = useState<boolean>(false);
   return (
-    <article className="bg-slate-900 rounded-lg p-6 space-y-1 w-full lg:w-auto">
+    <article className="bg-slate-900 rounded-lg p-6 space-y-1 w-full lg:w-auto animate-sladeInFromBottomShort">
       <div className="flex justify-between items-center">
         <h5 className="text-xl self-start font-medium overflow-hidden whitespace-nowrap">
           Filtrar por categorías:
@@ -34,7 +34,7 @@ const CategoriesFilters = ({ category }: CategoriesFiltersProps) => {
         </Link>
         {categories.categorias.map((c) => {
           return (
-            <Link to={`./?occupation=${c.occupation}&category=${c.name}`}>
+            <Link to={`./?occupation=${c.occupation}&category=${c.name}`} onClick={() => setDisplayCategories(false)}>
               <p
                 className={`py-1 transition duration-150 hover:opacity-80  ${
                   c.name === category ? "text-emerald-600 font-semibold" : "text-slate-400"
