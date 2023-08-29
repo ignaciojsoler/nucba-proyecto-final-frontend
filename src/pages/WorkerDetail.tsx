@@ -56,6 +56,7 @@ const WorkerDetail = () => {
           <ProfileCard
             worker={worker}
             className="animate-sladeInFromBottomShort"
+            userId={userDecodedToken?.id}
           />
         )}
         <article className="w-full space-y-4">

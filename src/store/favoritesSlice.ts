@@ -26,6 +26,7 @@ const favoritesSlice = createSlice({
       saveOnStorage("favoritesServices", state);
     },
     setFavoritesServices: (state, action: PayloadAction<FavoriteService[]>) => {
+      if (!action.payload) return;
       state.favoritesServices = action.payload;
     },
   },

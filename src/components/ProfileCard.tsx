@@ -21,6 +21,7 @@ const ProfileCard = ({
   worker,
   className,
   ButtonFunction = "callUserPhone",
+  userId,
 }: ProfileCardProps) => {
   const { name, email, bio, city, occupation, profileImage, phone, createdAt } =
     worker;
@@ -71,17 +72,19 @@ const ProfileCard = ({
               })}
             </p>
           </div>
-          {city && <div className="flex justify-between">
-            <p className="text-slate-400 flex items-center">
-              <span className="mr-2">
-                <HiOutlineLocationMarker />
-              </span>
-              Ciudad:
-            </p>
-            <p className={`font-medium ${!city && "text-slate-500"}`}>
-              {city ?? "No especificada"}
-            </p>
-          </div>}
+          {city && (
+            <div className="flex justify-between">
+              <p className="text-slate-400 flex items-center">
+                <span className="mr-2">
+                  <HiOutlineLocationMarker />
+                </span>
+                Ciudad:
+              </p>
+              <p className={`font-medium ${!city && "text-slate-500"}`}>
+                {city ?? "No especificada"}
+              </p>
+            </div>
+          )}
           {phone && (
             <div className="flex justify-between">
               <p className="text-slate-400 flex items-center">
@@ -115,7 +118,9 @@ const ProfileCard = ({
               }
               widthFull
               title={
-                ButtonFunction === "callUserPhone"
+                userId === worker.id
+                  ? "Editar"
+                  : ButtonFunction === "callUserPhone"
                   ? "Llamar"
                   : ButtonFunction === "visitProfile"
                   ? "Visitar perfil"
