@@ -4,17 +4,22 @@ import ProfileCard from "../components/ProfileCard";
 import { getUserById } from "../services/services";
 import { User } from "../interfaces/interfaces";
 import { AxiosResponse } from "axios";
-import { useLocation } from "react-router-dom";
+import {  useSelector } from "react-redux/es/hooks/useSelector";
+import { RootState } from "../store/store";
+import { isExpired, decodeToken } from "react-jwt";
 
 const ProfilePage = () => {
-  const { pathname } = useLocation();
-  const userId = pathname.substring(pathname.lastIndexOf("/") + 1);
+  const token = useSelector((state: RootState) => state.token);
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [user, setUser] = useState<User | null>(null);
 
   const handleGetUserById = async () => {
-    const userData: AxiosResponse = await getUserById(userId);
+    if (!token.token) return;
+    if (isExpired(token.token)) return;
+    const decodedToken = decodeToken<User>(token.token);
+    if (!decodedToken) return;
+    const userData: AxiosResponse = await getUserById(decodedToken.id);
     setIsLoading(false);
     if (!userData)
       return console.log("Algo ha salido mal, intentalo de nuevo más tarde");
