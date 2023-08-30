@@ -23,8 +23,17 @@ const ProfileCard = ({
   ButtonFunction = "callUserPhone",
   userId,
 }: ProfileCardProps) => {
-  const { name, email, bio, city, occupation, profileImage, phone, createdAt } =
-    worker;
+  const {
+    name,
+    email,
+    bio,
+    city,
+    occupation,
+    profileImage,
+    phone,
+    createdAt,
+    role,
+  } = worker;
   const createdAtDate = createdAt ? new Date(createdAt) : null;
 
   const navigate = useNavigate();
@@ -50,12 +59,16 @@ const ProfileCard = ({
           <h4 className="font-bold text-3xl line-clamp-1 text-center">
             {name}
           </h4>
-          <h5
-            className={`font-bold text-xl text-emerald-600 line-clamp-1 text-center`}
-          >
-            {occupation}
-          </h5>
-          <p className=" text-slate-400 line-clamp-2 text-center">{bio}</p>
+          {role === "WORKER" && (
+            <>
+              <h5
+                className={`font-bold text-xl text-emerald-600 line-clamp-1 text-center`}
+              >
+                {occupation}
+              </h5>
+              <p className=" text-slate-400 line-clamp-2 text-center">{bio}</p>
+            </>
+          )}
         </div>
         <div className="pt-6 space-y-3">
           <div className="flex justify-between">

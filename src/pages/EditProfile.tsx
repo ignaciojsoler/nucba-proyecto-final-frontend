@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import provincesData from "../data/provinces.json";
 import { User } from "../interfaces/interfaces";
 import { findUserAndUpdate, getUserById } from "../services/services";
 import { Loader } from "../components/Loader";
@@ -10,24 +9,10 @@ import SelectInput from "../components/SeletInput";
 import { RootState } from "../store/store";
 import { useSelector } from "react-redux";
 import { AxiosResponse } from "axios";
-import categoriesData from "../data/categories.json";
 import { isExpired, decodeToken } from "react-jwt";
 import Modal from "../components/Modal";
 import { validateInput } from "../helpers/inputValidators";
-
-const categories = categoriesData.categorias.map((categoria) => ({
-  value: categoria.name,
-  label: categoria.name,
-}));
-
-const provinces = provincesData.provincias.map((province) => ({
-  value: province.nombre,
-  label: province.nombre,
-}));
-
-const sortedProvinces = provinces
-  .slice()
-  .sort((a, b) => a.label.localeCompare(b.label));
+import { categoriesList, rolesList, sortedProvincesList } from "../helpers/selectLists";
 
 const EditProfile = () => {
   const navigate = useNavigate();
@@ -159,8 +144,14 @@ const EditProfile = () => {
             disabled
           />
           <SelectInput
+            onChange={(e) => setUser((prevUser) => ({ ...prevUser, role: e }))}
+            options={rolesList}
+            placeholder="Selecciona un tipo de usuario"
+            value={user?.role || ""}
+          />
+          <SelectInput
             onChange={(e) => setUser((prevUser) => ({ ...prevUser, city: e }))}
-            options={sortedProvinces}
+            options={sortedProvincesList}
             placeholder="Selecciona una ubicación"
             value={user?.city || ""}
           />
@@ -172,15 +163,20 @@ const EditProfile = () => {
             value={user?.phone || ""}
             validations={["isValidPhone"]}
           />
-          <SelectInput
+          {
+            user?.role === "WORKER" &&
+            <SelectInput
             onChange={(e) =>
               setUser((prevUser) => ({ ...prevUser, occupation: e }))
             }
-            options={categories}
+            options={categoriesList}
             placeholder="Selecciona una ocupación"
             value={user?.occupation || ""}
           />
-          <Input
+          }
+          {
+            user?.role === "WORKER" &&
+            <Input
             onChangeText={(e) =>
               setUser((prevUser) => ({ ...prevUser, bio: e }))
             }
@@ -190,6 +186,7 @@ const EditProfile = () => {
             rows={3}
             validations={["minLength:50", "maxLength:150"]}
           />
+          }
           <Button title="Actualizar" className="w-full" onClick={() => {}} />
         </form>
       </div>
