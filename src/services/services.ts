@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosResponse } from "axios";
+import { User } from "../interfaces/interfaces";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -8,10 +9,14 @@ export const loginWithEmailAndPassword = async (
   password: string
 ): Promise<AxiosResponse> => {
   try {
-    const response: AxiosResponse = await axios.post(API_URL + "/auth/login", {
-      email,
-      password,
-    });
+    const response: AxiosResponse = await axios.post(
+      API_URL + "/auth/login",
+      {
+        email,
+        password,
+      },
+      { timeout: 5000 }
+    );
     return response;
   } catch (err: any) {
     return err.response;
@@ -52,7 +57,7 @@ export const verifyAccount = async (
     const response: AxiosResponse = await axios.post(API_URL + `/auth/verify`, {
       email,
       verificationCode,
-    });
+    }, {timeout: 5000});
     return response;
   } catch (err: any) {
     console.log(err.response);
@@ -97,6 +102,29 @@ export const getUserById = async (userId: string): Promise<AxiosResponse> => {
   }
 };
 
+export const findUserAndUpdate = async (
+  token: string,
+  user: User
+): Promise<AxiosResponse> => {
+  const { email, id, createdAt, services, ...body } = user;
+  try {
+    const response: AxiosResponse = await axios.put(
+      API_URL + `/user/${user.id}`,
+      body,
+      {
+        headers: {
+          Authorization: token,
+        },
+        timeout: 5000,
+      }
+    );
+    return response;
+  } catch (err: any) {
+    console.log(err.response);
+    return err.response;
+  }
+};
+
 export const getServices = async (queryParams?: {
   category?: string | null;
   take?: string | null;
@@ -112,7 +140,10 @@ export const getServices = async (queryParams?: {
       }
 
       if (take !== null) {
-        url += category !== null && category !== undefined ? `&take=${take}` : `?take=${take}`;
+        url +=
+          category !== null && category !== undefined
+            ? `&take=${take}`
+            : `?take=${take}`;
       }
     }
 
@@ -159,6 +190,7 @@ export const createNewService = async (
         headers: {
           Authorization: token,
         },
+        timeout: 5000,
       }
     );
     return response;
@@ -183,7 +215,7 @@ export const updateService = async (
         title,
         description,
         category,
-        hourlyRate
+        hourlyRate,
       },
       {
         headers: {
@@ -200,7 +232,7 @@ export const updateService = async (
 
 export const deleteService = async (
   token: string,
-  serviceId: string,
+  serviceId: string
 ): Promise<AxiosResponse> => {
   try {
     const response: AxiosResponse = await axios.delete(
@@ -234,6 +266,7 @@ export const saveServiceAsFavorite = async (
         headers: {
           Authorization: token,
         },
+        timeout: 5000,
       }
     );
     return response;

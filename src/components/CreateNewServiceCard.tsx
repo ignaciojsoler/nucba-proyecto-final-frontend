@@ -6,7 +6,7 @@ const CreateNewServiceCard = () => {
 
   return (
     <div
-      className="group rounded-lg overflow-hidden bg-emerald-800 flex flex-col justify-center items-center gap-y-4 cursor-pointer transition duration-150 opacity-80 hover:opacity-100 animate-sladeInFromBottomShort"
+      className="group rounded-lg overflow-hidden bg-emerald-600 flex flex-col justify-center items-center gap-y-4 cursor-pointer transition duration-150 opacity-80 hover:opacity-100 animate-sladeInFromBottomShort"
       style={{ minHeight: "11.25rem" }}
       onClick={() => navigate(`../service/edit/create`)}
     >

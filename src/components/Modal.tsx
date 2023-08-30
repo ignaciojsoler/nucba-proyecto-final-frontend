@@ -16,7 +16,7 @@ const Modal: React.FC<ModalProps> = ({
   title,
   text,
   confirmText,
-  cancelText = "Cancel",
+  cancelText = "Cancelar",
   displayCancelButton = true,
   handleConfirm,
   handleCloseModal,
