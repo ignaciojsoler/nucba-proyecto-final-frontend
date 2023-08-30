@@ -128,11 +128,11 @@ const EditService = () => {
   }, []);
 
   return (
-    <div className="m-auto w-full h-screen flex flex-col justify-center items-center bg-cover animate-blurTransition">
+    <div className="m-auto w-full h-screen flex flex-col justify-center items-center bg-cover animate-sladeInFromBottomMedium">
       {isLoading && <Loader />}
-      <div className="p-8 space-y-4 rounded-xl w-full max-w-xl animate-sladeInFromBottomMedium">
+      <div className="p-8 space-y-4 rounded-xl w-full max-w-xl">
         <form
-          className="space-y-4 animate-sladeInFromBottomLong"
+          className="space-y-4"
           onSubmit={(e) => handleSubmit(e)}
         >
           <h3 className=" text-center text-3xl font-bold mb-4">Tu servicio</h3>
