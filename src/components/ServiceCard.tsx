@@ -16,6 +16,8 @@ import {
   removeFavoriteService,
 } from "../store/favoritesSlice";
 import Spinner from "./Spinner";
+import { isExpired, decodeToken } from "react-jwt";
+
 interface ServiceCardProps {
   service: Service;
   user?: User;
@@ -34,10 +36,19 @@ const ServiceCard = ({ service, userId, user }: ServiceCardProps) => {
   const [isSavedAsFavorite, setIsSavedAsFavorite] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [redirect, setRedirect] = useState<boolean>(false);
+  const [userDecodedToken, setUserDecodedToken] = useState<User | null>(null);
 
   const serviceCategoryAttributes = categoriesAttributes.find(
     (c) => c.name === service.category
   );
+
+  const getUserDecodedToken = async () => {
+    if (!token) return;
+    if (isExpired(token)) return;
+    const decodedToken = decodeToken<User>(token);
+    if (!decodedToken) return;
+    setUserDecodedToken(decodedToken);
+  };
 
   const handleSetAsFavorite = async () => {
     if (!isSavedAsFavorite) {
@@ -88,15 +99,22 @@ const ServiceCard = ({ service, userId, user }: ServiceCardProps) => {
   };
 
   useEffect(() => {
+    getUserDecodedToken();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
     if (redirect) {
       return userId && userId === service.userId
         ? navigate(`../service/edit/${service.id}`)
         : navigate(`../service/${service.id}`);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [redirect]);
 
   useEffect(() => {
     isServiceSavedAsFavorite();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [favorites]);
 
   return (
@@ -118,7 +136,7 @@ const ServiceCard = ({ service, userId, user }: ServiceCardProps) => {
           <div className="relative m-7 h-5 w-5">
             <Spinner />
           </div>
-        ) : userId && userId === service.userId ? (
+        ) : userId && userId === service.userId || userDecodedToken && userDecodedToken.id === service.userId ? (
           <div
             className="relative m-7 transition duration-150 hover:opacity-50"
             onClick={(e) => {

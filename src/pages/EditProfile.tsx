@@ -105,12 +105,14 @@ const EditProfile = () => {
 
   useEffect(() => {
     getUserDecodedToken();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (userDecodedToken) {
       handleGetUserById();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userDecodedToken]);
 
   return (

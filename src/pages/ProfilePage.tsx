@@ -10,12 +10,8 @@ import { isExpired, decodeToken } from "react-jwt";
 import ServiceCardSkeleton from "../components/Skeletons/ServiceCardSkeleton";
 import ServiceCard from "../components/ServiceCard";
 import CreateNewServiceCard from "../components/CreateNewServiceCard";
-import { saveOnStorage } from "../helpers/handleStorage";
-import { useDispatch } from "react-redux";
-import { setFavoritesServices } from "../store/favoritesSlice";
 
 const ProfilePage = () => {
-  const dispatch = useDispatch();
 
   const token = useSelector((state: RootState) => state.token.token);
 
@@ -58,16 +54,19 @@ const ProfilePage = () => {
 
   useEffect(() => {
     getUserDecodedToken();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     handleGetFavoritesServices();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, user]);
 
   useEffect(() => {
     if (userDecodedToken) {
       handleGetUserById();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userDecodedToken]);
 
   return (
@@ -89,7 +88,7 @@ const ProfilePage = () => {
                 Servicios
               </h4>
               <div className="grid grid-cols-1 gap-6 w-full md:p-0 md:grid-cols-2 animate-sladeInFromBottomMedium">
-                {userDecodedToken?.updatedAt ? (
+                {user && user.updatedAt ? (
                   <CreateNewServiceCard />
                 ) : (
                   "Actualiza tu perfil para crear nuevos servicios."

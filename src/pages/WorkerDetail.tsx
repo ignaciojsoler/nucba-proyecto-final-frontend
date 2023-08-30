@@ -42,10 +42,12 @@ const WorkerDetail = () => {
 
   useEffect(() => {
     getUserDecodedToken();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
       handleGetWorkerById();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userDecodedToken]);
 
   return (
