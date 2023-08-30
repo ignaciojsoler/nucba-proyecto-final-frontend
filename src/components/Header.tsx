@@ -1,16 +1,19 @@
 import { Button } from "./Button";
 import { Squash as Hamburger } from "hamburger-react";
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/icons/logo.svg";
 import { useEffect } from "react";
 import { tokenExists } from "../helpers/jwtUtils";
 import UserAvatarDropdown from "./UserAvatarDropdown";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
+import { logOut } from "../helpers/logOut";
 
 export const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+
   const { name } = useSelector((state: RootState) => state.user);
 
   const [displayAside, setDisplayAside] = useState(false);
@@ -81,14 +84,35 @@ export const Navbar = () => {
             }`}
           >
             {renderNavLinks()}
-            <Link to="/profile" onClick={closeAside}>
-              <p className=" text-2xl font-bold py-6 md:font-semibold md:py-0 md:text-base">
-                Perfil
-              </p>
-            </Link>
-            <p className=" text-2xl font-bold py-6 md:font-semibold md:py-0 md:text-base">
-              Cerrar sesión
-            </p>
+            {isLoggedIn ? (
+              <>
+                {" "}
+                <Link to="/profile" onClick={closeAside}>
+                  <p className=" text-2xl font-bold py-6 md:font-semibold md:py-0 md:text-base">
+                    Perfil
+                  </p>
+                </Link>
+                <p
+                  className="cursor-pointer text-2xl font-bold py-6 md:font-semibold md:py-0 md:text-base"
+                  onClick={() => {
+                    closeAside()
+                    logOut(navigate)
+                  }}
+                >
+                  Cerrar sesión
+                </p>
+              </>
+            ) : (
+              <p
+                  className="cursor-pointer text-2xl font-bold py-6 md:font-semibold md:py-0 md:text-base"
+                  onClick={() => {
+                    closeAside()
+                    navigate("/plans")
+                  }}
+                >
+                  Registrarse
+                </p>
+            )}
           </div>
         </div>
         <div className="hidden md:space-x-10 md:items-center md:flex">
