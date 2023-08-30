@@ -127,7 +127,7 @@ const ProfileCard = ({
                   ? () => callUserPhone(worker.phone)
                   : ButtonFunction === "visitProfile"
                   ? () => navigate(`../worker/${worker.id}`)
-                  : () => navigate(`./edit`)
+                  : () => navigate(`../profile/edit`)
               }
               widthFull
               title={

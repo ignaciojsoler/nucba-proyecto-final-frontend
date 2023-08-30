@@ -60,6 +60,7 @@ const WorkerDetail = () => {
             worker={worker}
             className="animate-sladeInFromBottomShort"
             userId={userDecodedToken?.id}
+            ButtonFunction={userDecodedToken?.id === worker.id ? "editProfile" : "callUserPhone"}
           />
         )}
         <article className="w-full space-y-4">
