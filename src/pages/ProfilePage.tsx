@@ -103,6 +103,7 @@ const ProfilePage = () => {
                           service={service}
                           key={service.id}
                           userId={userDecodedToken?.id}
+                          user={userDecodedToken || undefined}
                         />
                       );
                     })}
