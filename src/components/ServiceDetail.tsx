@@ -28,7 +28,7 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
   const favorites = useSelector((state: RootState) => state.favorites);
 
   const [isSavedAsFavorite, setIsSavedAsFavorite] = useState<boolean>(false);
-  const [, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [userDecodedToken, setUserDecodedToken] = useState<User | null>(null);
 
   const getUserDecodedToken = async () => {
@@ -94,7 +94,7 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
 
   useEffect(() => {
     getUserDecodedToken();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -125,7 +125,9 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
             />
             <Button
               title={
-                isSavedAsFavorite
+                isLoading
+                  ? "Cargando..."
+                  : isSavedAsFavorite
                   ? "Quitar de favoritos"
                   : "Guardar en favoritos"
               }
@@ -133,6 +135,7 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
               icon={<AiOutlineHeart />}
               onClick={() => handleSetAsFavorite()}
               size="large"
+              className="w-80"
             />
           </>
         )}
