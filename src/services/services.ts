@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosResponse } from "axios";
+import { Service } from "../interfaces/interfaces";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -60,9 +61,12 @@ export const verifyAccount = async (
   }
 };
 
-export const getUsers = async (role: string = "worker", queryParams?: {
-  occupation?: string | null;
-}): Promise<AxiosResponse> => {
+export const getUsers = async (
+  role: string = "worker",
+  queryParams?: {
+    occupation?: string | null;
+  }
+): Promise<AxiosResponse> => {
   try {
     let url = API_URL + "/user";
 
@@ -82,9 +86,7 @@ export const getUsers = async (role: string = "worker", queryParams?: {
   }
 };
 
-export const getUserById = async (
-  userId: string
-): Promise<AxiosResponse> => {
+export const getUserById = async (userId: string): Promise<AxiosResponse> => {
   try {
     const response: AxiosResponse = await axios.get(
       API_URL + `/user/${userId}`
@@ -121,6 +123,58 @@ export const getServiceById = async (
   try {
     const response: AxiosResponse = await axios.get(
       API_URL + `/services/${serviceId}`
+    );
+    return response;
+  } catch (err: any) {
+    console.log(err.response);
+    return err.response;
+  }
+};
+
+export const createNewService = async (
+  token: string,
+  title: string,
+  description: string,
+  category: string,
+  hourlyRate: number | string
+): Promise<AxiosResponse> => {
+  try {
+    const response: AxiosResponse = await axios.post(
+      API_URL + `/services`,
+      {
+        title,
+        description,
+        category,
+        hourlyRate,
+      },
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+    return response;
+  } catch (err: any) {
+    console.log(err.response);
+    return err.response;
+  }
+};
+
+export const updateService = async (
+  token: string,
+  service: Service
+): Promise<AxiosResponse> => {
+  try {
+    const response: AxiosResponse = await axios.put(
+      API_URL + `/services/${service.id}`,
+      {
+        service,
+      },
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
     );
     return response;
   } catch (err: any) {

@@ -117,7 +117,7 @@ const ServiceCard = ({ service, userId }: ServiceCardProps) => {
           </div>
         ) : userId && userId === service.userId ? (
           <div
-            className="relative m-7"
+            className="relative m-7 transition duration-150 hover:opacity-50"
             onClick={(e) => {
               e.stopPropagation();
               navigate(`../service/edit/${service.id}`);
@@ -141,7 +141,7 @@ const ServiceCard = ({ service, userId }: ServiceCardProps) => {
           </div>
         )}
         <div
-          className="w-16 h-16 self-end rounded-tl-xl flex justify-center items-center"
+          className="w-16 h-16 self-end rounded-tl-xl flex justify-center items-center transition duration-150 group-hover:opacity-80"
           style={{ backgroundColor: serviceCategoryAttributes?.color }}
         >
           <img

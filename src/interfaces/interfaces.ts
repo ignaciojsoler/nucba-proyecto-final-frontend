@@ -18,7 +18,7 @@ export interface Service {
   title: string;
   description: string;
   category: string,
-  hourlyRate: number;
+  hourlyRate: number | string;
   userId: string;
   worker: User;
 }
