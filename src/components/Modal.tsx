@@ -8,7 +8,7 @@ interface ModalProps {
   confirmText: string;
   cancelText?: string;
   displayCancelButton?: boolean;
-  handleConfirm: () => void;
+  handleConfirm: (e?: React.FormEvent | React.MouseEvent) => void;
   handleCloseModal: () => void;
 }
 

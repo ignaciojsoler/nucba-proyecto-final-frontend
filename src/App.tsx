@@ -9,6 +9,7 @@ import { useGetStorageData } from "./hooks/useGetStorageData";
 import ProfilePage from "./pages/ProfilePage";
 import ServicePage from "./pages/ServicePage";
 import EditService from "./pages/EditService";
+import EditProfile from "./pages/EditProfile";
 
 const Landing = React.lazy(() => import("./pages/Landing"));
 const Login = React.lazy(() => import("./pages/Login"));
@@ -33,6 +34,7 @@ function App() {
           <Route path="/confirmation" element={<Confirmation />} />
           <Route path="/worker/:id" element={<WorkerDetail/>}/>
           <Route path="/profile" element={<ProfilePage/>}/>
+          <Route path="/profile/edit" element={<EditProfile/>}/>
           <Route path="/service/:id" element={<ServicePage/>}/>
           <Route path="/service/edit/:id" element={<EditService/>}/>
           <Route path="/categories" element={<CategoriesPage/>}/>

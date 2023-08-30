@@ -63,7 +63,7 @@ const Input = (props: InputProps) => {
           onPaste={onChangePaste}
           className={`p-4 bg-slate-800 text-slate-200 rounded-lg w-full min-w-full font-medium placeholder:font-semibold placeholder:text-slate-600 focus:ring focus:ring-slate-600 focus:outline-none ${
             className || ""
-          }`}
+          }${disabled && "opacity-40"}`}
         />
       )}
 

@@ -78,7 +78,7 @@ const ProfileCard = ({
                 <span className="mr-2">
                   <HiOutlineLocationMarker />
                 </span>
-                Ciudad:
+                Ubicación:
               </p>
               <p className={`font-medium ${!city && "text-slate-500"}`}>
                 {city ?? "No especificada"}
