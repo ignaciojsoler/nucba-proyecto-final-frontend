@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Service } from "../interfaces/interfaces";
+import { Service, User } from "../interfaces/interfaces";
 import { AiFillHeart, AiOutlineHeart, AiOutlineEdit } from "react-icons/ai";
 import { categoriesAttributes } from "../helpers/categoriesAttributes";
 import { useNavigate } from "react-router-dom";
@@ -18,10 +18,11 @@ import {
 import Spinner from "./Spinner";
 interface ServiceCardProps {
   service: Service;
+  user?: User;
   userId?: string;
 }
 
-const ServiceCard = ({ service, userId }: ServiceCardProps) => {
+const ServiceCard = ({ service, userId, user }: ServiceCardProps) => {
   const { id, title, description, hourlyRate, worker } = service;
   const navigate = useNavigate();
   const token = useSelector((state: RootState) => state.token.token);
@@ -106,7 +107,7 @@ const ServiceCard = ({ service, userId }: ServiceCardProps) => {
     >
       <div className="space-y-1 p-6">
         <h4 className="font-bold text-xl text line-clamp-1">{title}</h4>
-        <span className="line-clamp-1">{worker?.name ?? ""}</span>
+        <span className="line-clamp-1">{worker?.name || user?.name}</span>
         <h5 className={`font-bold text-xl text-emerald-600 line-clamp-1`}>
           ${hourlyRate}/h
         </h5>

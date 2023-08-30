@@ -11,6 +11,7 @@ export interface User {
   bio?: string;
   services?: Service[];
   createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface Service {

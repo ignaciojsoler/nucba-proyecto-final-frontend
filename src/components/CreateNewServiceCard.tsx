@@ -1,8 +1,8 @@
-import {MdAdd} from "react-icons/md";
+import { MdAdd } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 const CreateNewServiceCard = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <div
@@ -11,9 +11,11 @@ const CreateNewServiceCard = () => {
       onClick={() => navigate(`../service/edit/create`)}
     >
       <h5 className="font-bold text-xl text-slate-100">Crear servicio nuevo</h5>
-      <button className="bg-emerald-700 rounded-full p-2"><MdAdd className="w-10 h-10"/></button>
+      <button className="bg-emerald-700 rounded-full p-2">
+        <MdAdd className="w-10 h-10" />
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default CreateNewServiceCard
+export default CreateNewServiceCard;

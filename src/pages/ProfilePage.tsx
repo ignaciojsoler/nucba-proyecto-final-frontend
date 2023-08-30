@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import ProfileCardSkeleton from "../components/Skeletons/ProfileCardSkeleton";
 import ProfileCard from "../components/ProfileCard";
-import { getUserById } from "../services/services";
-import { User } from "../interfaces/interfaces";
+import { getUserById, getUserFavoritesServices } from "../services/services";
+import { FavoriteService, User } from "../interfaces/interfaces";
 import { AxiosResponse } from "axios";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { RootState } from "../store/store";
@@ -10,21 +10,27 @@ import { isExpired, decodeToken } from "react-jwt";
 import ServiceCardSkeleton from "../components/Skeletons/ServiceCardSkeleton";
 import ServiceCard from "../components/ServiceCard";
 import CreateNewServiceCard from "../components/CreateNewServiceCard";
+import { saveOnStorage } from "../helpers/handleStorage";
+import { useDispatch } from "react-redux";
+import { setFavoritesServices } from "../store/favoritesSlice";
 
 const ProfilePage = () => {
-  const token = useSelector((state: RootState) => state.token);
+  const dispatch = useDispatch();
+
+  const token = useSelector((state: RootState) => state.token.token);
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [user, setUser] = useState<User | null>(null);
   const [userDecodedToken, setUserDecodedToken] = useState<User | null>(null);
+  const [favorites, setFavorites] = useState<FavoriteService[]>([]);
 
   const getUserDecodedToken = async () => {
-    if (!token.token) return;
-    if (isExpired(token.token)) return;
-    const decodedToken = decodeToken<User>(token.token);
+    if (!token) return;
+    if (isExpired(token)) return;
+    const decodedToken = decodeToken<User>(token);
     if (!decodedToken) return;
     setUserDecodedToken(decodedToken);
-  }
+  };
 
   const handleGetUserById = async () => {
     if (!userDecodedToken) return;
@@ -35,13 +41,29 @@ const ProfilePage = () => {
     if (userData.status !== 200) {
       return console.log(userData.data.msg);
     }
-    setUser(userData.data.userData);
+    if (userData.data.userData) {
+      setUser(userData.data.userData);
+    }
+  };
+
+  const handleGetFavoritesServices = async () => {
+    if (!token || !user?.id) return null;
+    const favoritesServices: AxiosResponse = await getUserFavoritesServices(
+      token,
+      user?.id
+      );
+    if (!favoritesServices || favoritesServices.status !== 200) return null;
+    setFavorites(favoritesServices.data);
   };
 
   useEffect(() => {
     getUserDecodedToken();
   }, []);
-  
+
+  useEffect(() => {
+    handleGetFavoritesServices();
+  }, [token, user]);
+
   useEffect(() => {
     if (userDecodedToken) {
       handleGetUserById();
@@ -67,7 +89,11 @@ const ProfilePage = () => {
                 Servicios
               </h4>
               <div className="grid grid-cols-1 gap-6 w-full md:p-0 md:grid-cols-2 animate-sladeInFromBottomMedium">
-                <CreateNewServiceCard/>
+                {userDecodedToken?.updatedAt ? (
+                  <CreateNewServiceCard />
+                ) : (
+                  "Actualiza tu perfil para crear nuevos servicios."
+                )}
                 {isLoading || !user
                   ? Array.from({ length: 8 }, (_, index) => (
                       <ServiceCardSkeleton key={index} />
@@ -90,13 +116,21 @@ const ProfilePage = () => {
                 Favoritos
               </h4>
               <div className="grid grid-cols-1 gap-6 w-full md:p-0 md:grid-cols-2 animate-sladeInFromBottomMedium">
-                {/* {isLoading || !user
-              ? Array.from({ length: 8 }, (_, index) => (
-                  <ServiceCardSkeleton key={index} />
-                ))
-              : user?.services?.map((s) => {
-                  return <ServiceCard service={{ ...s, worker }} key={s.id} />;
-                })} */}
+                {isLoading || !user
+                  ? Array.from({ length: 8 }, (_, index) => (
+                      <ServiceCardSkeleton key={index} />
+                    ))
+                  : !favorites.length
+                  ? "Aún no has agregado servicios a favoritos."
+                  : favorites.map((favorite) => {
+                      return (
+                        <ServiceCard
+                          service={favorite.service}
+                          user={favorite.user}
+                          key={favorite.id}
+                        />
+                      );
+                    })}
               </div>
             </>
           )}
