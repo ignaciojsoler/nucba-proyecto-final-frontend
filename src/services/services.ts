@@ -15,7 +15,7 @@ export const loginWithEmailAndPassword = async (
         email,
         password,
       },
-      { timeout: 5000 }
+      { timeout:  25000 }
     );
     return response;
   } catch (err: any) {
@@ -39,7 +39,7 @@ export const signUp = async (
         role,
       },
       {
-        timeout: 5000,
+        timeout:  25000,
       }
     );
     return response;
@@ -57,7 +57,7 @@ export const verifyAccount = async (
     const response: AxiosResponse = await axios.post(API_URL + `/auth/verify`, {
       email,
       verificationCode,
-    }, {timeout: 5000});
+    }, {timeout:  25000});
     return response;
   } catch (err: any) {
     console.log(err.response);
@@ -116,7 +116,7 @@ export const findUserAndUpdate = async (
         headers: {
           Authorization: token,
         },
-        timeout: 5000,
+        timeout:  25000,
       }
     );
     return response;
@@ -191,7 +191,7 @@ export const createNewService = async (
         headers: {
           Authorization: token,
         },
-        timeout: 5000,
+        timeout:  25000,
       }
     );
     return response;
@@ -267,7 +267,7 @@ export const saveServiceAsFavorite = async (
         headers: {
           Authorization: token,
         },
-        timeout: 5000,
+        timeout:  25000,
       }
     );
     return response;
