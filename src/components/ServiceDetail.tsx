@@ -129,7 +129,7 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
                   ? "Quitar de favoritos"
                   : "Guardar en favoritos"
               }
-              color="dark"
+              color={isSavedAsFavorite ? "dark" : "neutral"}
               icon={<AiOutlineHeart />}
               onClick={() => handleSetAsFavorite()}
               size="large"
