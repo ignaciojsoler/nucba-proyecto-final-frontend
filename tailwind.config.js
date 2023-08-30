@@ -75,7 +75,7 @@ export default {
       },
       animation: {
         pong: "pong 1s infinite ease",
-        fadeIn: "fadeIn 1s ease",
+        fadeIn: "fadeIn .3s ease",
         sladeInFromBottomShort: "sladeInFromBottomShort .3s ease",
         sladeInFromBottomMedium: "sladeInFromBottomMedium .6s  ease",
         sladeInFromBottomLong: "sladeInFromBottomLong .9s ease-out",

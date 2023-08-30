@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Service, User } from "../interfaces/interfaces";
 import {
   createNewService,
+  deleteService,
   getServiceById,
   updateService,
 } from "../services/services";
@@ -15,6 +16,7 @@ import { RootState } from "../store/store";
 import { useSelector } from "react-redux";
 import { AxiosResponse } from "axios";
 import { validateInput } from "../helpers/inputValidators";
+import Modal from "../components/Modal";
 
 const categories = categoriesData.categorias.map((categoria) => ({
   value: categoria.name,
@@ -38,8 +40,8 @@ const EditService = () => {
   const token = useSelector((state: RootState) => state.token.token);
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
-
   const [service, setService] = useState<Service>(initialServiceState);
+  const [displayModal, setDisplayModal] = useState<boolean>(false);
 
   const handleGetServiceById = async () => {
     const serviceData = await getServiceById(serviceId);
@@ -50,10 +52,6 @@ const EditService = () => {
       return console.log(serviceData.data.msg);
     }
     setService(serviceData.data);
-  };
-
-  const handleRemoveService = () => {
-    alert("estas seguro?");
   };
 
   const handleSubmit = async (e: React.FormEvent<EventTarget>) => {
@@ -130,12 +128,38 @@ const EditService = () => {
     return alert("Debes ingresar a una sesión para hacer esto.");
   };
 
+  const handledeleteService = async () => {
+    setDisplayModal(false);
+    setIsLoading(true);
+    if (!token) return;
+    const createdService: AxiosResponse = await deleteService(
+      token,
+      service.id
+    );
+    setIsLoading(false);
+    if (!createdService || createdService.status !== 200)
+      return alert(
+        "No se ha podido eliminar el servicio. Inténtalo de nuevo más tarde."
+      );
+    return console.log(createdService);
+  };
+
   useEffect(() => {
     handleGetServiceById();
   }, []);
 
   return (
     <div className="m-auto w-full h-screen flex flex-col justify-center items-center bg-cover animate-sladeInFromBottomMedium">
+      <Modal
+        display={displayModal}
+        title="¿Estás seguro de eliminar este servicio?"
+        text="Una vez que elimines el servicio, no habrá manera de recuperarlo."
+        confirmText="Eliminar"
+        handleConfirm={() => handledeleteService()}
+        handleCloseModal={() => {
+          setDisplayModal(false);
+        }}
+      />
       {isLoading && <Loader />}
       <div className="p-8 space-y-4 rounded-xl w-full max-w-xl">
         <form className="space-y-4" onSubmit={(e) => handleSubmit(e)}>
@@ -202,7 +226,7 @@ const EditService = () => {
         {service?.id && (
           <Button
             title="Eliminar"
-            onClick={() => handleRemoveService()}
+            onClick={() => setDisplayModal(true)}
             widthFull
             color="outline"
           />

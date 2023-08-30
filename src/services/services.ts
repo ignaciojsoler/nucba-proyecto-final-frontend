@@ -189,6 +189,26 @@ export const updateService = async (
   }
 };
 
+export const deleteService = async (
+  token: string,
+  serviceId: string,
+): Promise<AxiosResponse> => {
+  try {
+    const response: AxiosResponse = await axios.delete(
+      API_URL + `/services/${serviceId}`,
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+    return response;
+  } catch (err: any) {
+    console.log(err.response);
+    return err.response;
+  }
+};
+
 export const saveServiceAsFavorite = async (
   token: string,
   userId: string,
