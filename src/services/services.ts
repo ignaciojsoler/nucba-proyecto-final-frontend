@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosResponse } from "axios";
-import { Service } from "../interfaces/interfaces";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -162,13 +161,20 @@ export const createNewService = async (
 
 export const updateService = async (
   token: string,
-  service: Service
+  serviceId: string,
+  title: string,
+  description: string,
+  category: string,
+  hourlyRate: number | string
 ): Promise<AxiosResponse> => {
   try {
     const response: AxiosResponse = await axios.put(
-      API_URL + `/services/${service.id}`,
+      API_URL + `/services/${serviceId}`,
       {
-        service,
+        title,
+        description,
+        category,
+        hourlyRate
       },
       {
         headers: {

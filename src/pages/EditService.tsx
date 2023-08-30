@@ -95,7 +95,14 @@ const EditService = () => {
     setIsLoading(true);
 
     if (service?.id && token) {
-      const updatedService: AxiosResponse = await updateService(token, service);
+      const updatedService: AxiosResponse = await updateService(
+        token,
+        service.id,
+        service.title,
+        service.description,
+        service.category,
+        service.hourlyRate
+      );
       setIsLoading(false);
       if (!updatedService || updatedService.status !== 200)
         return alert(
@@ -120,7 +127,7 @@ const EditService = () => {
     }
 
     setIsLoading(false);
-    return alert("Debes ingresar a una sesión para hacer esto.")
+    return alert("Debes ingresar a una sesión para hacer esto.");
   };
 
   useEffect(() => {
@@ -131,10 +138,7 @@ const EditService = () => {
     <div className="m-auto w-full h-screen flex flex-col justify-center items-center bg-cover animate-sladeInFromBottomMedium">
       {isLoading && <Loader />}
       <div className="p-8 space-y-4 rounded-xl w-full max-w-xl">
-        <form
-          className="space-y-4"
-          onSubmit={(e) => handleSubmit(e)}
-        >
+        <form className="space-y-4" onSubmit={(e) => handleSubmit(e)}>
           <h3 className=" text-center text-3xl font-bold mb-4">Tu servicio</h3>
           <Input
             placeholder="Título"
