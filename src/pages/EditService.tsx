@@ -152,7 +152,7 @@ const EditService = () => {
   }, []);
 
   return (
-    <div className="m-auto w-full h-screen flex flex-col justify-center items-center bg-cover animate-sladeInFromBottomMedium">
+    <div className="m-auto w-full min-h-screen flex flex-col justify-center items-center bg-cover animate-sladeInFromBottomMedium">
       <Modal
         display={displayModal}
         title="¿Estás seguro de eliminar este servicio?"

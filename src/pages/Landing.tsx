@@ -6,8 +6,8 @@ import bgLandingDesktop from "../assets/img/bg-landing-desktop.jpg";
 const Landing = () => {
   const navigate = useNavigate();
   return (
-    <main className="m-auto w-full h-screen flex flex-col justify-center items-center">
-      <section className="p-8 space-y-8 rounded-xl w-full z-10 pt-36 md:max-w-2xl lg:max-w-7xl md:pt-0">
+    <main className="m-auto w-full min-h-screen flex flex-col justify-center items-center">
+      <section className="p-8 space-y-8 rounded-xl w-full z-10 pt-36 md:max-w-2xl lg:max-w-7xl md:pt-16">
         <div className="space-y-6 md:max-w-2xl lg:max-w-2xl"> 
           <h1 className=" text-5xl font-bold md:text-8xl animate-sladeInFromBottomShort">
             Bienvenido a <span className=" text-emerald-600">ServiHogar</span>

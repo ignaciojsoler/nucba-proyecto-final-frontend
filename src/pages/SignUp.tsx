@@ -90,12 +90,12 @@ const SignUp = () => {
       {isLoading && <Loader />}
 
       <div
-        className="h-full bg-cover"
+        className="min-h-full bg-cover"
         style={{ backgroundImage: `url(${signupImg})` }}
       >
-        <div className="m-auto max-w-7xl min-h-screen flex flex-col justify-center items-center px-6 lg:flex-row lg:h-screen lg:space-x-8">
-          <div className="hidden w-full lg:flex lg:flex-col lg:h-full lg:py-28">
-            <div className="h-full bg-slate-800 bg-opacity-40 backdrop-blur-lg rounded-2xl p-12 flex flex-col justify-center items-start space-y-8   animate-sladeInFromBottomShort">
+        <div className="m-auto pt-16 max-w-7xl min-h-screen flex flex-col justify-center items-center px-6 lg:flex-row lg:h-screen lg:space-x-8">
+          <div className="hidden w-full lg:flex lg:flex-col lg:justify-center lg:h-full lg:py-28">
+            <div className="min-h-fit bg-slate-800 bg-opacity-40 backdrop-blur-lg rounded-2xl p-12 flex flex-col justify-center items-start space-y-8   animate-sladeInFromBottomShort">
               <h3 className=" text-6xl font-bold">
                 <span className=" text-purple-700">Unite</span> a nuestra
                 comunidad hoy.

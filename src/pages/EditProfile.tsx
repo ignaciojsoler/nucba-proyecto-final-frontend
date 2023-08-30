@@ -116,7 +116,7 @@ const EditProfile = () => {
   }, [userDecodedToken]);
 
   return (
-    <div className="m-auto w-full h-screen flex flex-col justify-center items-center bg-cover animate-sladeInFromBottomMedium">
+    <div className="m-auto w-full min-h-screen flex flex-col justify-center items-center bg-cover animate-sladeInFromBottomMedium lg:pt-20">
       {isLoading && <Loader />}
       <Modal
         display={displayModal}

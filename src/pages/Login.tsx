@@ -76,11 +76,11 @@ const Login = () => {
 
   return (
     <div
-      className="m-auto w-full h-screen flex flex-col justify-center items-center bg-cover animate-blurTransition"
-      style={{ backgroundImage: `url(${loginBackground})` }}
+      className="m-auto w-full min-h-screen flex flex-col justify-center items-center bg-cover animate-blurTransition"
+      style={{ backgroundImage: `url(${loginBackground})`, backgroundAttachment: "fixed" }}
     >
       {isLoading && <Loader />}
-      <div className="p-8 space-y-8 rounded-xl w-full max-w-xl animate-sladeInFromBottomMedium">
+      <div className="p-8 pt-32 space-y-8 rounded-xl w-full max-w-xl animate-sladeInFromBottomMedium">
         <div className="space-y-4">
           <img
             src={logoIcon}
