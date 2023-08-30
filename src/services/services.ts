@@ -106,6 +106,7 @@ export const findUserAndUpdate = async (
   token: string,
   user: User
 ): Promise<AxiosResponse> => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { email, id, createdAt, services, ...body } = user;
   try {
     const response: AxiosResponse = await axios.put(

@@ -2,10 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import provincesData from "../data/provinces.json";
 import { User } from "../interfaces/interfaces";
-import {
-  findUserAndUpdate,
-  getUserById,
-} from "../services/services";
+import { findUserAndUpdate, getUserById } from "../services/services";
 import { Loader } from "../components/Loader";
 import Input from "../components/Input";
 import { Button } from "../components/Button";
@@ -16,6 +13,7 @@ import { AxiosResponse } from "axios";
 import categoriesData from "../data/categories.json";
 import { isExpired, decodeToken } from "react-jwt";
 import Modal from "../components/Modal";
+import { validateInput } from "../helpers/inputValidators";
 
 const categories = categoriesData.categorias.map((categoria) => ({
   value: categoria.name,
@@ -32,7 +30,6 @@ const sortedProvinces = provinces
   .sort((a, b) => a.label.localeCompare(b.label));
 
 const EditProfile = () => {
-
   const navigate = useNavigate();
 
   const token = useSelector((state: RootState) => state.token.token);
@@ -49,7 +46,7 @@ const EditProfile = () => {
     const decodedToken = decodeToken<User>(token);
     if (!decodedToken) return;
     setUserDecodedToken(decodedToken);
-  }
+  };
 
   const handleGetUserById = async () => {
     if (!userDecodedToken) return;
@@ -65,6 +62,44 @@ const EditProfile = () => {
 
   const handleSubmit = async (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
+
+    if (!user.phone || !user.bio) return;
+
+    const [nameValidations] = validateInput(user?.name, [
+      "notEmpty",
+      "minLength:8",
+      "maxLength:50",
+    ]);
+
+    const [emailValidations] = validateInput(user?.email, [
+      "notEmpty",
+      "isEmail",
+    ]);
+
+    const [phoneValidations] = validateInput(user?.phone, [
+      "notEmpty",
+      "isValidPhone",
+    ]);
+
+    const [bioValidations] = validateInput(user?.bio, [
+      "notEmpty",
+      "minLength:50",
+      "maxLength:150",
+    ]);
+
+    if (
+      nameValidations.length > 0 ||
+      phoneValidations.length > 0 ||
+      bioValidations.length > 0 ||
+      emailValidations.length > 0 ||
+      !user.city ||
+      !user.occupation
+    ) {
+      alert(
+        "¡Ups! Alguno de los campos ingresados es incorrecto. Por favor, revisa los campos y vuelve a intentarlo."
+      );
+      return;
+    }
     setIsLoading(true);
     if (!token) return alert("Debes iniciar sesión para hacer esto.");
     const updatedUser: AxiosResponse = await findUserAndUpdate(token, user);
@@ -74,19 +109,19 @@ const EditProfile = () => {
     if (updatedUser.status !== 200) {
       return alert(updatedUser.data);
     }
-    setUser(updatedUser.data.user)
+    setUser(updatedUser.data.user);
     setDisplayModal(true);
   };
 
   const handleConfirmAndNavigate = () => {
     setDisplayModal(false);
     navigate("../profile");
-  }
+  };
 
   useEffect(() => {
     getUserDecodedToken();
   }, []);
-  
+
   useEffect(() => {
     if (userDecodedToken) {
       handleGetUserById();
@@ -110,47 +145,52 @@ const EditProfile = () => {
           <h3 className=" text-center text-3xl font-bold mb-4">Tus datos</h3>
           <Input
             placeholder="Nombre completo"
-            onChangeText={(e) => setUser(prevUser => ({...prevUser, name: e}))}
+            onChangeText={(e) =>
+              setUser((prevUser) => ({ ...prevUser, name: e }))
+            }
             value={user?.name}
-            validations={["notEmpty", "minLength:12", "maxLength:60"]}
+            validations={["notEmpty", "minLength:8", "maxLength:50"]}
           />
           <Input
             placeholder="Correo electrónico"
             onChangeText={() => {}}
             value={user?.email || ""}
-            validations={["notEmpty", "minLength:12", "maxLength:60"]}
+            validations={["notEmpty", "isEmail"]}
             disabled
           />
           <SelectInput
-            onChange={(e) => setUser(prevUser => ({...prevUser, city: e}))}
+            onChange={(e) => setUser((prevUser) => ({ ...prevUser, city: e }))}
             options={sortedProvinces}
             placeholder="Selecciona una ubicación"
             value={user?.city || ""}
           />
           <Input
             placeholder="Teléfono"
-            onChangeText={(e) => setUser(prevUser => ({...prevUser, phone: e}))}
+            onChangeText={(e) =>
+              setUser((prevUser) => ({ ...prevUser, phone: e }))
+            }
             value={user?.phone || ""}
-            validations={["notEmpty", "minLength:12", "maxLength:60"]}
+            validations={["isValidPhone"]}
           />
           <SelectInput
-            onChange={(e) => setUser(prevUser => ({...prevUser, occupation: e}))}
+            onChange={(e) =>
+              setUser((prevUser) => ({ ...prevUser, occupation: e }))
+            }
             options={categories}
             placeholder="Selecciona una ocupación"
             value={user?.occupation || ""}
           />
           <Input
-            onChangeText={(e) => setUser(prevUser => ({...prevUser, bio: e}))}
+            onChangeText={(e) =>
+              setUser((prevUser) => ({ ...prevUser, bio: e }))
+            }
             placeholder="Acerca de tí"
             value={user?.bio || ""}
             type="textarea"
             rows={3}
+            validations={["minLength:50", "maxLength:150"]}
           />
-          <Button
-            title="Actualizar"
-            className="w-full"
-            onClick={() => {}}
-          />
+          <Button title="Actualizar" className="w-full" onClick={() => {}} />
         </form>
       </div>
     </div>

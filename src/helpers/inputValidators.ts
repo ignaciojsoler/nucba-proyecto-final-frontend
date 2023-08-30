@@ -67,7 +67,7 @@ export const notEmpty = (value: string): [boolean, string] => {
 
   export const isValidPhone = (value: string): [boolean, string]  => {
     const phoneRegex = /^(0[1-9]|11|[2-9]\d{1})([2-9]\d{6,7})$/;
-    return [phoneRegex.test(value), "El formato del número de teléfono no es válido. (código de área) número."];
+    return [phoneRegex.test(value), "Por favor, introduce un número de teléfono válido, incluyendo el código de área y el número."];
   };
 
   export function isValidJWT(token: string): [boolean, string] {
