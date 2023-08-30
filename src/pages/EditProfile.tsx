@@ -12,7 +12,7 @@ import { AxiosResponse } from "axios";
 import { isExpired, decodeToken } from "react-jwt";
 import Modal from "../components/Modal";
 import { validateInput } from "../helpers/inputValidators";
-import { categoriesList, rolesList, sortedProvincesList } from "../helpers/selectLists";
+import { occupationsList, rolesList, sortedProvincesList } from "../helpers/selectLists";
 
 const EditProfile = () => {
   const navigate = useNavigate();
@@ -171,7 +171,7 @@ const EditProfile = () => {
             onChange={(e) =>
               setUser((prevUser) => ({ ...prevUser, occupation: e }))
             }
-            options={categoriesList}
+            options={occupationsList}
             placeholder="Selecciona una ocupación"
             value={user?.occupation || ""}
           />

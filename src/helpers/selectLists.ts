@@ -6,6 +6,11 @@ export const categoriesList = categoriesData.categorias.map((categoria) => ({
   label: categoria.name,
 }));
 
+export const occupationsList = categoriesData.categorias.map((categoria) => ({
+  value: categoria.occupation,
+  label: categoria.occupation,
+}));
+
 export const provincesList = provincesData.provincias.map((province) => ({
   value: province.nombre,
   label: province.nombre,
