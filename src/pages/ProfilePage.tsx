@@ -9,6 +9,7 @@ import { RootState } from "../store/store";
 import { isExpired, decodeToken } from "react-jwt";
 import ServiceCardSkeleton from "../components/Skeletons/ServiceCardSkeleton";
 import ServiceCard from "../components/ServiceCard";
+import CreateNewServiceCard from "../components/CreateNewServiceCard";
 
 const ProfilePage = () => {
   const token = useSelector((state: RootState) => state.token);
@@ -66,6 +67,7 @@ const ProfilePage = () => {
                 Servicios
               </h4>
               <div className="grid grid-cols-1 gap-6 w-full md:p-0 md:grid-cols-2 animate-sladeInFromBottomMedium">
+                <CreateNewServiceCard/>
                 {isLoading || !user
                   ? Array.from({ length: 8 }, (_, index) => (
                       <ServiceCardSkeleton key={index} />
