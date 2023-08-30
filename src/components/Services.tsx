@@ -28,7 +28,7 @@ const Services = () => {
   }
 
   const handleGetServices = async () => {
-    const servicesData: AxiosResponse = await getServices();
+    const servicesData: AxiosResponse = await getServices({take: "8"});
     if (!servicesData || servicesData.status !== 200) return;
     setServices(servicesData.data);
     setIsLoading(false);

@@ -99,12 +99,21 @@ export const getUserById = async (userId: string): Promise<AxiosResponse> => {
 
 export const getServices = async (queryParams?: {
   category?: string | null;
+  take?: string | null;
 }): Promise<AxiosResponse> => {
   try {
     let url = API_URL + "/services";
 
-    if (queryParams && queryParams.category !== null) {
-      url += `?category=${queryParams.category}`;
+    if (queryParams) {
+      const { category, take } = queryParams;
+
+      if (category !== null && category !== undefined) {
+        url += `?category=${category}`;
+      }
+
+      if (take !== null) {
+        url += category !== null && category !== undefined ? `&take=${take}` : `?take=${take}`;
+      }
     }
 
     const response: AxiosResponse = await axios.get(url);
