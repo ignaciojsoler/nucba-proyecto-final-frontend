@@ -9,6 +9,7 @@ import ProfileCardSkeleton from "../components/Skeletons/ProfileCardSkeleton";
 import { isExpired, decodeToken } from "react-jwt";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
+import CreateNewServiceCard from "../components/CreateNewServiceCard";
 
 const WorkerDetail = () => {
   const { pathname } = useLocation();
@@ -64,6 +65,7 @@ const WorkerDetail = () => {
             Servicios
           </h4>
           <div className="grid grid-cols-1 gap-6 w-full md:p-0 md:grid-cols-2 animate-sladeInFromBottomMedium">
+            {userDecodedToken?.id === worker?.id && <CreateNewServiceCard/>}
             {isLoading || !worker
               ? Array.from({ length: 8 }, (_, index) => (
                   <ServiceCardSkeleton key={index} />
