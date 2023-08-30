@@ -88,14 +88,16 @@ const ServiceCard = ({ service, userId }: ServiceCardProps) => {
 
   useEffect(() => {
     if (redirect) {
-      navigate(`../service/${service.id}`);
+      return userId && userId === service.userId
+        ? navigate(`../service/edit/${service.id}`)
+        : navigate(`../service/${service.id}`);
     }
   }, [redirect]);
 
   useEffect(() => {
     isServiceSavedAsFavorite();
   }, [favorites]);
- 
+
   return (
     <div
       className="group rounded-lg overflow-hidden bg-slate-900 flex justify-between cursor-pointer transition duration-150 hover:bg-slate-800 animate-sladeInFromBottomShort"
@@ -123,7 +125,7 @@ const ServiceCard = ({ service, userId }: ServiceCardProps) => {
               navigate(`../service/edit/${service.id}`);
             }}
           >
-            <AiOutlineEdit size={20} color={"rgb(5, 150, 105)"}/>
+            <AiOutlineEdit size={20} color={"rgb(5, 150, 105)"} />
           </div>
         ) : (
           <div

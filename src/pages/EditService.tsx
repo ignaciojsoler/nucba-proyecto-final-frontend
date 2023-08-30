@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Service, User } from "../interfaces/interfaces";
 import {
@@ -36,6 +36,8 @@ const initialServiceState: Service = {
 const EditService = () => {
   const { pathname } = useLocation();
   const serviceId = pathname.substring(pathname.lastIndexOf("/") + 1);
+
+  const navigate = useNavigate();
 
   const token = useSelector((state: RootState) => state.token.token);
 
@@ -106,7 +108,7 @@ const EditService = () => {
         return alert(
           "No se ha podido actualizar el servicio. Inténtalo de nuevo más tarde."
         );
-      return console.log(updatedService);
+      return navigate("/profile");
     }
     if (token) {
       const createdService: AxiosResponse = await createNewService(
@@ -121,7 +123,7 @@ const EditService = () => {
         return alert(
           "No se ha podido crear el servicio. Inténtalo de nuevo más tarde."
         );
-      return console.log(createdService);
+      return navigate("/profile");
     }
 
     setIsLoading(false);
@@ -130,8 +132,8 @@ const EditService = () => {
 
   const handledeleteService = async () => {
     setDisplayModal(false);
-    setIsLoading(true);
     if (!token) return;
+    setIsLoading(true);
     const createdService: AxiosResponse = await deleteService(
       token,
       service.id
@@ -141,7 +143,7 @@ const EditService = () => {
       return alert(
         "No se ha podido eliminar el servicio. Inténtalo de nuevo más tarde."
       );
-    return console.log(createdService);
+    navigate("/profile");
   };
 
   useEffect(() => {

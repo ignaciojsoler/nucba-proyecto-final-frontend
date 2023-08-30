@@ -55,7 +55,7 @@ const Input = (props: InputProps) => {
         />
       ) : (
         <input
-          type="text"
+          type={type}
           value={value}
           placeholder={placeholder}
           disabled={disabled}
