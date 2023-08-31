@@ -18,7 +18,7 @@ import {
   sortedProvincesList,
 } from "../helpers/selectLists";
 import defaultUserIcon from "../assets/icons/default-user.svg";
-import { ref } from "firebase/storage";
+import { ref, uploadBytes } from "firebase/storage";
 import { storage } from "../config/firebaseConfig";
 import { AiOutlineEdit } from "react-icons/ai";
 
@@ -100,6 +100,7 @@ const EditProfile = () => {
     setIsLoading(true);
     if (!token) return alert("Debes iniciar sesión para hacer esto.");
     const updatedUser: AxiosResponse = await findUserAndUpdate(token, user);
+    uploadImage()
     setIsLoading(false);
     if (!updatedUser)
       return alert("Algo ha salido mal, intentalo de nuevo más tarde");
@@ -130,6 +131,11 @@ const EditProfile = () => {
       const imageURL = URL.createObjectURL(selectedImage);
       setProfileImageUrl(imageURL);
     }
+  };
+
+  const uploadImage = () => {
+    if (!profileImage) return null;
+    uploadBytes(storageRef, profileImage).catch((err) => err);
   };
 
   useEffect(() => {
@@ -172,7 +178,7 @@ const EditProfile = () => {
               alt="User image"
               loading="lazy"
             />
-            <div className="absolute top-20 left-16 h-full w-full flex items-center justify-center ">
+            <div className="absolute top-40 left-16 w-full flex items-center justify-center">
               <div className="p-4 bg-emerald-600 rounded-full cursor-pointer transition duration-150 ease-in hover:bg-emerald-500 flex items-center justify-center ">
                 <span className="text-white font-bold">
                   <AiOutlineEdit size={20} />
