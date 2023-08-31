@@ -140,7 +140,6 @@ const EditProfile = () => {
     if (!updatedUser)
       return alert("Algo ha salido mal, intentalo de nuevo más tarde");
     if (updatedUser.status !== 200) {
-      console.log(updatedUser.data)
       return alert(updatedUser.data);
     }
     const userClientData = {
