@@ -14,9 +14,6 @@ import { useDispatch } from "react-redux";
 import { tokenExists } from "../helpers/jwtUtils";
 import loginBackground from "../assets/img/login-img.jpg";
 import { saveOnStorage } from "../helpers/handleStorage";
-import { storage } from "../config/firebaseConfig";
-import { ref } from "firebase/storage";
-import { getProfileImage } from "../helpers/getProfileImage";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -67,13 +64,7 @@ const Login = () => {
     saveOnStorage("token", loginResponse.data.token);
     saveOnStorage("user", loginResponse.data.user);
 
-    const storageRef = ref(storage, loginResponse.data.user.id);
-    const profileImage = await getProfileImage(storageRef);
-    const userData = {
-      ...loginResponse.data.user,
-      profileImage: profileImage,
-    };
-    dispatch(updateUser(userData));
+    dispatch(updateUser(loginResponse.data.user));
     dispatch(updateToken(loginResponse.data.token));
 
     isLoggedIn();
