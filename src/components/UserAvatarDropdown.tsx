@@ -55,7 +55,7 @@ const UserAvatarDropdown = ({isLoggedIn}: UserAvatarDropdownProps) => {
       onClick={() => setDisplayDropdownItems(!displayDropdownItems)}
       ref={containerRef}
     >
-      <img src={profileImage ?? defaultUserIcon} alt="User avatar" className="w-full h-full rounded-full overflow-hidden" />
+      <img src={profileImage ?? defaultUserIcon} alt="User avatar" className="w-9 h-9 rounded-full overflow-hidden object-cover" />
       {displayDropdownItems && (
         <ul className="absolute text-end top-14 p-6 space-y-3 w-40 rounded-lg bg-slate-900 bg-opacity-80 backdrop-blur-xl shadow-2xl animate-sladeInFromBottomShort">
           {dropdownOptions.map((dropDownTiem, idx) => {
