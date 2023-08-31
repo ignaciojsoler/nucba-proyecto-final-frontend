@@ -73,7 +73,8 @@ const WorkerDetail = () => {
               ? Array.from({ length: 8 }, (_, index) => (
                   <ServiceCardSkeleton key={index} />
                 ))
-              : worker?.services?.map((s) => {
+              : !worker.services?.length ? "Aún no hay servicios agregados."
+              : worker.services?.map((s) => {
                   return (
                     <ServiceCard
                       service={{ ...s, worker }}
