@@ -73,7 +73,6 @@ const Login = () => {
       ...loginResponse.data.user,
       profileImage: profileImage,
     };
-    console.log(userData)
     dispatch(updateUser(userData));
     dispatch(updateToken(loginResponse.data.token));
 
