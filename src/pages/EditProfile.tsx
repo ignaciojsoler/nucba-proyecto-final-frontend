@@ -12,7 +12,15 @@ import { AxiosResponse } from "axios";
 import { isExpired, decodeToken } from "react-jwt";
 import Modal from "../components/Modal";
 import { validateInput } from "../helpers/inputValidators";
-import { occupationsList, rolesList, sortedProvincesList } from "../helpers/selectLists";
+import {
+  occupationsList,
+  rolesList,
+  sortedProvincesList,
+} from "../helpers/selectLists";
+import defaultUserIcon from "../assets/icons/default-user.svg";
+import { ref } from "firebase/storage";
+import { storage } from "../config/firebaseConfig";
+import { AiOutlineEdit } from "react-icons/ai";
 
 const EditProfile = () => {
   const navigate = useNavigate();
@@ -24,6 +32,10 @@ const EditProfile = () => {
   const [user, setUser] = useState<User>(storageUser);
   const [userDecodedToken, setUserDecodedToken] = useState<User | null>(null);
   const [displayModal, setDisplayModal] = useState<boolean>(false);
+  const [profileImage, setProfileImage] = useState<File | null>(null);
+  const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
+
+  const storageRef = ref(storage, userDecodedToken?.id);
 
   const getUserDecodedToken = async () => {
     if (!token) return;
@@ -103,21 +115,30 @@ const EditProfile = () => {
     navigate("../profile");
   };
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedImage = e.target.files && e.target.files[0];
+    if (selectedImage) {
+      setProfileImage(selectedImage);
+      const imageURL = URL.createObjectURL(selectedImage);
+      setProfileImageUrl(imageURL);
+    }
+  };
+
   useEffect(() => {
     getUserDecodedToken();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (userDecodedToken) {
       handleGetUserById();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userDecodedToken]);
 
   return (
     <div className="m-auto w-full min-h-screen flex flex-col justify-center items-center bg-cover animate-sladeInFromBottomMedium lg:pt-20">
-      {isLoading && <Loader />}
+      {/* {isLoading && <Loader />} */}
       <Modal
         display={displayModal}
         title="Perfil Actualizado"
@@ -130,6 +151,27 @@ const EditProfile = () => {
       <div className="p-8 space-y-4 rounded-xl w-full max-w-xl">
         <form className="space-y-4" onSubmit={(e) => handleSubmit(e)}>
           <h3 className=" text-center text-3xl font-bold mb-4">Tus datos</h3>
+          <input
+            type="file"
+            id="upload-file"
+            className="hidden"
+            onChange={handleImageChange}
+          />
+          <label htmlFor="upload-file" className="relative">
+            <img
+              src={profileImageUrl ?? defaultUserIcon}
+              className={`mx-auto my-6 object-cover drop-shadow-xl h-52 w-52 z-10 transition duration-150 ease-in overflow-hidden rounded-full $`}
+              alt="User image"
+              loading="lazy"
+            />
+            <div className="absolute top-20 left-16 h-full w-full flex items-center justify-center ">
+              <div className="p-4 bg-emerald-600 rounded-full cursor-pointer transition duration-150 ease-in hover:bg-emerald-500 flex items-center justify-center ">
+                <span className="text-white font-bold">
+                  <AiOutlineEdit size={20} />
+                </span>
+              </div>
+            </div>
+          </label>
           <Input
             placeholder="Nombre completo"
             onChangeText={(e) =>
@@ -165,30 +207,28 @@ const EditProfile = () => {
             value={user?.phone || ""}
             validations={["isValidPhone"]}
           />
-          {
-            user?.role === "WORKER" &&
+          {user?.role === "WORKER" && (
             <SelectInput
-            onChange={(e) =>
-              setUser((prevUser) => ({ ...prevUser, occupation: e }))
-            }
-            options={occupationsList}
-            placeholder="Selecciona una ocupación"
-            value={user?.occupation || ""}
-          />
-          }
-          {
-            user?.role === "WORKER" &&
+              onChange={(e) =>
+                setUser((prevUser) => ({ ...prevUser, occupation: e }))
+              }
+              options={occupationsList}
+              placeholder="Selecciona una ocupación"
+              value={user?.occupation || ""}
+            />
+          )}
+          {user?.role === "WORKER" && (
             <Input
-            onChangeText={(e) =>
-              setUser((prevUser) => ({ ...prevUser, bio: e }))
-            }
-            placeholder="Acerca de tí"
-            value={user?.bio || ""}
-            type="textarea"
-            rows={3}
-            validations={["minLength:50", "maxLength:150"]}
-          />
-          }
+              onChangeText={(e) =>
+                setUser((prevUser) => ({ ...prevUser, bio: e }))
+              }
+              placeholder="Acerca de tí"
+              value={user?.bio || ""}
+              type="textarea"
+              rows={3}
+              validations={["minLength:50", "maxLength:150"]}
+            />
+          )}
           <Button title="Actualizar" className="w-full" onClick={() => {}} />
         </form>
       </div>
