@@ -116,7 +116,15 @@ const EditProfile = () => {
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const MAX_FILE_SIZE_MB = 5;
     const selectedImage = e.target.files && e.target.files[0];
+    if (selectedImage) {
+      if (selectedImage.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
+        alert(`El tamaño máximo permitido es de ${MAX_FILE_SIZE_MB} MB.`);
+        e.target.value = "";
+        return;
+      }
+    }
     if (selectedImage) {
       setProfileImage(selectedImage);
       const imageURL = URL.createObjectURL(selectedImage);
