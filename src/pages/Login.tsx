@@ -14,6 +14,9 @@ import { useDispatch } from "react-redux";
 import { tokenExists } from "../helpers/jwtUtils";
 import loginBackground from "../assets/img/login-img.jpg";
 import { saveOnStorage } from "../helpers/handleStorage";
+import { storage } from "../config/firebaseConfig";
+import { ref } from "firebase/storage";
+import { getProfileImage } from "../helpers/getProfileImage";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -60,12 +63,19 @@ const Login = () => {
     if (loginResponse.status !== 200) {
       return alert(loginResponse.data.msg);
     }
-    
-    saveOnStorage('token', loginResponse.data.token);
-    saveOnStorage('user', loginResponse.data.user);
 
+    saveOnStorage("token", loginResponse.data.token);
+    saveOnStorage("user", loginResponse.data.user);
+
+    const storageRef = ref(storage, loginResponse.data.user.id);
+    const profileImage = await getProfileImage(storageRef);
+    const userData = {
+      ...loginResponse.data.user,
+      profileImage: profileImage,
+    };
+    console.log(userData)
+    dispatch(updateUser(userData));
     dispatch(updateToken(loginResponse.data.token));
-    dispatch(updateUser(loginResponse.data.user));
 
     isLoggedIn();
   };
@@ -77,7 +87,10 @@ const Login = () => {
   return (
     <div
       className="m-auto w-full min-h-screen flex flex-col justify-center items-center bg-cover animate-blurTransition"
-      style={{ backgroundImage: `url(${loginBackground})`, backgroundAttachment: "fixed" }}
+      style={{
+        backgroundImage: `url(${loginBackground})`,
+        backgroundAttachment: "fixed",
+      }}
     >
       {isLoading && <Loader />}
       <div className="p-8 pt-32 space-y-8 rounded-xl w-full max-w-xl animate-sladeInFromBottomMedium">
