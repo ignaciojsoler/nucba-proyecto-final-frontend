@@ -36,6 +36,7 @@ const EditProfile = () => {
   const [displayModal, setDisplayModal] = useState<boolean>(false);
   const [profileImage, setProfileImage] = useState<File | null>(null);
   const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
+  const [updateProfileImage, setUpdateProfileImage] = useState<boolean>(false);
 
   const storageRef = ref(storage, userDecodedToken?.id);
 
@@ -79,11 +80,12 @@ const EditProfile = () => {
       setProfileImage(selectedImage);
       const imageURL = URL.createObjectURL(selectedImage);
       setProfileImageUrl(imageURL);
+      setUpdateProfileImage(true);
     }
   };
 
   const uploadImage = async () => {
-    if (!profileImage) return null;
+    if (!profileImage || !updateProfileImage) return null;
     try {
       await uploadBytes(storageRef, profileImage).catch((err) => err);
       const profileImageUrl = await getDownloadURL(ref(storageRef));
@@ -135,8 +137,8 @@ const EditProfile = () => {
     }
     setIsLoading(true);
     if (!token) return alert("Debes iniciar sesión para hacer esto.");
-    const profileImage = await uploadImage();
-    const updatedUser: AxiosResponse = await findUserAndUpdate(token, {...user, profileImage: profileImage ?? "" });
+    const profileImageFromHost = await uploadImage();
+    const updatedUser: AxiosResponse = await findUserAndUpdate(token, {...user, ...(profileImageFromHost && {profileImage: profileImageFromHost}) });
     setIsLoading(false);
     if (!updatedUser)
       return alert("Algo ha salido mal, intentalo de nuevo más tarde");
@@ -148,7 +150,8 @@ const EditProfile = () => {
       name: updatedUser.data.user.name,
       email: updatedUser.data.user.email,
       role: updatedUser.data.user.role,
-      ...(profileImage && { profileImage }),
+      ...(profileImageFromHost && { profileImage: profileImageFromHost}),
+      ...(profileImageUrl && { profileImage: profileImageUrl})
     };
     setUser(userClientData);
     dispatch(updateUser(userClientData));
@@ -158,6 +161,7 @@ const EditProfile = () => {
   useEffect(() => {
     getUserDecodedToken();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    console.log(profileImageUrl)
   }, []);
 
   useEffect(() => {
