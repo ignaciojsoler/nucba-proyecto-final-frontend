@@ -138,7 +138,7 @@ const EditProfile = () => {
 
   return (
     <div className="m-auto w-full min-h-screen flex flex-col justify-center items-center bg-cover animate-sladeInFromBottomMedium lg:pt-20">
-      {/* {isLoading && <Loader />} */}
+      {isLoading && <Loader />}
       <Modal
         display={displayModal}
         title="Perfil Actualizado"
