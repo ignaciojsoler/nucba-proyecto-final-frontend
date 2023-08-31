@@ -43,13 +43,11 @@ const ProfileCard = ({
       className={`bg-slate-900 w-full lg:w-[36rem] rounded-lg px-6 ${className}`}
     >
       <div
-        className={`relative h-full col-span-6 flex justify-center items-center bg-opacity-80 transition duration-150 group-hover:bg-opacity-60`}
+        className={`relative h-full col-span-6 flex justify-center items-center bg-opacity-80 transition duration-150 pt-6 group-hover:bg-opacity-60`}
       >
         <img
           src={profileImage ?? defaultUserIcon}
-          className={`object-cover drop-shadow-xl h-40 z-10 transition duration-150 ease-in ${
-            !profileImage && "p-5"
-          }`}
+          className={`object-cover drop-shadow-xl h-40 w-40 z-10 transition duration-150 ease-in rounded-full`}
           alt="User image"
           loading="lazy"
         />

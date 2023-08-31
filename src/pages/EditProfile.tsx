@@ -7,7 +7,7 @@ import Input from "../components/Input";
 import { Button } from "../components/Button";
 import SelectInput from "../components/SeletInput";
 import { RootState } from "../store/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AxiosResponse } from "axios";
 import { isExpired, decodeToken } from "react-jwt";
 import Modal from "../components/Modal";
@@ -18,12 +18,14 @@ import {
   sortedProvincesList,
 } from "../helpers/selectLists";
 import defaultUserIcon from "../assets/icons/default-user.svg";
-import { ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../config/firebaseConfig";
 import { AiOutlineEdit } from "react-icons/ai";
+import { updateUser } from "../store/userSlice";
 
 const EditProfile = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const token = useSelector((state: RootState) => state.token.token);
   const storageUser = useSelector((state: RootState) => state.user);
@@ -55,6 +57,39 @@ const EditProfile = () => {
       return console.log(userData.data);
     }
     setUser(userData.data.userData);
+  };
+
+  const handleConfirmAndNavigate = () => {
+    setDisplayModal(false);
+    navigate("../profile");
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const MAX_FILE_SIZE_MB = 5;
+    const selectedImage = e.target.files && e.target.files[0];
+    if (selectedImage) {
+      if (selectedImage.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
+        alert(`El tamaño máximo permitido es de ${MAX_FILE_SIZE_MB} MB.`);
+        e.target.value = "";
+        return;
+      }
+    }
+    if (selectedImage) {
+      setProfileImage(selectedImage);
+      const imageURL = URL.createObjectURL(selectedImage);
+      setProfileImageUrl(imageURL);
+    }
+  };
+
+  const uploadImage = async () => {
+    if (!profileImage) return null;
+    try {
+      await uploadBytes(storageRef, profileImage).catch((err) => err);
+      const profileImageUrl = await getDownloadURL(ref(storageRef));
+      if (profileImageUrl) return profileImageUrl;
+    } catch(err) {
+      console.log(err)
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent<EventTarget>) => {
@@ -99,43 +134,25 @@ const EditProfile = () => {
     }
     setIsLoading(true);
     if (!token) return alert("Debes iniciar sesión para hacer esto.");
-    const updatedUser: AxiosResponse = await findUserAndUpdate(token, user);
-    uploadImage()
+    const profileImage = await uploadImage();
+    const updatedUser: AxiosResponse = await findUserAndUpdate(token, {...user, profileImage: profileImage ?? "" });
     setIsLoading(false);
     if (!updatedUser)
       return alert("Algo ha salido mal, intentalo de nuevo más tarde");
     if (updatedUser.status !== 200) {
+      console.log(updatedUser.data)
       return alert(updatedUser.data);
     }
-    setUser(updatedUser.data.user);
+    const userClientData = {
+      id: updatedUser.data.user.id,
+      name: updatedUser.data.user.name,
+      email: updatedUser.data.user.email,
+      role: updatedUser.data.user.role,
+      ...(profileImage && { profileImage }),
+    };
+    setUser(userClientData);
+    dispatch(updateUser(userClientData));
     setDisplayModal(true);
-  };
-
-  const handleConfirmAndNavigate = () => {
-    setDisplayModal(false);
-    navigate("../profile");
-  };
-
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const MAX_FILE_SIZE_MB = 5;
-    const selectedImage = e.target.files && e.target.files[0];
-    if (selectedImage) {
-      if (selectedImage.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
-        alert(`El tamaño máximo permitido es de ${MAX_FILE_SIZE_MB} MB.`);
-        e.target.value = "";
-        return;
-      }
-    }
-    if (selectedImage) {
-      setProfileImage(selectedImage);
-      const imageURL = URL.createObjectURL(selectedImage);
-      setProfileImageUrl(imageURL);
-    }
-  };
-
-  const uploadImage = () => {
-    if (!profileImage) return null;
-    uploadBytes(storageRef, profileImage).catch((err) => err);
   };
 
   useEffect(() => {

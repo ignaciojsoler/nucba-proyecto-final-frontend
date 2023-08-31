@@ -1,5 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../interfaces/interfaces";
+import { saveOnStorage } from "../helpers/handleStorage";
 
 const initialState: User = {
   id: "",
@@ -19,6 +20,7 @@ export const userSlice = createSlice({
       state.email = action.payload.email;
       state.role = action.payload.role;
       state.profileImage = action.payload.profileImage
+      saveOnStorage("user", current(state));
     },
   },
 });

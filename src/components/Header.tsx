@@ -120,7 +120,7 @@ export const Navbar = () => {
           {isLoggedIn ? (
             <>
               <div className="font-semibold cursor-default">{name}</div>
-              <UserAvatarDropdown isLoggedIn={isLoggedIn}/>
+              <UserAvatarDropdown/>
             </>
           ) : (
             <Link to="/plans">
