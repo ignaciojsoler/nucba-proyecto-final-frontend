@@ -12,7 +12,7 @@ const WorkerCard = ({ worker }: WorkerCardProps) => {
   return (
     <Link
       to={`../worker/${id}`}
-      className="group rounded-lg overflow-hidden bg-slate-900 flex flex-col cursor-pointer animate-sladeInFromBottomShort transition duration-150 hover:bg-slate-800 lg:flex-row"
+      className="group rounded-lg overflow-hidden bg-slate-900 flex flex-col cursor-pointer animate-sladeInFromBottomShort transition duration-150 hover:bg-slate-800 lg:flex-row lg:justify-between lg:items-center"
     >
       <div
         className={`relative h-full flex items-center justify-center lg:order-last bg-opacity-80 transition duration-150 group-hover:bg-opacity-60 lg:justify-end`}
