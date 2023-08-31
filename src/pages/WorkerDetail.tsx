@@ -73,7 +73,7 @@ const WorkerDetail = () => {
               ? Array.from({ length: 8 }, (_, index) => (
                   <ServiceCardSkeleton key={index} />
                 ))
-              : !worker.services?.length ? "Aún no hay servicios agregados."
+              : !worker.services?.length && userDecodedToken?.id !== worker?.id ? "Aún no hay servicios agregados."
               : worker.services?.map((s) => {
                   return (
                     <ServiceCard
