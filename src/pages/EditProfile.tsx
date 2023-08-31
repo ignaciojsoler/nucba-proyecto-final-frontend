@@ -57,6 +57,7 @@ const EditProfile = () => {
       return console.log(userData.data);
     }
     setUser(userData.data.userData);
+    if (userData.data.userData.profileImage) setProfileImageUrl(userData.data.userData.profileImage);
   };
 
   const handleConfirmAndNavigate = () => {
