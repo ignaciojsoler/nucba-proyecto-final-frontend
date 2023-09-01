@@ -25,3 +25,5 @@ dist-ssr
 
 # Dotenv files
 *.env*
+.vercel
+.env*.local

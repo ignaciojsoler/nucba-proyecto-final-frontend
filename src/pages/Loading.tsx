@@ -14,7 +14,7 @@ const Loading = () => {
     };
   }, []);
   return (
-    <div className="max-w-7xl m-auto min-w-screen min-h-screen bg-gradient-to-b from-slate-900 to-slate-950 flex">
+    <div className="max-w-7xl m-auto min-w-screen min-h-screen bg-slate-950 flex">
       <div className="h-full m-auto space-y-6 animate-pulse">
         <div role="status">
           <div className="space-y-4">

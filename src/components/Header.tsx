@@ -63,7 +63,7 @@ export const Navbar = () => {
           </span>
         </Link>
         <div className="md:hidden">
-          <div className="fixed z-20 left-0 bg-gradient-to-b from-slate-900 to-transparent w-full top-0 px-6 pt-6 pb-11 flex justify-between">
+          <div className="fixed z-20 left-0 bg-gradient-to-b from-slate-950 to-transparent w-full top-0 px-6 pt-6 pb-11 flex justify-between">
             <Link to="/home" className="relative z-30 lg:hidden" onClick={() => setDisplayAside(false)}>
               <img
                 src={logo}
