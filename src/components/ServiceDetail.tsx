@@ -99,7 +99,9 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
 
   return (
     <article className="w-full space-y-4 animate-sladeInFromBottomShort">
-      <h2 className=" text-6xl font-semibold">{service.title}</h2>
+      <h2 className="text-5xl font-semibold" style={{
+        lineHeight: "3.8rem"
+      }}>{service.title}</h2>
       <h5 className=" text-2xl text-slate-400 font-normal">
         {service.description}
       </h5>
@@ -135,7 +137,7 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
               icon={<AiOutlineHeart />}
               onClick={() => handleSetAsFavorite()}
               size="large"
-              className="w-80"
+              className="lg:w-80"
             />
           </>
         )}
