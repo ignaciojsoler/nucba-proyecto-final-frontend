@@ -37,7 +37,7 @@ const WorkersResults = ({ occupation }: WorkersResultsProps) => {
   useEffect(() => {
     handleGetWorkers();
     console.log(take)
-  }, [take]);
+  }, [occupation, take]);
 
   const handleLoadMore = () => {
     setTake((prevTake) => prevTake + 5);
