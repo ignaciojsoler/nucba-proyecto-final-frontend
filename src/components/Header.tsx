@@ -79,7 +79,7 @@ export const Navbar = () => {
             />
           </div>
           <div
-            className={`fixed flex flex-col top-0 h-screen w-screen bg-slate-900 bg-opacity-90 backdrop-blur-3xl z-10 transition-all duration-300 ease-in-out pt-28 pl-8 ${
+            className={`fixed flex flex-col top-0 h-screen w-screen bg-slate-900 bg-opacity-80 backdrop-blur-2xl z-10 transition-all duration-300 ease-in-out pt-28 pl-8 ${
               !displayAside ? " -left-full" : "left-0"
             }`}
           >

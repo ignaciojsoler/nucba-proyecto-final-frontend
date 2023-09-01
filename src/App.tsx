@@ -22,7 +22,7 @@ function App() {
   useScrollToTop();
   useGetStorageData();
   return (
-    <div className="min-h-screen min-w-screen bg-gradient-to-b from-slate-900 to-slate-950 text-slate-200">
+    <div className="min-h-screen min-w-screen bg-gradient-to-b from-slate-900 to-slate-950 text-slate-200 overflow-hidden">
       <Suspense fallback={<Loading />}>
         <Navbar />
         <Routes>
