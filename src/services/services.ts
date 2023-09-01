@@ -69,6 +69,8 @@ export const getUsers = async (
   role: string = "worker",
   queryParams?: {
     occupation?: string | null;
+    skip?: number;
+    take?: number;
   }
 ): Promise<AxiosResponse> => {
   try {
@@ -82,6 +84,15 @@ export const getUsers = async (
       url += `&occupation=${queryParams.occupation}`;
     }
 
+    // Add skip and take query parameters if provided
+    if (queryParams && queryParams.skip !== undefined) {
+      url += `&skip=${queryParams.skip}`;
+    }
+
+    if (queryParams && queryParams.take !== undefined) {
+      url += `&take=${queryParams.take}`;
+    }
+
     const response: AxiosResponse = await axios.get(url);
     return response;
   } catch (err: any) {
@@ -89,6 +100,7 @@ export const getUsers = async (
     return err.response;
   }
 };
+
 
 export const getUserById = async (userId: string): Promise<AxiosResponse> => {
   try {

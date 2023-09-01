@@ -3,6 +3,7 @@ import { getUsers } from "../services/services";
 import WorkerCardSkeleton from "./Skeletons/WorkerCardSkeleton";
 import WorkerCard from "./WorkerCard";
 import { User } from "../interfaces/interfaces";
+import { Button } from "./Button";
 
 interface WorkersResultsProps {
   occupation: string | null;
@@ -11,17 +12,36 @@ interface WorkersResultsProps {
 const WorkersResults = ({ occupation }: WorkersResultsProps) => {
   const [workers, setWorkers] = useState<User[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [take, setTake] = useState<number>(5);
+  const [totalUsers, setTotalUsers] = useState<number>(0); // Total number of users in the database
 
   const handleGetWorkers = async () => {
-    const workersData = await getUsers("worker", { occupation });
-    if (!workersData) return;
-    setWorkers(workersData.data.users);
-    setIsLoading(false);
+    try {
+      const workersData = await getUsers("worker", {
+        occupation,
+        take,
+      });
+      if (!workersData) return;
+
+      setWorkers(workersData.data.users);
+      setIsLoading(false);
+      
+      // Assuming that workersData.data.totalUsers holds the total number of users in the database
+      setTotalUsers(workersData.data.totalUsers);
+      console.log(workersData.data.totalUsers)
+    } catch (error) {
+      console.error("Error fetching workers:", error);
+    }
   };
 
   useEffect(() => {
     handleGetWorkers();
-  }, [occupation]);
+    console.log(take)
+  }, [take]);
+
+  const handleLoadMore = () => {
+    setTake((prevTake) => prevTake + 5);
+  };
 
   return (
     <article className="w-full">
@@ -32,9 +52,14 @@ const WorkersResults = ({ occupation }: WorkersResultsProps) => {
         ) : (
           <>
             {workers.length ? (
-              workers?.map((worker) => <WorkerCard key={worker.id} worker={worker} />)
+              workers.map((worker) => (
+                <WorkerCard key={worker.id} worker={worker} />
+              ))
             ) : (
               <p>No se han encontrado trabajadores para esta categoría</p>
+            )}
+            {!isLoading && totalUsers > take && (
+              <Button onClick={() => handleLoadMore()} color="transparent" title="Cargar más" className="m-auto" />
             )}
           </>
         )}
