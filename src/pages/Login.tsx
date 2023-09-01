@@ -79,7 +79,6 @@ const Login = () => {
       className="m-auto w-full min-h-screen flex flex-col justify-center items-center bg-cover animate-blurTransition"
       style={{
         backgroundImage: `url(${loginBackground})`,
-        backgroundAttachment: "fixed",
       }}
     >
       {isLoading && <Loader />}
