@@ -15,7 +15,7 @@ export const loginWithEmailAndPassword = async (
         email,
         password,
       },
-      { timeout:  25000 }
+      { timeout: 25000 }
     );
     return response;
   } catch (err: any) {
@@ -39,7 +39,7 @@ export const signUp = async (
         role,
       },
       {
-        timeout:  25000,
+        timeout: 25000,
       }
     );
     return response;
@@ -54,10 +54,14 @@ export const verifyAccount = async (
   verificationCode: string
 ): Promise<AxiosResponse> => {
   try {
-    const response: AxiosResponse = await axios.post(API_URL + `/auth/verify`, {
-      email,
-      verificationCode,
-    }, {timeout:  25000});
+    const response: AxiosResponse = await axios.post(
+      API_URL + `/auth/verify`,
+      {
+        email,
+        verificationCode,
+      },
+      { timeout: 25000 }
+    );
     return response;
   } catch (err: any) {
     console.log(err.response);
@@ -80,17 +84,16 @@ export const getUsers = async (
       url += `?role=${role}`;
     }
 
-    if (queryParams && queryParams.occupation !== null) {
-      url += `&occupation=${queryParams.occupation}`;
-    }
-
-    // Add skip and take query parameters if provided
     if (queryParams && queryParams.skip !== undefined) {
       url += `&skip=${queryParams.skip}`;
     }
 
     if (queryParams && queryParams.take !== undefined) {
       url += `&take=${queryParams.take}`;
+    }
+
+    if (queryParams && queryParams.occupation !== undefined && queryParams.occupation !== null) {
+      url += `&occupation=${queryParams.occupation}`;
     }
 
     const response: AxiosResponse = await axios.get(url);
@@ -100,7 +103,6 @@ export const getUsers = async (
     return err.response;
   }
 };
-
 
 export const getUserById = async (userId: string): Promise<AxiosResponse> => {
   try {
@@ -128,7 +130,7 @@ export const findUserAndUpdate = async (
         headers: {
           Authorization: token,
         },
-        timeout:  25000,
+        timeout: 25000,
       }
     );
     return response;
@@ -140,7 +142,7 @@ export const findUserAndUpdate = async (
 
 export const getServices = async (queryParams?: {
   category?: string | null;
-  take?: string | null;
+  take?: number | null;
 }): Promise<AxiosResponse> => {
   try {
     let url = API_URL + "/services";
@@ -203,7 +205,7 @@ export const createNewService = async (
         headers: {
           Authorization: token,
         },
-        timeout:  25000,
+        timeout: 25000,
       }
     );
     return response;
@@ -279,7 +281,7 @@ export const saveServiceAsFavorite = async (
         headers: {
           Authorization: token,
         },
-        timeout:  25000,
+        timeout: 25000,
       }
     );
     return response;

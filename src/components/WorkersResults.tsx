@@ -13,7 +13,7 @@ const WorkersResults = ({ occupation }: WorkersResultsProps) => {
   const [workers, setWorkers] = useState<User[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [take, setTake] = useState<number>(5);
-  const [totalUsers, setTotalUsers] = useState<number>(0); // Total number of users in the database
+  const [totalUsers, setTotalUsers] = useState<number>(0);
 
   const handleGetWorkers = async () => {
     try {
@@ -25,10 +25,8 @@ const WorkersResults = ({ occupation }: WorkersResultsProps) => {
 
       setWorkers(workersData.data.users);
       setIsLoading(false);
-      
-      // Assuming that workersData.data.totalUsers holds the total number of users in the database
+
       setTotalUsers(workersData.data.totalUsers);
-      console.log(workersData.data.totalUsers)
     } catch (error) {
       console.error("Error fetching workers:", error);
     }
@@ -36,8 +34,12 @@ const WorkersResults = ({ occupation }: WorkersResultsProps) => {
 
   useEffect(() => {
     handleGetWorkers();
-    console.log(take)
+    console.log(take);
   }, [occupation, take]);
+
+  useEffect(() => {
+    setTake(5);
+  }, [occupation]);
 
   const handleLoadMore = () => {
     setTake((prevTake) => prevTake + 5);
@@ -59,7 +61,12 @@ const WorkersResults = ({ occupation }: WorkersResultsProps) => {
               <p>No se han encontrado trabajadores para esta categoría</p>
             )}
             {!isLoading && totalUsers > take && (
-              <Button onClick={() => handleLoadMore()} color="transparent" title="Cargar más" className="m-auto" />
+              <Button
+                onClick={() => handleLoadMore()}
+                color="transparent"
+                title="Cargar más"
+                className="m-auto"
+              />
             )}
           </>
         )}

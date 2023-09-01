@@ -10,7 +10,7 @@ export const Workers = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const handleGetWorkers = async () => {
-    const wokersData = await getUsers("worker");
+    const wokersData = await getUsers("worker", {take: 6});
     if (!wokersData) return;
     setWorkers(wokersData.data.users);
     setIsLoading(false);
