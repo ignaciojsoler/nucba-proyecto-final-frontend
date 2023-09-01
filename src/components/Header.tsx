@@ -64,14 +64,14 @@ export const Navbar = () => {
         </Link>
         <div className="md:hidden">
           <div className="fixed z-20 left-0 bg-gradient-to-b from-slate-900 to-transparent w-full top-0 px-6 pt-6 pb-11 flex justify-between">
-            <i className="relative z-30 lg:hidden">
+            <Link to="/home" className="relative z-30 lg:hidden" onClick={() => setDisplayAside(false)}>
               <img
                 src={logo}
                 alt="Logotype"
                 className="w-10 h-10"
                 loading="lazy"
               />
-            </i>
+            </Link>
             <Hamburger
               color="white"
               onToggle={() => setDisplayAside(!displayAside)}
@@ -95,8 +95,8 @@ export const Navbar = () => {
                 <p
                   className="cursor-pointer text-2xl font-bold py-6 md:font-semibold md:py-0 md:text-base"
                   onClick={() => {
-                    closeAside()
-                    logOut(navigate)
+                    closeAside();
+                    logOut(navigate);
                   }}
                 >
                   Cerrar sesión
@@ -104,14 +104,14 @@ export const Navbar = () => {
               </>
             ) : (
               <p
-                  className="cursor-pointer text-2xl font-bold py-6 md:font-semibold md:py-0 md:text-base"
-                  onClick={() => {
-                    closeAside()
-                    navigate("/plans")
-                  }}
-                >
-                  Registrarse
-                </p>
+                className="cursor-pointer text-2xl font-bold py-6 md:font-semibold md:py-0 md:text-base"
+                onClick={() => {
+                  closeAside();
+                  navigate("/plans");
+                }}
+              >
+                Registrarse
+              </p>
             )}
           </div>
         </div>
@@ -120,7 +120,7 @@ export const Navbar = () => {
           {isLoggedIn ? (
             <>
               <div className="font-semibold cursor-default">{name}</div>
-              <UserAvatarDropdown/>
+              <UserAvatarDropdown />
             </>
           ) : (
             <Link to="/plans">
