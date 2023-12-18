@@ -199,8 +199,7 @@ const EditProfile = () => {
 
   useEffect(() => {
     getUserDecodedToken();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    console.log(profileImageUrl)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

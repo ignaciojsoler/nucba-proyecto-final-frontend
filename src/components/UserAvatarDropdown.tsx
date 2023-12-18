@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import defaultUserIcon from "../assets/icons/default-user.svg";
 import { useNavigate } from "react-router-dom";
-import { logOut } from "../helpers/logOut";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
+import { useLogOut } from "../hooks/useLogOut";
 
 const UserAvatarDropdown = () => {
   const navigate = useNavigate();
@@ -12,6 +12,8 @@ const UserAvatarDropdown = () => {
 
   const [displayDropdownItems, setDisplayDropdownItems] =
     useState<boolean>(false);
+  
+    const { logOut } = useLogOut();
 
   const dropdownOptions = [
     { onClick: () => navigate("/profile"), text: "Perfil" },

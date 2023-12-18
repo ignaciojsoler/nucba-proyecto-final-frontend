@@ -8,11 +8,12 @@ import { tokenExists } from "../helpers/jwtUtils";
 import UserAvatarDropdown from "./UserAvatarDropdown";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import { logOut } from "../helpers/logOut";
+import { useLogOut } from "../hooks/useLogOut";
 
 export const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { logOut } = useLogOut();
 
   const { name } = useSelector((state: RootState) => state.user);
 
