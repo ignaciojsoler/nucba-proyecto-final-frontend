@@ -67,20 +67,59 @@ const EditProfile = () => {
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const MAX_FILE_SIZE_MB = 5;
+    const MAX_FILE_SIZE_MB = 2;
+    const MAX_WIDTH = 400;
     const selectedImage = e.target.files && e.target.files[0];
+  
     if (selectedImage) {
       if (selectedImage.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
         alert(`El tamaño máximo permitido es de ${MAX_FILE_SIZE_MB} MB.`);
         e.target.value = "";
         return;
       }
-    }
-    if (selectedImage) {
-      setProfileImage(selectedImage);
-      const imageURL = URL.createObjectURL(selectedImage);
-      setProfileImageUrl(imageURL);
-      setUpdateProfileImage(true);
+  
+      // Utilizar FileReader para leer la imagen como un objeto de datos
+      const reader = new FileReader();
+  
+      reader.onload = (readerEvent) => {
+        const image = new Image();
+        image.onload = () => {
+          // Calcular las nuevas dimensiones de la imagen
+          const aspectRatio = image.width / image.height;
+          const newWidth = Math.min(MAX_WIDTH, image.width);
+          const newHeight = newWidth / aspectRatio;
+  
+          // Crear un lienzo para redimensionar la imagen
+          const canvas = document.createElement("canvas");
+          canvas.width = newWidth;
+          canvas.height = newHeight;
+  
+          // Dibujar la imagen redimensionada en el lienzo
+          const context = canvas.getContext("2d");
+          context?.drawImage(image, 0, 0, newWidth, newHeight);
+  
+          // Convertir el lienzo a un Blob y luego a un archivo
+          canvas.toBlob((blob) => {
+            if (!blob) return;
+            const resizedFile = new File([blob], selectedImage.name, {
+              type: selectedImage.type,
+              lastModified: Date.now(),
+            });
+  
+            // Establecer la imagen redimensionada en el estado
+            setProfileImage(resizedFile);
+            const imageURL = URL.createObjectURL(resizedFile);
+            setProfileImageUrl(imageURL);
+            setUpdateProfileImage(true);
+          }, selectedImage.type);
+        };
+  
+        // Asignar la URL de la imagen al objeto Image
+        image.src = readerEvent.target?.result as string;
+      };
+  
+      // Leer la imagen como un objeto de datos
+      reader.readAsDataURL(selectedImage);
     }
   };
 
