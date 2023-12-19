@@ -27,13 +27,13 @@ const WorkerCard = ({ worker }: WorkerCardProps) => {
           loading="lazy"
         />
       </div>
-      <div className="space-y-1 p-6 overflow-hidden">
+      <div className="space-y-1 p-6 lg:overflow-hidden">
         <h4 className="font-bold text-3xl line-clamp-1">{name}</h4>
         <span className="line-clamp-1">{city}</span>
         <h5 className={`font-bold text-xl text-emerald-600 line-clamp-1`}>
           {occupation}
         </h5>
-        <p className=" text-slate-400 line-clamp-2">{bio}</p>
+        <p className=" text-slate-400 line-clamp-2">{bio || ""}</p>
       </div>
     </Link>
   );
