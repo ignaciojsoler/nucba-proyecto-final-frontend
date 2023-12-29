@@ -10,6 +10,7 @@ import ProfilePage from "./pages/ProfilePage";
 import ServicePage from "./pages/ServicePage";
 import EditService from "./pages/EditService";
 import EditProfile from "./pages/EditProfile";
+import Footer from "./components/Footer";
 
 const Landing = React.lazy(() => import("./pages/Landing"));
 const Login = React.lazy(() => import("./pages/Login"));
@@ -39,6 +40,7 @@ function App() {
           <Route path="/service/edit/:id" element={<EditService/>}/>
           <Route path="/categories" element={<CategoriesPage/>}/>
         </Routes>
+        <Footer/>
       </Suspense>
     </div>
   );
